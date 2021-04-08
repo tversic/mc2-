@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 @Component
 public class MyRunner implements CommandLineRunner {
 
-
+    //komentar
     @Override
     @Transactional
     public void run(String... args) throws Exception {
