@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Spring Security Example</title>
+    <style>
+        #loginButton, #registerButton
+        {
+            margin-bottom: 10px;
+            display: block;
+            width: 100px;
+            background-image: linear-gradient(gray, white);
+            border-radius: 30%;
+            padding: 10px;
+            text-decoration: none;
+        }
+        #loginButton:hover, #registerButton:hover
+        {
+            -webkit-transition: opacity 200ms linear;
+            background-image: linear-gradient(white, gray);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<h1>Welcome!</h1>
+<p>Click <a th:href="@{/hello}">here</a> to see a greeting.</p>
+<a th:href="@{/hello}" id="loginButton">Login</a>
+<a th:href="@{/register}" id="registerButton">Register</a>
+</body>
+</html>

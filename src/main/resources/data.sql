@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS Users;
+
+CREATE TABLE Users(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) ,
+    email VARCHAR(255),
+    pass VARCHAR(255)
+);
