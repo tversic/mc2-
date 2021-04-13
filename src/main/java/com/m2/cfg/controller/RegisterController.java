@@ -1,6 +1,8 @@
 package com.m2.cfg.controller;
 
+import com.m2.cfg.domain.Authorities;
 import com.m2.cfg.domain.Users;
+import com.m2.cfg.repository.RoleRepository;
 import com.m2.cfg.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -22,6 +24,9 @@ public class RegisterController {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    RoleRepository roleRepository;
+
     @Lazy
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -31,9 +36,11 @@ public class RegisterController {
 
         if(user.getUsername() != null && user.getEmail() != null && user.getPass() != null)
         {
-            var u1 = new Users(user.getUsername(), user.getEmail(), user.getPass());
-            //var u1 = new Users(user.getUsername(), user.getEmail(), passwordEncoder.encode(user.getPass()));
+            //var u1 = new Users(user.getUsername(), user.getEmail(), user.getPass());
+            var r1 = new Authorities(user.getUsername(), "User");
+            var u1 = new Users(user.getUsername(), user.getEmail(), passwordEncoder.encode(user.getPass()));
             userRepository.save(u1);
+            roleRepository.save(r1);
         }
         return "register";
     }
