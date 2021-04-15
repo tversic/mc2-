@@ -10,9 +10,10 @@ CREATE TABLE employee (
 
 create table users (
        id INT AUTO_INCREMENT PRIMARY KEY,
-       username varchar(50) not null ,
-       email varchar(120),
+       username varchar(255) not null ,
+       email varchar(255),
        password varchar(255) not null,
+       id_fakulteta int not null,
        enabled boolean
 );
 
@@ -21,6 +22,6 @@ create table authorities (
          authority varchar(50) not null,
          foreign key (username) references users (username)
 );
-insert into users(username, password, enabled)values('javainuse','javainuse',true);
+insert into users(username, password, enabled, id_fakulteta)values('javainuse','javainuse',true, 1);
 insert into authorities(username,authority)values('javainuse','ROLE_ADMIN');
 

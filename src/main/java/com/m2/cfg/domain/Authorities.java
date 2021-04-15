@@ -1,9 +1,8 @@
 package com.m2.cfg.domain;
 
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.Id;
-import javax.persistence.Table;
+
 
 @Entity
 public class Authorities {

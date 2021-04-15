@@ -36,7 +36,6 @@ public class RegisterController {
 
         if(user.getUsername() != null && user.getEmail() != null && user.getPass() != null)
         {
-            //var u1 = new Users(user.getUsername(), user.getEmail(), user.getPass());
             var r1 = new Authorities(user.getUsername(), "User");
             var u1 = new Users(user.getUsername(), user.getEmail(), passwordEncoder.encode(user.getPass()));
             userRepository.save(u1);

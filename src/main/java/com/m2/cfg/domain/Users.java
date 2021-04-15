@@ -12,7 +12,9 @@ public class Users {
     private String username;
     private String email;
     private String password;
+    private Integer idFakulteta = 1;
     private boolean enabled = true;
+
 
     public Users(){};
 
@@ -21,13 +23,20 @@ public class Users {
         this.username = username;
         this.email = email;
         this.password = password;
-        //this.authority = "User";
     }
 
     /*
     1. user managment
     2.
      */
+
+    public Integer getIdFakulteta() {
+        return idFakulteta;
+    }
+
+    public void setIdFakulteta(Integer idFakulteta) {
+        this.idFakulteta = idFakulteta;
+    }
 
     public int getId() {
         return id;
