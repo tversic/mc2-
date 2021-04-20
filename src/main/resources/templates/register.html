@@ -7,6 +7,18 @@
 </head>
 <body>
 <h1>Register File</h1>
+<div th:if = "${param.errorUsername}" style="margin-bottom: 10px">
+    <div><b>Username already in use!</b><br></div>
+</div>
+<div th:if = "${param.errorEmail}" style="margin-bottom: 10px">
+    <div><b>Email already in use!</b><br></div>
+</div>
+<div th:if = "${param.errorBoth}" style="margin-bottom: 10px">
+    <div><b>Email and username already in use!</b><br></div>
+</div>
+<div th:if = "${param.success}" style="margin-bottom: 10px">
+    <div><b>Registred successfully!</b><br></div>
+</div>
 <form action="#" method="post" th:object="${user}">
     <label for="username">Username: </label><input type="text" name="username" id="username" th:field = "*{username}"><br>
     <label for="mail">E-Mail: </label><input type="email" name="mail" id = "mail" th:field = "*{email}"><br>

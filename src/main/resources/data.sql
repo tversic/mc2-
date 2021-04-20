@@ -22,6 +22,7 @@ create table authorities (
          authority varchar(50) not null,
          foreign key (username) references users (username)
 );
-insert into users(username, password, enabled, id_fakulteta)values('javainuse','javainuse',true, 1);
+insert into users(username, password, enabled, id_fakulteta, email)values('javainuse','javainuse',true, 1,
+                                                                          'nekimail@gmail.com');
 insert into authorities(username,authority)values('javainuse','ROLE_ADMIN');
 
