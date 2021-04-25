@@ -13,8 +13,19 @@ create table users (
        username varchar(255) not null ,
        email varchar(255),
        password varchar(255) not null,
-       id_fakulteta int not null,
+       id_fakulteta int,
        enabled boolean
+);
+
+CREATE TABLE IF NOT EXISTS fakulteti (
+     naziv VARCHAR(255) NULL,
+     id INT NOT NULL,
+     PRIMARY KEY (id),
+     CONSTRAINT fk_fakulteti_users1
+         FOREIGN KEY (id)
+             REFERENCES users (id_fakulteta)
+             ON DELETE NO ACTION
+             ON UPDATE NO ACTION
 );
 
 create table authorities (
@@ -22,9 +33,6 @@ create table authorities (
          authority varchar(50) not null,
          foreign key (username) references users (username)
 );
-insert into users(username, password, enabled, id_fakulteta, email)
-            values('javainuse','javainuse',true, 1,'nekimail@gmail.com');
-insert into authorities(username,authority)values('javainuse','ROLE_ADMIN');
 
 CREATE TABLE kolegiji (
       id int NOT NULL AUTO_INCREMENT,
@@ -59,16 +67,6 @@ CREATE TABLE IF NOT EXISTS komentari (
 );
 create INDEX fk_komentari_teme_idx on komentari(idTeme ASC);
 
-CREATE TABLE IF NOT EXISTS fakulteti (
-      naziv VARCHAR(255) NULL,
-      id INT NOT NULL,
-      PRIMARY KEY (id),
-      CONSTRAINT fk_fakulteti_users1
-          FOREIGN KEY (id)
-              REFERENCES users (id_fakulteta)
-              ON DELETE NO ACTION
-              ON UPDATE NO ACTION
-);
 
 CREATE TABLE IF NOT EXISTS kolegiji_has_fakulteti(
    kolegiji_id INT NOT NULL,
@@ -87,3 +85,10 @@ CREATE TABLE IF NOT EXISTS kolegiji_has_fakulteti(
 );
 create INDEX fk_kolegiji_has_fakulteti_fakulteti1_idx on kolegiji_has_fakulteti(fakulteti_id ASC);
 create INDEX fk_kolegiji_has_fakulteti_kolegiji1_idx on kolegiji_has_fakulteti(kolegiji_id ASC);
+
+
+insert into users(username, password, enabled, id_fakulteta, email)
+    values('javainuse', 'javainuse',true, 1,'nekimail@gmail.com');
+insert into authorities(username,authority)values('javainuse','ROLE_ADMIN');
+
+insert into fakulteti(naziv, id) values('TVZ', 1);

@@ -2,9 +2,11 @@ package com.m2.cfg.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 
 @Entity
+@Table(name="authorities")
 public class Authorities {
     @Id
     private String username;
