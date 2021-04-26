@@ -1,6 +1,7 @@
 package com.m2.cfg.controller;
 
 import com.m2.cfg.domain.Authorities;
+import com.m2.cfg.domain.Fakultet;
 import com.m2.cfg.domain.Users;
 import com.m2.cfg.repository.FakultetRepostiroy;
 import com.m2.cfg.repository.RoleRepository;
@@ -25,6 +26,8 @@ public class RegisterController {
         return new BCryptPasswordEncoder();
     }
 
+    @Autowired
+    FakultetRepostiroy fakultetRepostiroy;
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -58,8 +61,9 @@ public class RegisterController {
         {
             if(user.getUsername() != null && user.getEmail() != null && user.getPass() != null)
             {
+                Fakultet fax = fakultetRepostiroy.findByNaziv("TVZ");
                 var r1 = new Authorities(user.getUsername(), "User");
-                var u1 = new Users(user.getUsername(), user.getEmail(), passwordEncoder.encode(user.getPass()), 1);
+                var u1 = new Users(user.getUsername(), user.getEmail(), passwordEncoder.encode(user.getPass()), fax);
                 System.out.println("username " +user.getUsername());
                 userRepository.save(u1);
                 roleRepository.save(r1);

@@ -1,8 +1,5 @@
 package com.m2.cfg.domain;
 
-import com.m2.cfg.repository.FakultetRepostiroy;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.persistence.*;
 
 
@@ -30,11 +27,11 @@ public class Users {
 
     public Users(){};
 
-    public Users(String username, String email, String password, Integer idFakulteta) {
+    public Users(String username, String email, String password, Fakultet fax) {
         this.username = username;
         this.email = email;
         this.password = password;
-        faks = new Fakultet(idFakulteta);
+        faks = fax;
 
     }
 
