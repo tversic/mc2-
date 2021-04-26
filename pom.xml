@@ -47,6 +47,13 @@
             <artifactId>spring-security-test</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.30.Final</version>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>
@@ -56,5 +63,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

@@ -2,6 +2,7 @@ package com.m2.cfg.controller;
 
 import com.m2.cfg.domain.Authorities;
 import com.m2.cfg.domain.Users;
+import com.m2.cfg.repository.FakultetRepostiroy;
 import com.m2.cfg.repository.RoleRepository;
 import com.m2.cfg.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,10 +60,12 @@ public class RegisterController {
             {
                 var r1 = new Authorities(user.getUsername(), "User");
                 var u1 = new Users(user.getUsername(), user.getEmail(), passwordEncoder.encode(user.getPass()), 1);
+                System.out.println("username " +user.getUsername());
                 userRepository.save(u1);
                 roleRepository.save(r1);
                 return "redirect:register?success";
             }
+
         }
         return "register";
     }

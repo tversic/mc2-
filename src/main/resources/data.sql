@@ -86,9 +86,8 @@ CREATE TABLE IF NOT EXISTS kolegiji_has_fakulteti(
 create INDEX fk_kolegiji_has_fakulteti_fakulteti1_idx on kolegiji_has_fakulteti(fakulteti_id ASC);
 create INDEX fk_kolegiji_has_fakulteti_kolegiji1_idx on kolegiji_has_fakulteti(kolegiji_id ASC);
 
-
+insert into fakulteti(naziv, id) values('TVZ', 1);
 insert into users(username, password, enabled, id_fakulteta, email)
     values('javainuse', 'javainuse',true, 1,'nekimail@gmail.com');
 insert into authorities(username,authority)values('javainuse','ROLE_ADMIN');
 
-insert into fakulteti(naziv, id) values('TVZ', 1);

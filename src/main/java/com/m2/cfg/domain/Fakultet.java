@@ -1,6 +1,5 @@
 package com.m2.cfg.domain;
 
-import org.hibernate.annotations.ValueGenerationType;
 
 import javax.persistence.*;
 
@@ -15,6 +14,12 @@ public class Fakultet {
     private String naziv;
 
     public Fakultet(){};
+
+    public Fakultet(Integer id)
+    {
+        this.id = id;
+        this.naziv = "TVZ";
+    };
 
     public Integer getId() {
         return id;

@@ -1,10 +1,15 @@
 package com.m2.cfg.domain;
 
+import com.m2.cfg.repository.FakultetRepostiroy;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
+
 
 @Entity
 @Table(name = "users")
 public class Users {
+
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,9 +22,11 @@ public class Users {
     private String password;
     @Column(name = "enabled")
     private boolean enabled = true;
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Fakultet.class)
-    @JoinColumn(name="id_fakulteta", referencedColumnName = "id")
-    private Integer idFakulteta;
+
+
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Fakultet.class, cascade=CascadeType.ALL)
+    @JoinColumn(name="id_fakulteta", nullable = false)
+    private Fakultet faks;
 
     public Users(){};
 
@@ -27,20 +34,16 @@ public class Users {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.idFakulteta = idFakulteta;
+        faks = new Fakultet(idFakulteta);
+
     }
 
-    /*
-    1. user managment
-    2.
-     */
-
-    public Integer getIdFakulteta() {
-        return idFakulteta;
+    public Fakultet getFaks() {
+        return faks;
     }
 
-    public void setIdFakulteta(Integer idFakulteta) {
-        this.idFakulteta = idFakulteta;
+    public void setFaks(Fakultet faks) {
+        this.faks = faks;
     }
 
     public int getId() {
