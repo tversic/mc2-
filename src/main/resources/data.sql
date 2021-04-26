@@ -1,12 +1,6 @@
-DROP TABLE IF EXISTS employee;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS authorities;
 DROP TABLE IF EXISTS kolegiji;
-
-CREATE TABLE employee (
-      empId VARCHAR(10) NOT NULL,
-      empName VARCHAR(100) NOT NULL
-);
 
 create table users (
        id INT AUTO_INCREMENT PRIMARY KEY,
