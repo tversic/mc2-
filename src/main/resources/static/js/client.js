@@ -7,10 +7,21 @@ const videoGrid = document.getElementById('video-grid')
 const myVideo = document.createElement('video')
 myVideo.muted = true
 
+let myID;
+var input = document.getElementById("messageInput");
+
+const configuration = {
+    "iceServers": [{
+        "urls": "stun:stun.l.google.com:19302"
+    }]
+};
+connections = {}
+dataChannels = {}
+
 
 conn.onopen = function() {
     console.log("Connected to the signaling server");
-    initialize();
+    //initialize();
 };
 
 conn.onmessage = function(msg) {
@@ -20,14 +31,31 @@ conn.onmessage = function(msg) {
     switch (content.event) {
         // when somebody wants to call us
         case "offer":
-            handleOffer(data);
+            if(content.to!=myID) break;
+            var from = content.from;
+            peerConnecting(content.from);
+            handleOffer(data,connections[from],from);
             break;
         case "answer":
-            handleAnswer(data);
+            if(content.to!=myID) break;
+            //peerConnecting(from);
+            handleAnswer(data,connections[content.from]);
             break;
         // when a remote peer sends an ice candidate to us
         case "candidate":
-            handleCandidate(data);
+            if(content.to!=myID) break;
+            handleCandidate(data,connections[content.from]);
+            break;
+        case "NEW_CONNECTION":
+            peerConnecting(data);
+            createOffer(connections[data],data);
+            console.log(data);
+            break;
+        case "OWN_ID":
+            myID=data;
+            break;
+        case "PREPARE_CONNECTION":
+            peerConnecting(content.from);
             break;
         default:
             break;
@@ -38,18 +66,18 @@ function send(message) {
     conn.send(JSON.stringify(message));
 }
 
-var peerConnection;
-var dataChannel;
-var input = document.getElementById("messageInput");
-
-function initialize() {
-    var configuration = {
-        "iceServers" : [ {
-            "url" : "stun:stun2.1.google.com:19302"
-        } ]
+function peerConnecting(ID){
+    connections[ID]= new RTCPeerConnection(configuration);
+    connections[ID].onicecandidate = function(event) {
+        if (event.candidate) {
+            send({
+                event : "candidate",
+                data : event.candidate,
+                from : myID,
+                to : ID
+            });
+        }
     };
-
-    peerConnection = new RTCPeerConnection(configuration);
 
     navigator.mediaDevices.getUserMedia({
         video: true,
@@ -57,68 +85,52 @@ function initialize() {
     }).
     then(stream => {
         addVideoStream(myVideo, stream)
-        stream.getTracks().forEach(track => peerConnection.addTrack(track,stream))
+        stream.getTracks().forEach(track => connections[ID].addTrack(track,stream),console.log(track.value))
     }).catch(function(err) {
         /* handle the error */
     });
 
-    // Setup ice handling
-    peerConnection.onicecandidate = function(event) {
-        if (event.candidate) {
-            send({
-                event : "candidate",
-                data : event.candidate
-            });
-        }
-    };
-
-    // creating data channel
-    dataChannel = peerConnection.createDataChannel("dataChannel", {
+    dataChannels[ID] = connections[ID].createDataChannel("dataChannel",{
         reliable : true
     });
 
-
-    dataChannel.onerror = function(error) {
+    dataChannels[ID].onerror = function(error) {
         console.log("Error occured on datachannel:", error);
     };
 
     // when we receive a message from the other peer, printing it on the console
-    dataChannel.onmessage = function(event) {
+    dataChannels[ID].onmessage = function(event) {
         console.log("message:", event.data);
         messageBox.append("them:"+event.data);
     };
 
-    dataChannel.onclose = function() {
+    dataChannels[ID].onclose = function() {
         console.log("data channel is closed");
     };
 
-    peerConnection.ondatachannel = function (event) {
-        dataChannel = event.channel;
+    connections[ID].ondatachannel = function (event) {
+        dataChannels[ID] = event.channel;
     };
 
-    /*peerConnection.ontrack = (event) => {
-        const video = document.createElement('video');
-         if (event.streams && event.streams[0]) {
-             addVideoStream(video,event.streams[0]);
-         }
-    };*/
 
-    const remoteStream = new MediaStream();
-    const remoteVideo = document.querySelector('#remoteVideo');
-    remoteVideo.srcObject = remoteStream;
+    connections[ID].ontrack = async function(event){
+        document.getElementById("remoteVideo").srcObject = navigator.mediaDevices.getUserMedia({
+            video: true,
+            audio: true
+        });
+    }
 
-    peerConnection.addEventListener('track', async (event) => {
-        remoteStream.addTrack(event.track);
-    });
 
 }
 
 
-function createOffer() {
+function createOffer(peerConnection,ID) {
     peerConnection.createOffer(function(offer) {
         send({
             event : "offer",
-            data : offer
+            data : offer,
+            from : myID,
+            to : ID
         });
         peerConnection.setLocalDescription(offer);
     }, function(error) {
@@ -126,19 +138,16 @@ function createOffer() {
     });
 }
 
-function helloWorld(){
-    console.log('hello');
-}
-
-function handleOffer(offer) {
+function handleOffer(offer,peerConnection,ID) {
     peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
-
     // create and send an answer to an offer
     peerConnection.createAnswer(function(answer) {
         peerConnection.setLocalDescription(answer);
         send({
             event : "answer",
-            data : answer
+            data : answer,
+            from : myID,
+            to : ID
         });
     }, function(error) {
         alert("Error creating an answer");
@@ -146,17 +155,19 @@ function handleOffer(offer) {
 
 };
 
-function handleCandidate(candidate) {
+function handleCandidate(candidate,peerConnection) {
     peerConnection.addIceCandidate(new RTCIceCandidate(candidate));
 };
 
-function handleAnswer(answer) {
+function handleAnswer(answer, peerConnection) {
     peerConnection.setRemoteDescription(new RTCSessionDescription(answer));
     console.log("connection established successfully!!");
 };
 
 function sendMessage() {
-    dataChannel.send(input.value);
+    for (const [key, value] of Object.entries(dataChannels)) {
+       value.send(input.value)
+    }
     messageBox.append("me:"+input.value);
     input.value = "";
 }
@@ -168,4 +179,10 @@ function addVideoStream(video, stream) {
         video.play()
     })
     videoGrid.append(video)
+}
+
+function checkTracks(){
+    for (const [key, value] of Object.entries(connections)) {
+       value.getTracks().forEach(track=>console.log(track.id));
+    }
 }

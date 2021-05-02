@@ -82,6 +82,9 @@ create INDEX fk_kolegiji_has_fakulteti_kolegiji1_idx on kolegiji_has_fakulteti(k
 
 insert into fakulteti(naziv, id) values('TVZ', 1);
 insert into users(username, password, enabled, id_fakulteta, email)
-    values('javainuse', 'javainuse',true, 1,'nekimail@gmail.com');
-insert into authorities(username,authority)values('javainuse','ROLE_ADMIN');
+    values('bokyfloky', '$2a$10$eY8X2tTV/ysV3KDkT/96SuBU7x.Vnc2lUyT.j1uFCo4i2QTr7yxNy',true, 1,'nekimail@gmail.com');
+insert into users(username, password, enabled, id_fakulteta, email)
+    values('bbilandzi', '$2a$10$OginvID0.PRHdGr9AM75G.8wf.PQLShaOIg6ESiMV4GsA8Dt1ZsDy',true, 1,'nekimail2@gmail.com');
+insert into authorities(username,authority)values('bokyfloky','ROLE_ADMIN');
+insert into authorities(username,authority)values('bbilandzi','ROLE_ADMIN');
 

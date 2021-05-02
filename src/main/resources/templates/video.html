@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>WebRTC demo</title>
+    <title>Video Call</title>
     <!--Bootstrap only for styling-->
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -47,13 +47,12 @@
       <h1>Video call</h1>
 
       <ul id="messageBox"></ul>
-      <div id="video-grid"><video id="remoteVideo" playsinline autoplay></video></div>
+      <div id="video-grid"><video id="remoteVideo" playsInline autoPlay></video></div>
 
       <!--WebRTC related code-->
-      <button type="button" class="btn btn-primary" onclick="createOffer()">Create
-        Offer</button>
       <input id="messageInput" type="text" class="form-control"
              placeholder="message">
+      <button type="button" class="btn btn-primary" onclick='checkTracks()'>CHECK</button>
       <button type="button" class="btn btn-primary" onclick='sendMessage()'>SEND</button>
       <script type="text/javascript" th:src="@{/js/client.js}"></script>
       <!--WebRTC related code-->
