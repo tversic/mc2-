@@ -21,7 +21,16 @@ dataChannels = {}
 
 conn.onopen = function() {
     console.log("Connected to the signaling server");
-    //initialize();
+    navigator.mediaDevices.getUserMedia({
+        video: true,
+        audio: true
+    }).
+    then(stream => {
+        addVideoStream(myVideo, stream)
+        return stream;
+    }).catch(function(err) {
+        /* handle the error */
+    });
 };
 
 conn.onmessage = function(msg) {
@@ -29,16 +38,16 @@ conn.onmessage = function(msg) {
     var content = JSON.parse(msg.data);
     var data = content.data;
     switch (content.event) {
-        // when somebody wants to call us
+        //upon a new user joining we will be getting an offer from them
         case "offer":
             if(content.to!=myID) break;
             var from = content.from;
             peerConnecting(content.from);
             handleOffer(data,connections[from],from);
             break;
+        //the joined user gets answers and handles them
         case "answer":
             if(content.to!=myID) break;
-            //peerConnecting(from);
             handleAnswer(data,connections[content.from]);
             break;
         // when a remote peer sends an ice candidate to us
@@ -46,28 +55,31 @@ conn.onmessage = function(msg) {
             if(content.to!=myID) break;
             handleCandidate(data,connections[content.from]);
             break;
+        //when a user joins he gets list of all users with the event of NEW_CONNECTION, he creates offers which are sent
+        // to all the users
         case "NEW_CONNECTION":
             peerConnecting(data);
             createOffer(connections[data],data);
             console.log(data);
             break;
+        //upon joining the room we get sent our own id so we can check which messages are meant for us
         case "OWN_ID":
             myID=data;
-            break;
-        case "PREPARE_CONNECTION":
-            peerConnecting(content.from);
             break;
         default:
             break;
     }
 };
 
+//sends message to the socket handler
 function send(message) {
     conn.send(JSON.stringify(message));
 }
 
+//creating new RTCPeerConnection for user with the ID
 function peerConnecting(ID){
     connections[ID]= new RTCPeerConnection(configuration);
+
     connections[ID].onicecandidate = function(event) {
         if (event.candidate) {
             send({
@@ -84,8 +96,7 @@ function peerConnecting(ID){
         audio: true
     }).
     then(stream => {
-        addVideoStream(myVideo, stream)
-        stream.getTracks().forEach(track => connections[ID].addTrack(track,stream),console.log(track.value))
+        stream.getTracks().forEach(track => connections[ID].addTrack(track,stream),console.log("track added"));
     }).catch(function(err) {
         /* handle the error */
     });
@@ -109,23 +120,28 @@ function peerConnecting(ID){
     };
 
     connections[ID].ondatachannel = function (event) {
+        console.log("data channel is open");
         dataChannels[ID] = event.channel;
     };
 
+    //adding src to remotevideo element
+    const remoteStream = new MediaStream();
+    const remoteVideo = document.querySelector('#remoteVideo');
+    remoteVideo.srcObject = remoteStream;
 
-    connections[ID].ontrack = async function(event){
-        document.getElementById("remoteVideo").srcObject = navigator.mediaDevices.getUserMedia({
-            video: true,
-            audio: true
-        });
-    }
+    connections[ID].addEventListener('track', async (event) => {
+        remoteStream.addTrack(event.track);
+    });
 
 
 }
 
 
 function createOffer(peerConnection,ID) {
-    peerConnection.createOffer(function(offer) {
+    peerConnection.createOffer({
+        offerToReceiveAudio:1,
+        offerToReceiveVideo:1
+    }).then(offer => {
         send({
             event : "offer",
             data : offer,
@@ -141,7 +157,10 @@ function createOffer(peerConnection,ID) {
 function handleOffer(offer,peerConnection,ID) {
     peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
     // create and send an answer to an offer
-    peerConnection.createAnswer(function(answer) {
+    peerConnection.createAnswer({
+        offerToReceiveAudio:1,
+        offerToReceiveVideo:1
+    }).then(answer=> {
         peerConnection.setLocalDescription(answer);
         send({
             event : "answer",
@@ -179,10 +198,4 @@ function addVideoStream(video, stream) {
         video.play()
     })
     videoGrid.append(video)
-}
-
-function checkTracks(){
-    for (const [key, value] of Object.entries(connections)) {
-       value.getTracks().forEach(track=>console.log(track.id));
-    }
 }
