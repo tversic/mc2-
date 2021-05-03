@@ -47,12 +47,12 @@
       <h1>Video call</h1>
 
       <ul id="messageBox"></ul>
-      <div id="video-grid"><video id="remoteVideo" playsInline autoPlay></video></div>
+      <div id="video-grid"></div>
 
       <!--WebRTC related code-->
       <input id="messageInput" type="text" class="form-control"
              placeholder="message">
-      <button type="button" class="btn btn-primary" onclick='sendOffer()'>CHECK</button>
+      <button type="button" class="btn btn-primary" onclick='plswork()'>CHECK</button>
       <button type="button" class="btn btn-primary" onclick='sendMessage()'>SEND</button>
       <script type="text/javascript" th:src="@{/js/client.js}"></script>
       <!--WebRTC related code-->

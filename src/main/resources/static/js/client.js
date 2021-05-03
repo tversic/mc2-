@@ -17,6 +17,8 @@ const configuration = {
 };
 connections = {}
 dataChannels = {}
+remoteStream = {}
+remoteVideo = {}
 
 
 conn.onopen = function() {
@@ -42,7 +44,7 @@ conn.onmessage = function(msg) {
         case "offer":
             if(content.to!=myID) break;
             var from = content.from;
-            peerConnecting(content.from);
+            //peerConnecting(content.from);
             handleOffer(data,connections[from],from);
             break;
         //the joined user gets answers and handles them
@@ -59,12 +61,14 @@ conn.onmessage = function(msg) {
         // to all the users
         case "NEW_CONNECTION":
             peerConnecting(data);
-            createOffer(connections[data],data);
             console.log(data);
             break;
         //upon joining the room we get sent our own id so we can check which messages are meant for us
         case "OWN_ID":
             myID=data;
+            break;
+        case "PREPARE_CONNECTION":
+            peerConnecting(data);
             break;
         default:
             break;
@@ -96,7 +100,10 @@ function peerConnecting(ID){
         audio: true
     }).
     then(stream => {
-        stream.getTracks().forEach(track => connections[ID].addTrack(track,stream),console.log("track added"));
+        stream.getTracks().forEach(track => {
+            connections[ID].addTrack(track,stream),
+            console.log("track added")
+        });
     }).catch(function(err) {
         /* handle the error */
     });
@@ -125,12 +132,17 @@ function peerConnecting(ID){
     };
 
     //adding src to remotevideo element
-    const remoteStream = new MediaStream();
-    const remoteVideo = document.querySelector('#remoteVideo');
-    remoteVideo.srcObject = remoteStream;
+    remoteStream[ID] = new MediaStream();
+    remoteVideo[ID] = document.createElement("video");
+    remoteVideo[ID].srcObject = remoteStream[ID];
+    remoteVideo[ID].setAttribute("playsinline",1);
+    remoteVideo[ID].setAttribute("user-id",ID);
+    remoteVideo[ID].play();
+    videoGrid.append(remoteVideo[ID])
+
 
     connections[ID].addEventListener('track', async (event) => {
-        remoteStream.addTrack(event.track);
+        remoteStream[ID].addTrack(event.track)
     });
 
 
@@ -198,4 +210,10 @@ function addVideoStream(video, stream) {
         video.play()
     })
     videoGrid.append(video)
+}
+
+function plswork(){
+    for (const [key, value] of Object.entries(connections)) {
+        createOffer(value,key);
+    }
 }

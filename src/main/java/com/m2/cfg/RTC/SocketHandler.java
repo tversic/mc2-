@@ -32,7 +32,7 @@ public class SocketHandler extends TextWebSocketHandler {
         session.sendMessage(new TextMessage("{\"event\":\"OWN_ID\",\"data\":\""+session.getId()+"\"}"));
         for (WebSocketSession webSocketSession : sessions) {
             if (webSocketSession.isOpen() && !session.getId().equals(webSocketSession.getId())) {
-                //webSocketSession.sendMessage(new TextMessage("{\"event\":\"PREPARE_CONNECTION\",\"data\":\"" + session.getId() + "\"}"));
+                webSocketSession.sendMessage(new TextMessage("{\"event\":\"PREPARE_CONNECTION\",\"data\":\"" + session.getId() + "\"}"));
                 session.sendMessage(new TextMessage("{\"event\":\"NEW_CONNECTION\",\"data\":\""+webSocketSession.getId()+"\"}"));
             }
         }
