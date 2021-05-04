@@ -1,6 +1,7 @@
 package com.m2.cfg.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "kolegiji")
@@ -12,8 +13,8 @@ public class Kolegij {
     @Column(name = "naziv")
     private String naziv;
 
-    /*@ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "kolegij_has_Tag")*/
+    @ManyToMany
+    Set<Tag> tags;
 
     public Kolegij() {};
 

@@ -20,7 +20,6 @@ import javax.sql.DataSource;
 
 import static java.util.Base64.getEncoder;
 
-//koment
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {

@@ -1,6 +1,7 @@
 package com.m2.cfg.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "Tag")
@@ -12,6 +13,9 @@ public class Tag
     private Integer id;
     @Column(name = "Naziv")
     private String Naziv;
+    @ManyToMany
+    Set<Kolegij> kolegij;
+
 
     public Tag() {};
 

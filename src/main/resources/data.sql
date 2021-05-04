@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS authorities;
-DROP TABLE IF EXISTS kolegiji;
-DROP TABLE IF EXISTS tag;
+DROP TABLE IF EXISTS kolegiji cascade;
+DROP TABLE IF EXISTS tag cascade;
 
 create table users (
        id INT AUTO_INCREMENT PRIMARY KEY,
@@ -29,11 +29,18 @@ create table authorities (
          foreign key (username) references users (username)
 );
 
-CREATE TABLE kolegiji (
-      id int NOT NULL AUTO_INCREMENT,
-      naziv varchar(255) DEFAULT NULL,
-      PRIMARY KEY (id)
+CREATE TABLE IF NOT EXISTS kolegiji(
+     id INT NOT NULL AUTO_INCREMENT,
+     naziv VARCHAR(255) NOT NULL,
+    idFakulteta INT NOT NULL,
+    PRIMARY KEY (id),
+    CONSTRAINT idFaksa
+    FOREIGN KEY (idFakulteta)
+    REFERENCES fakulteti (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
 );
+create INDEX idFaksa_idx on kolegiji(idFakulteta ASC);
 
 CREATE TABLE  teme (
      idteme INT NOT NULL AUTO_INCREMENT,
@@ -49,44 +56,79 @@ CREATE TABLE  teme (
 );
 create INDEX fk_teme_kolegiji1_idx on teme(kolegijId ASC);
 
-CREATE TABLE komentari (
-      id INT NOT NULL AUTO_INCREMENT,
-      idTeme INT NOT NULL,
-      PRIMARY KEY (id),
-
-      CONSTRAINT fk_komentari_teme
-          FOREIGN KEY (idTeme)
-              REFERENCES teme (idteme)
-              ON DELETE NO ACTION
-              ON UPDATE NO ACTION
+CREATE TABLE IF NOT EXISTS komentari (
+    id INT NOT NULL AUTO_INCREMENT,
+    idTeme INT NOT NULL,
+    idUser INT NOT NULL,
+    idParent INT NULL,
+    Content VARCHAR(280) NOT NULL,
+    datumKreiranja DATE NOT NULL,
+    PRIMARY KEY (id),
+    CONSTRAINT fk_komentari_teme
+    FOREIGN KEY (idTeme)
+    REFERENCES teme (idteme)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
 );
 create INDEX fk_komentari_teme_idx on komentari(idTeme ASC);
 
-
-CREATE TABLE kolegiji_has_fakulteti(
-   kolegiji_id INT NOT NULL,
-   fakulteti_id INT NOT NULL,
-   PRIMARY KEY (kolegiji_id, fakulteti_id),
-   CONSTRAINT fk_kolegiji_has_fakulteti_kolegiji1
-       FOREIGN KEY (kolegiji_id)
-           REFERENCES kolegiji (id)
-           ON DELETE NO ACTION
-           ON UPDATE NO ACTION,
-   CONSTRAINT fk_kolegiji_has_fakulteti_fakulteti1
-       FOREIGN KEY (fakulteti_id)
-           REFERENCES fakulteti (id)
-           ON DELETE NO ACTION
-           ON UPDATE NO ACTION
-);
-
 CREATE TABLE tag
 (
-    id INT NOT NULL,
+    idTag INT NOT NULL,
     Naziv VARCHAR(45) NOT NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (idTag)
 );
-create INDEX fk_kolegiji_has_fakulteti_fakulteti1_idx on kolegiji_has_fakulteti(fakulteti_id ASC);
-create INDEX fk_kolegiji_has_fakulteti_kolegiji1_idx on kolegiji_has_fakulteti(kolegiji_id ASC);
+
+CREATE TABLE IF NOT EXISTS kolegiji_has_Tag
+(
+    kolegiji_id INT NOT NULL,
+    Tag_idTag INT NOT NULL,
+    PRIMARY KEY (kolegiji_id, Tag_idTag),
+    CONSTRAINT fk_kolegiji_has_Tag_kolegiji1
+    FOREIGN KEY (kolegiji_id)
+    REFERENCES kolegiji (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+    CONSTRAINT fk_kolegiji_has_Tag_Tag1
+    FOREIGN KEY (Tag_idTag)
+    REFERENCES Tag (idTag)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+);
+create INDEX fk_kolegiji_has_Tag_Tag1_idx on kolegiji_has_Tag(Tag_idTag ASC);
+create INDEX fk_kolegiji_has_Tag_kolegiji1_idx on kolegiji_has_Tag(kolegiji_id ASC);
+
+CREATE TABLE IF NOT EXISTS Room (
+    idRoom VARCHAR(30) NOT NULL,
+    idKolegij INT NOT NULL,
+    StartTime DATETIME NOT NULL,
+    EndTime DATETIME NOT NULL,
+    PRIMARY KEY (idRoom),
+    CONSTRAINT kolegiji_id
+    FOREIGN KEY (idKolegij)
+    REFERENCES kolegiji (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+);
+
+CREATE TABLE IF NOT EXISTS Room_has_users (
+    Room_idRoom VARCHAR(30) NOT NULL,
+    users_id INT NOT NULL,
+    PRIMARY KEY (Room_idRoom, users_id),
+    CONSTRAINT fk_Room_has_users_Room1
+    FOREIGN KEY (Room_idRoom)
+    REFERENCES Room (idRoom)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+    CONSTRAINT fk_Room_has_users_users1
+    FOREIGN KEY (users_id)
+    REFERENCES users (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+);
+create INDEX fk_Room_has_users_users1_idx on Room_has_users(users_id ASC);
+create INDEX fk_Room_has_users_Room1_idx on Room_has_users(Room_idRoom ASC);
+create INDEX kolegiji_id_idx on Room(idKolegij ASC);
 
 insert into fakulteti(naziv, id) values('TVZ', 1);
 insert into users(username, password, enabled, id_fakulteta, email)
@@ -95,7 +137,6 @@ insert into users(username, password, enabled, id_fakulteta, email)
     values('bbilandzi', '$2a$10$OginvID0.PRHdGr9AM75G.8wf.PQLShaOIg6ESiMV4GsA8Dt1ZsDy',true, 1,'nekimail2@gmail.com');
 insert into authorities(username,authority)values('bokyfloky','ROLE_ADMIN');
 insert into authorities(username,authority)values('bbilandzi','ROLE_ADMIN');
-insert into kolegiji(id, naziv)values(1, 'mat1');
-insert into tag(id, Naziv) values(1, 'Tagić')
+
 
 
