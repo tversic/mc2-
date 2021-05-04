@@ -1,5 +1,7 @@
 //ovaj connection koristiti kada se koristi u LAN-u
-var conn = new WebSocket('wss://192.168.5.11:8443/socket');
+var roomID = window.location.href.split("/video/")[1];
+console.log(roomID);
+var conn = new WebSocket('wss://192.168.5.11:8443/socket/'+roomID);
 //var conn = new WebSocket('wss://localhost:8443/socket');
 
 const messageBox = document.getElementById('messageBox')
@@ -29,7 +31,6 @@ conn.onopen = function() {
     }).
     then(stream => {
         addVideoStream(myVideo, stream)
-        return stream;
     }).catch(function(err) {
         /* handle the error */
     });
@@ -90,7 +91,8 @@ function peerConnecting(ID){
                 event : "candidate",
                 data : event.candidate,
                 from : myID,
-                to : ID
+                to : ID,
+                roomID : roomID
             });
         }
     };
@@ -158,7 +160,8 @@ function createOffer(peerConnection,ID) {
             event : "offer",
             data : offer,
             from : myID,
-            to : ID
+            to : ID,
+            roomID : roomID
         });
         peerConnection.setLocalDescription(offer);
     }, function(error) {
@@ -178,7 +181,8 @@ function handleOffer(offer,peerConnection,ID) {
             event : "answer",
             data : answer,
             from : myID,
-            to : ID
+            to : ID,
+            roomID : roomID
         });
     }, function(error) {
         alert("Error creating an answer");
