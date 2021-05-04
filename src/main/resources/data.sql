@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS authorities;
 DROP TABLE IF EXISTS kolegiji;
+DROP TABLE IF EXISTS tag;
 
 create table users (
        id INT AUTO_INCREMENT PRIMARY KEY,
@@ -34,7 +35,7 @@ CREATE TABLE kolegiji (
       PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS teme (
+CREATE TABLE  teme (
      idteme INT NOT NULL AUTO_INCREMENT,
      naslov VARCHAR(255) NOT NULL,
      datumKreiranja DATE NOT NULL,
@@ -48,7 +49,7 @@ CREATE TABLE IF NOT EXISTS teme (
 );
 create INDEX fk_teme_kolegiji1_idx on teme(kolegijId ASC);
 
-CREATE TABLE IF NOT EXISTS komentari (
+CREATE TABLE komentari (
       id INT NOT NULL AUTO_INCREMENT,
       idTeme INT NOT NULL,
       PRIMARY KEY (id),
@@ -62,7 +63,7 @@ CREATE TABLE IF NOT EXISTS komentari (
 create INDEX fk_komentari_teme_idx on komentari(idTeme ASC);
 
 
-CREATE TABLE IF NOT EXISTS kolegiji_has_fakulteti(
+CREATE TABLE kolegiji_has_fakulteti(
    kolegiji_id INT NOT NULL,
    fakulteti_id INT NOT NULL,
    PRIMARY KEY (kolegiji_id, fakulteti_id),
@@ -77,6 +78,13 @@ CREATE TABLE IF NOT EXISTS kolegiji_has_fakulteti(
            ON DELETE NO ACTION
            ON UPDATE NO ACTION
 );
+
+CREATE TABLE tag
+(
+    id INT NOT NULL,
+    Naziv VARCHAR(45) NOT NULL,
+    PRIMARY KEY (id)
+);
 create INDEX fk_kolegiji_has_fakulteti_fakulteti1_idx on kolegiji_has_fakulteti(fakulteti_id ASC);
 create INDEX fk_kolegiji_has_fakulteti_kolegiji1_idx on kolegiji_has_fakulteti(kolegiji_id ASC);
 
@@ -87,4 +95,7 @@ insert into users(username, password, enabled, id_fakulteta, email)
     values('bbilandzi', '$2a$10$OginvID0.PRHdGr9AM75G.8wf.PQLShaOIg6ESiMV4GsA8Dt1ZsDy',true, 1,'nekimail2@gmail.com');
 insert into authorities(username,authority)values('bokyfloky','ROLE_ADMIN');
 insert into authorities(username,authority)values('bbilandzi','ROLE_ADMIN');
+insert into kolegiji(id, naziv)values(1, 'mat1');
+insert into tag(id, Naziv) values(1, 'Tagić')
+
 
