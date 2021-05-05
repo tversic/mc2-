@@ -1,6 +1,7 @@
 package com.m2.cfg.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -20,10 +21,17 @@ public class Users {
     @Column(name = "enabled")
     private boolean enabled = true;
 
-
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Fakultet.class, cascade=CascadeType.ALL)
     @JoinColumn(name="id_fakulteta", nullable = false)
     private Fakultet faks;
+
+    @ManyToMany
+    @JoinTable(
+            name = "Room_has_Tag",
+            joinColumns = @JoinColumn(name = "Room_idRoom"),
+            inverseJoinColumns = @JoinColumn(name = "users_id"))
+    Set<Room> rooms;
+
 
     public Users(){};
 

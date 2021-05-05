@@ -14,6 +14,10 @@ public class Kolegij {
     private String naziv;
 
     @ManyToMany
+    @JoinTable(
+            name = "kolegij_has_Tag",
+            joinColumns = @JoinColumn(name = "kolegij_id"),
+            inverseJoinColumns = @JoinColumn(name = "Tag_idTag"))
     Set<Tag> tags;
 
     public Kolegij() {};

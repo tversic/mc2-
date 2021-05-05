@@ -13,7 +13,7 @@ public class Tag
     private Integer id;
     @Column(name = "Naziv")
     private String Naziv;
-    @ManyToMany
+    @ManyToMany(mappedBy = "tags")
     Set<Kolegij> kolegij;
 
 
