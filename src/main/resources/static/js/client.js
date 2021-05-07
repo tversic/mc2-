@@ -1,7 +1,7 @@
 //ovaj connection koristiti kada se koristi u LAN-u
 var roomID = window.location.href.split("/video/")[1];
 console.log(roomID);
-var conn = new WebSocket('wss://192.168.5.11:8443/socket/'+roomID);
+var conn = new WebSocket('wss://192.168.5.50:8443/socket/'+roomID);
 //var conn = new WebSocket('wss://localhost:8443/socket');
 
 const messageBox = document.getElementById('messageBox')
@@ -21,7 +21,6 @@ connections = {}
 dataChannels = {}
 remoteStream = {}
 remoteVideo = {}
-
 
 conn.onopen = function() {
     console.log("Connected to the signaling server");
@@ -70,6 +69,9 @@ conn.onmessage = function(msg) {
             break;
         case "PREPARE_CONNECTION":
             peerConnecting(data);
+            break;
+        case "DISCONNECT":
+            closeConnection(data);
             break;
         default:
             break;
@@ -138,7 +140,7 @@ function peerConnecting(ID){
     remoteVideo[ID] = document.createElement("video");
     remoteVideo[ID].srcObject = remoteStream[ID];
     remoteVideo[ID].setAttribute("playsinline",1);
-    remoteVideo[ID].setAttribute("user-id",ID);
+    remoteVideo[ID].setAttribute("id",ID);
     remoteVideo[ID].play();
     videoGrid.append(remoteVideo[ID])
 
@@ -214,6 +216,14 @@ function addVideoStream(video, stream) {
         video.play()
     })
     videoGrid.append(video)
+}
+
+function closeConnection(ID){
+    if(connections.hasOwnProperty(ID)) delete connections[ID];
+    if(dataChannels.hasOwnProperty(ID)) delete dataChannels[ID];
+    if(remoteStream.hasOwnProperty(ID)) delete remoteStream[ID];
+    if(remoteVideo.hasOwnProperty(ID)) delete remoteVideo[ID];
+    document.getElementById(ID).remove();
 }
 
 function plswork(){

@@ -1,6 +1,7 @@
 package com.m2.cfg.RTC;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
@@ -42,6 +43,26 @@ public class SocketHandler extends TextWebSocketHandler {
             if (webSocketSession.isOpen() && !session.getId().equals(webSocketSession.getId())) {
                 webSocketSession.sendMessage(new TextMessage("{\"event\":\"PREPARE_CONNECTION\",\"data\":\"" + session.getId() + "\"}"));
                 session.sendMessage(new TextMessage("{\"event\":\"NEW_CONNECTION\",\"data\":\""+webSocketSession.getId()+"\"}"));
+            }
+        }
+    }
+
+    @Override
+    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+
+        var ID = session.getId();
+        System.out.println("Connection Closed！"+ ID);
+        for(Map.Entry<String, List<WebSocketSession>> entry : rooms.entrySet()) {
+            String key = entry.getKey();
+            for (WebSocketSession value : entry.getValue()) {
+                if(value.getId() == ID){
+                    rooms.get(key).remove(value.getId());
+                    for(WebSocketSession peer : rooms.get(key)){
+                        if(peer.isOpen()) {
+                            peer.sendMessage(new TextMessage("{\"event\":\"DISCONNECT\",\"data\":\"" + ID + "\"}"));
+                        }
+                    }
+                }
             }
         }
     }
