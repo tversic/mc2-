@@ -106,7 +106,7 @@ function peerConnecting(ID){
     then(stream => {
         stream.getTracks().forEach(track => {
             connections[ID].addTrack(track,stream),
-            console.log("track added")
+                console.log("track added")
         });
     }).catch(function(err) {
         /* handle the error */
@@ -203,7 +203,7 @@ function handleAnswer(answer, peerConnection) {
 
 function sendMessage() {
     for (const [key, value] of Object.entries(dataChannels)) {
-       value.send(input.value)
+        value.send(input.value)
     }
     messageBox.append("me:"+input.value);
     input.value = "";
