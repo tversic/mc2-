@@ -6,10 +6,13 @@ import Login from "./components/users/Login";
 import Video from "./components/Video";
 import Home from "./components/Home";
 import Account from "./components/Account";
+import Dash from "./components/Dash";
+import Posts from "./components/post/Posts";
+import Categories from './components/Categories'
 import Navbar from 'react-bootstrap/Navbar'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faUser,faSignInAlt } from '@fortawesome/free-solid-svg-icons'
+import { faUser,faSignInAlt, faBookReader, faPhoneVolume, faLaptopHouse, faAddressCard } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -32,14 +35,18 @@ class App extends Component {
       let reg;
       let log;
       let video;
+      let myposts;
+      let dash;
 
       if (!loggedIn) {
           reg =  <NavLink className="nav-link" to="/register"><span className=''></span><FontAwesomeIcon icon={faUser} /> Sign Up</NavLink>;
           log=<NavLink className="nav-link" to="/login"><span className="fas fa-sign-in-alt"></span><FontAwesomeIcon icon={faSignInAlt} /> Login</NavLink>
       } else {
           log = <NavLink className="nav-link" to="/" onClick={this.logout}><span className="fas fa-sign-in-alt"></span><FontAwesomeIcon icon={faSignInAlt} /> Logout</NavLink>;
-          video=<a href={"https://localhost:8443/video"} className={'link'}>Video Call</a>
+          video=<a href={"https://localhost:8443/video"} className={'link'}><FontAwesomeIcon icon={faPhoneVolume} /> Video Call</a>
           reg= <NavLink className="nav-link" to="/account"><span className="fas fa-sign-in-alt"></span><FontAwesomeIcon icon={faUser} /> Account</NavLink>
+          myposts=<NavLink className="nav-link" to="/account"><span className="fas fa-sign-in-alt"></span><FontAwesomeIcon icon={faAddressCard} /> My posts</NavLink>
+          dash=<NavLink className="nav-link" to="/categories"><span className="fas fa-sign-in-alt"></span><FontAwesomeIcon icon={faBookReader} /> Dashboard</NavLink>
       }
     return (
         <Router>
@@ -53,9 +60,11 @@ class App extends Component {
                 <div id="navb" className="navbar-collapse collapse hide">
                     <ul className="navbar-nav">
                         <li className="nav-item active">
-                            <NavLink className="nav-link" to="/">Home</NavLink>
+                            <NavLink className="nav-link" to="/"><FontAwesomeIcon icon={faLaptopHouse} /> Home</NavLink>
                         </li>
                        <li> {video}</li>
+                        <li> {dash}</li>
+                        <li> {myposts}</li>
                     </ul>
 
                     <ul className="nav navbar-nav ml-auto">
@@ -84,6 +93,9 @@ class App extends Component {
           <Route path={"/register"} component={Register}></Route>
             <Route path={"/video"} component={Video}></Route>
             <Route path={"/account"} component={Account}></Route>
+            <Route path={"/categories"} component={Categories}></Route>
+            <Route path={"/dashboard/:id"} component={Dash}></Route>
+            <Route path='/posts/:id' component={Posts} />
         </Router>
 
 

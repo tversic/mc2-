@@ -17,12 +17,11 @@ public class Komentari {
     private Date creation_date;
 
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Kolegij.class, cascade=CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Kolegij.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_teme", nullable = false)
     private Tema teme;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_user", referencedColumnName = "id")
     private Users users;
-
 }
