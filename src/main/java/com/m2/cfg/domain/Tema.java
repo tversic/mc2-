@@ -2,6 +2,7 @@ package com.m2.cfg.domain;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -9,7 +10,7 @@ import java.util.Set;
 public class Tema {
 
     @Id
-    @Column(name = "idteme")
+    @Column(name = "id_teme")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
@@ -20,8 +21,11 @@ public class Tema {
     private Date datumKreiranja;
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Kolegij.class, cascade=CascadeType.ALL)
-    @JoinColumn(name="idKolegij", nullable = false)
+    @JoinColumn(name="kolegij_id", nullable = false)
     private Kolegij kolegij;
+
+    @OneToMany(mappedBy = "teme")
+    private List<Komentari> comments;
 
     @ManyToMany
     Set<Room> rooms;

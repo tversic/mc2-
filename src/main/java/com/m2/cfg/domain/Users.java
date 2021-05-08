@@ -32,6 +32,9 @@ public class Users {
             inverseJoinColumns = @JoinColumn(name = "users_id"))
     Set<Room> rooms;
 
+    @OneToOne(mappedBy = "users")
+    private Komentari komentari;
+
 
     public Users(){};
 

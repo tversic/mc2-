@@ -44,13 +44,17 @@ create INDEX idFaksa_idx on kolegiji(id ASC);
 
 CREATE TABLE IF NOT EXISTS teme (
      id_teme INT NOT NULL AUTO_INCREMENT,
+     id_user INT NOT NULL,
      naslov VARCHAR(255) NOT NULL,
      datumKreiranja DATE NOT NULL,
      kolegij_id INT NULL,
      PRIMARY KEY (id_teme),
      CONSTRAINT fk_teme_kolegiji1
-         FOREIGN KEY (kolegij_id)
-             REFERENCES kolegiji (id)
+        FOREIGN KEY (kolegij_id)
+        REFERENCES kolegiji (id),
+
+        FOREIGN KEY (id_user)
+            references users(id)
              ON DELETE NO ACTION
              ON UPDATE NO ACTION
 );
@@ -59,16 +63,22 @@ CREATE TABLE IF NOT EXISTS teme (
 CREATE TABLE IF NOT EXISTS komentari (
     id INT NOT NULL AUTO_INCREMENT,
     id_teme INT NOT NULL,
-    idUser INT NOT NULL,
-    idParent INT NULL,
+    id_user INT NOT NULL,
+    id_parent INT NULL,
     Content VARCHAR(280) NOT NULL,
-    datumKreiranja DATE NOT NULL,
+    datum_kreiranja DATE NOT NULL,
     PRIMARY KEY (id),
     CONSTRAINT fk_komentari_teme
     FOREIGN KEY (id_teme)
-    REFERENCES teme (id_teme)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+    REFERENCES teme (id_teme),
+    FOREIGN KEY (id_parent)
+        REFERENCES komentari(id)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION,
+    FOREIGN KEY (id_user)
+        REFERENCES users(id)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION
 );
 //create INDEX fk_komentari_teme_idx on komentari(id_teme ASC);
 
