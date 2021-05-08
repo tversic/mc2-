@@ -51,7 +51,7 @@ public class SocketHandler extends TextWebSocketHandler {
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 
         var ID = session.getId();
-        System.out.println("Connection Closed！"+ ID);
+        System.out.println("Connection Closedï¼"+ ID);
         for(Map.Entry<String, List<WebSocketSession>> entry : rooms.entrySet()) {
             String key = entry.getKey();
             for (WebSocketSession value : entry.getValue()) {

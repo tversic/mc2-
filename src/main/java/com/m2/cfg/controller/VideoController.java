@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class VideoController {
-    @RequestMapping("/video")
+    @RequestMapping("/video/*")
     public String welcome() {
         return "video";
     }
