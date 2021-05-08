@@ -1,7 +1,7 @@
 //ovaj connection koristiti kada se koristi u LAN-u
 var roomID = window.location.href.split("/video/")[1];
 console.log(roomID);
-var conn = new WebSocket('wss://192.168.5.50:8443/socket/'+roomID);
+var conn = new WebSocket('wss://localhost:8443/socket/'+roomID);
 //var conn = new WebSocket('wss://localhost:8443/socket');
 
 const messageBox = document.getElementById('messageBox')

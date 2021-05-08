@@ -18,11 +18,11 @@ public class Tema {
     private String naslov;
 
     @Column(name = "datumKreiranja")
-    private Date datumKreiranja;
+    private String datumKreiranja;
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Kolegij.class, cascade=CascadeType.ALL)
     @JoinColumn(name="kolegij_id", nullable = false)
-    private Kolegij kolegij;
+    private Integer kolegij;
 
     @OneToMany(mappedBy = "teme")
     private List<Komentari> comments;
@@ -32,10 +32,11 @@ public class Tema {
 
     public Tema() {};
 
-    public Tema(Integer id, String naslov, Date datumKreiranja, Integer idKolegij) {
+    public Tema(Integer id, String naslov, String datumKreiranja, Integer idKolegij) {
         this.id = id;
         this.naslov = naslov;
         this.datumKreiranja = datumKreiranja;
+        this.setKolegij(1);
     }
 
     public Integer getId() {
@@ -54,12 +55,19 @@ public class Tema {
         this.naslov = naslov;
     }
 
-    public Date getDatumKreiranja() {
+    public String getDatumKreiranja() {
         return datumKreiranja;
     }
 
-    public void setDatumKreiranja(Date datumKreiranja) {
+    public void setDatumKreiranja(String datumKreiranja) {
         this.datumKreiranja = datumKreiranja;
     }
 
+    public Integer getKolegij() {
+        return kolegij;
+    }
+
+    public void setKolegij(Integer kolegij) {
+        this.kolegij = kolegij;
+    }
 }

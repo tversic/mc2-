@@ -1,0 +1,29 @@
+#catcon{
+    box-shadow: 0px 5px 5px grey;
+    border:1px solid grey;
+    border-radius: 20px;
+    margin-right:20px;
+    margin-bottom: 20px;
+    padding:25px;
+    text-align: center;
+}
+
+#catb{
+    border:1px solid #a0decc;
+    border-radius: 10px;
+    padding:5px;
+    background-color: #a0decc;
+    margin-top:20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.catlink{
+    color:white;
+    text-decoration: none;
+}
+
+.catlink:hover{
+    color:#488775;
+   text-decoration: none;
+    font-style: italic;
+}

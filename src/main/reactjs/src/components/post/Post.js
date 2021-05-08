@@ -2,6 +2,7 @@ import React, {Component, useEffect} from 'react'
 import {Link} from "react-router-dom";
 import { useParams } from 'react-router-dom';
 import Comments from './Comments'
+import '../../style/post.css'
 
 
 
@@ -35,11 +36,11 @@ const Post = () => {
     return (
         <div>
             <div className="container px-4 py-5" id="featured-3">
-                <div className="row g-4 py-5 row-cols-1 row-cols-lg-3">
-                        <div className="feature col">
+                <div className="row row-justify-content g-4 py-5 row-cols-1 row-cols-lg-1">
+                        <div className="feature col" id={'postcol'}>
                             <h2>{id}</h2>
+                            <p>FJWIFJFIFIERJFIERJFIERJFIERF</p>
                             <Comments/>
-                            <h2 className="pb-2 border-bottom"></h2>
                             <br/>
                         </div>
                 </div>
