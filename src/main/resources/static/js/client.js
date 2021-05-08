@@ -1,16 +1,16 @@
-//ovaj connection koristiti kada se koristi u LAN-u
 var roomID = window.location.href.split("/video/")[1];
-console.log(roomID);
 var conn = new WebSocket('wss://localhost:8443/socket/'+roomID);
-//var conn = new WebSocket('wss://localhost:8443/socket');
+//ovaj connection koristiti kada se koristi u LAN-u
+//var conn = new WebSocket('wss://localhost:8443/socket'+roomID);
 
 const messageBox = document.getElementById('messageBox')
 const videoGrid = document.getElementById('video-grid')
 const myVideo = document.createElement('video')
+const input = document.getElementById("messageInput");
 myVideo.muted = true
 
 let myID;
-var input = document.getElementById("messageInput");
+
 
 const configuration = {
     "iceServers": [{
@@ -123,7 +123,7 @@ function peerConnecting(ID){
     // when we receive a message from the other peer, printing it on the console
     dataChannels[ID].onmessage = function(event) {
         console.log("message:", event.data);
-        messageBox.append("them:"+event.data);
+        appendMessage(event.data)
     };
 
     dataChannels[ID].onclose = function() {
@@ -205,7 +205,7 @@ function sendMessage() {
     for (const [key, value] of Object.entries(dataChannels)) {
         value.send(input.value)
     }
-    messageBox.append("me:"+input.value);
+    appendMessage(input.value);
     input.value = "";
 }
 
@@ -218,6 +218,15 @@ function addVideoStream(video, stream) {
     videoGrid.append(video)
 }
 
+function appendMessage(value){
+    var messageElement = document.createElement('li');
+    var textElement = document.createElement('p');
+    var messageText = document.createTextNode(value);
+    textElement.appendChild(messageText);
+    messageElement.appendChild(textElement);
+    messageBox.appendChild(messageElement);
+}
+
 function closeConnection(ID){
     if(connections.hasOwnProperty(ID)) delete connections[ID];
     if(dataChannels.hasOwnProperty(ID)) delete dataChannels[ID];
@@ -226,8 +235,10 @@ function closeConnection(ID){
     document.getElementById(ID).remove();
 }
 
-function plswork(){
+function joinRoom(){
     for (const [key, value] of Object.entries(connections)) {
         createOffer(value,key);
     }
+    document.getElementById("room").style.display="block";
+    document.getElementById("joinbutton").style.display="none";
 }

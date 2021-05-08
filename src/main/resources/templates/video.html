@@ -2,12 +2,14 @@
   <head>
     <title>Video Call</title>
     <!--Bootstrap only for styling-->
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script
-            src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script
-            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+
 
     <!--Bootstrap only for styling-->
 
@@ -15,11 +17,12 @@
   </head>
   <style>
     .container {
-      background: rgb(148, 144, 144);
+      background: #61dafb;
       margin: 50px auto;
       max-width: 80%;
       text-align: center;
       padding: 2%;
+      display: grid;
     }
 
     button {
@@ -41,21 +44,28 @@
       height: 100%;
       object-fit: cover;
     }
+
+    #room{
+      display: none;
+    }
+
+    #messageArea{
+      height:300px;
+    }
   </style>
   <body>
     <div class="container">
-      <h1>Video call</h1>
+      <div class="row" id="room">
 
-      <ul id="messageBox"></ul>
-      <div id="video-grid"></div>
-
-      <!--WebRTC related code-->
-      <input id="messageInput" type="text" class="form-control"
-             placeholder="message">
-      <button type="button" class="btn btn-primary" onclick='plswork()'>Join</button>
-      <button type="button" class="btn btn-primary" onclick='sendMessage()'>SEND</button>
+        <div class="col-8" id="video-grid"></div>
+        <div class="col-4" id="messageArea">
+          <ul id="messageBox"></ul>
+          <input id="messageInput" type="text" class="form-control" placeholder="message">
+          <button type="button" class="btn btn-primary" onclick='sendMessage()'>SEND</button>
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary" id="joinbutton" onclick='joinRoom()'>Join Room</button>
       <script type="text/javascript" th:src="@{/js/client.js}"></script>
-      <!--WebRTC related code-->
 
     </div>
   </body>
