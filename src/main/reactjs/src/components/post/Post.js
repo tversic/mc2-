@@ -20,6 +20,7 @@ const Post = () => {
         })
             .then(response => {
                 provjera();
+                localStorage.getItem('userId')
                 setState({
                         ...state,
                         id: response.data.id,
@@ -53,11 +54,12 @@ const Post = () => {
                 }
             })
             .then(response => {
+
                 setComment({...comment,
                     content:'',
                     creation_dat:'',
                     tema_id:'',
-                    user_id:parseInt(localStorage.getItem('userid'))
+                    user_id:0
                 })
                 window.location.reload();
             })
@@ -67,14 +69,14 @@ const Post = () => {
             });}
 
     const change=(event)=> {
+
         setComment({...comment,
             content:event.target.value,
             creation_dat:Date().toString(),
             tema_id:id1,
-            user_id:3
+            user_id:parseInt(localStorage.getItem('userid'))
         })
     }
-
 
 
 

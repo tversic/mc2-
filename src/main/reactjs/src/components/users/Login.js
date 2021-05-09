@@ -78,7 +78,8 @@ class Login extends Component{
                     }
                 })
             });
-        axios.post('https://localhost:8443/getusers',localStorage.getItem('user'), {headers: {
+        let user=localStorage.getItem('username');
+        axios.post('https://localhost:8443/getusers', item, {headers: {
                 'Content-Type': 'application/json'
             }})
             .then(response => {
@@ -88,8 +89,6 @@ class Login extends Component{
             .catch(error => {
                 console.log(error.response)
             });
-
-        this.setState({errors: {}}) ;
     }
 
 

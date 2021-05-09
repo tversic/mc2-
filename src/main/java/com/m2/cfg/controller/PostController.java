@@ -28,7 +28,7 @@ public class PostController {
     @Autowired
     KomentariRepository komentari;
     @Autowired
-    UserRepository user;
+    UserRepository use;
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/tema")
@@ -85,7 +85,7 @@ public class PostController {
     @PostMapping("/dodajKoment")
     public ResponseEntity<?> makeKom(@RequestBody Komentari komentar) throws Exception {
         System.out.println(komentar);
-        Optional<Users> us=user.findById(komentar.getUser_id());
+        Optional<Users> us=use.findById(komentar.getUser_id());
         Optional<Tema> tem=this.temarep.findById(komentar.getTema_id());
         Optional<Komentari> kom=this.komentari.findById(komentar.getKomentar_id());
         komentar.setTeme(tem.get());
@@ -96,8 +96,8 @@ public class PostController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/getusers")
-    public ResponseEntity<?> getUser(@RequestBody String naziv) throws Exception {
-        Users us=user.findByUsername(naziv);
+    public ResponseEntity<?> getUser(@RequestBody Users user) throws Exception {
+        Users us=use.findByUsername(user.getUsername());
         return ResponseEntity.ok(us.getId());
     }
 
