@@ -1,6 +1,7 @@
 package com.m2.cfg.domain;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 
@@ -32,8 +33,8 @@ public class Users {
             inverseJoinColumns = @JoinColumn(name = "users_id"))
     Set<Room> rooms;
 
-    @OneToOne(mappedBy = "users")
-    private Komentari komentari;
+    @OneToMany(mappedBy = "users")
+    private List<Komentari> komentari;
 
 
     public Users(){};
