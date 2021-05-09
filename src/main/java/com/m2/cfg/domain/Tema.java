@@ -1,7 +1,6 @@
 package com.m2.cfg.domain;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -28,17 +27,27 @@ public class Tema {
     @OneToMany(mappedBy = "teme")
     private List<Komentari> comments;
 
+    @Column(name = "content")
+    private String content;
+
     @ManyToMany
     Set<Room> rooms;
 
     public Tema() {};
     //
 
-    public Tema(Integer id, String naslov, String datumKreiranja, Integer idKolegij) {
+
+    public Tema(Integer idKolegij, Integer id, String naslov,
+                String datumKreiranja, Kolegij kolegij,
+                List<Komentari> comments, String content, Set<Room> rooms) {
+        this.idKolegij = idKolegij;
         this.id = id;
         this.naslov = naslov;
         this.datumKreiranja = datumKreiranja;
-        this.idKolegij=idKolegij;
+        this.kolegij = kolegij;
+        this.comments = comments;
+        this.content = content;
+        this.rooms = rooms;
     }
 
     public Integer getId() {

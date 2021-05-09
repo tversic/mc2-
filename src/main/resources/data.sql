@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS teme (
                                     id_teme INT NOT NULL AUTO_INCREMENT,
                                     id_user INT NOT NULL,
                                     naslov VARCHAR(255) NOT NULL,
+                                    content VARCHAR(255) NOT NULL,
                                     datum_kreiranja DATE NOT NULL,
                                     kolegij_id INT NULL,
                                     PRIMARY KEY (id_teme),
@@ -149,6 +150,7 @@ insert into authorities(username,authority)values('bokyfloky','ROLE_ADMIN');
 insert into authorities(username,authority)values('bbilandzi','ROLE_ADMIN');
 insert into kolegiji(naziv, id) values('ASP', 1);
 insert into teme(id_teme, datum_kreiranja,naslov,kolegij_id) values(1,'12-12-12','Pomoc asp',1);
+INSERT into komentari(id_teme,id_user,id_parent,content,datum_kreiranja) values(1,1, null,'Komentar','12-12-12');
 
 
 
