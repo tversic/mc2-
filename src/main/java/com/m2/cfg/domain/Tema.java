@@ -23,7 +23,7 @@ public class Tema {
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Kolegij.class, cascade=CascadeType.ALL)
     @JoinColumn(name="kolegij_id", nullable = false)
     private Integer kolegij;
-
+ //
     @OneToMany(mappedBy = "teme")
     private List<Komentari> comments;
 
