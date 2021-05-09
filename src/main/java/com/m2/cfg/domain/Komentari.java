@@ -2,6 +2,7 @@ package com.m2.cfg.domain;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 public class Komentari {
@@ -17,7 +18,7 @@ public class Komentari {
     private String creation_date;
 
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Kolegij.class, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Tema.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_teme", nullable = false)
     private Tema teme;
 
@@ -25,9 +26,9 @@ public class Komentari {
     @JoinColumn(name = "id_user", referencedColumnName = "id")
     private Users users;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_parent", referencedColumnName = "id")
-    private Komentari komentari;
+    private List<Komentari> komentari;
 
     private Integer user_id;
     private Integer tema_id;
@@ -36,7 +37,7 @@ public class Komentari {
     public Komentari() {
     }
 
-    public Komentari(Integer id, String content, String creation_date, Tema teme, Users users, Komentari komentari, Integer user_id, Integer tema_id, Integer komentar_id) {
+    public Komentari(Integer id, String content, String creation_date, Tema teme, Users users, List<Komentari> komentari, Integer user_id, Integer tema_id, Integer komentar_id) {
         this.id = id;
         Content = content;
         this.creation_date = creation_date;
@@ -88,11 +89,11 @@ public class Komentari {
         this.users = users;
     }
 
-    public Komentari getKomentari() {
+    public List<Komentari> getKomentari() {
         return komentari;
     }
 
-    public void setKomentari(Komentari komentari) {
+    public void setKomentari(List<Komentari> komentari) {
         this.komentari = komentari;
     }
 

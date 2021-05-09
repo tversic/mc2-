@@ -78,6 +78,16 @@ class Login extends Component{
                     }
                 })
             });
+        axios.post('https://localhost:8443/getusers',localStorage.getItem('user'), {headers: {
+                'Content-Type': 'application/json'
+            }})
+            .then(response => {
+                localStorage.setItem('userid',response.data);
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.log(error.response)
+            });
 
         this.setState({errors: {}}) ;
     }
@@ -103,7 +113,7 @@ class Login extends Component{
                         <div className={'inp1'}><input type="password" name='password' value={item.password} placeholder={"Password"} onChange={this.handleChange} /></div>
                         {this.state.errors.succ &&
                         <p style={this.state.errors.style}>{this.state.errors.succ}</p>}
-                        <button type={'submit'} className={'btn1'}>Sign Ip</button>
+                        <button type={'submit'} className={'btn1'}>Sign In</button>
                     </form>
                 </div>
                 <div className="overlay-container">

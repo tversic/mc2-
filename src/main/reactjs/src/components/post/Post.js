@@ -13,15 +13,18 @@ const Post = () => {
     const [state,setState]=useState({id:'',naslov:''});
     const [comment,setComment]=useState({content:'',creation_dat:'',user_id:'',tema_id:'',komentar_id:''})
     useEffect(() => {
-        axios.post('https://localhost:8443/tema',id1, {headers: {
-            'Content-Type': 'application/json'
-        }})
+        axios.post('https://localhost:8443/tema', id1, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
             .then(response => {
                 provjera();
-                setState({...state,
-                    id:response.data.id,
-                    naslov:response.data.naslov,
-                    content:response.data.content
+                setState({
+                        ...state,
+                        id: response.data.id,
+                        naslov: response.data.naslov,
+                        content: response.data.content
                     }
                 )
                 return state;
@@ -36,6 +39,7 @@ const Post = () => {
     }
 
     let handleChange=()=>{
+
         axios.post('https://localhost:8443/dodajKoment',{
                 content:comment.content,
                 creation_dat:comment.creation_dat,
@@ -48,16 +52,26 @@ const Post = () => {
                     'Content-Type': 'application/json'
                 }
             })
+            .then(response => {
+                setComment({...comment,
+                    content:'',
+                    creation_dat:'',
+                    tema_id:'',
+                    user_id:parseInt(localStorage.getItem('userid'))
+                })
+                window.location.reload();
+            })
             .catch(error => {
                 console.log(error.response)
+                console.log(comment);
             });}
 
     const change=(event)=> {
-        setComment({...state,
-            content:event.target.comment,
+        setComment({...comment,
+            content:event.target.value,
             creation_dat:Date().toString(),
             tema_id:id1,
-            user_id:1
+            user_id:3
         })
     }
 
@@ -73,7 +87,7 @@ const Post = () => {
                             <p>{state.content}</p>
                             <br/>
                         </div>
-                    <textarea placeholder={'Comment'} name={'comment'} onChange={change} cols={50}></textarea>
+                    <textarea placeholder={'Comment'} name={'comment'} value={comment.content} onChange={change} cols={50}></textarea>
                     <button type={"submit"} onClick={handleChange}>Post</button>
                     <Comments/>
                 </div>

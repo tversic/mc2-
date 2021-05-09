@@ -84,14 +84,35 @@ public class PostController {
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/dodajKoment")
     public ResponseEntity<?> makeKom(@RequestBody Komentari komentar) throws Exception {
+        System.out.println(komentar);
         Optional<Users> us=user.findById(komentar.getUser_id());
         Optional<Tema> tem=this.temarep.findById(komentar.getTema_id());
         Optional<Komentari> kom=this.komentari.findById(komentar.getKomentar_id());
-        komentar.setKomentari(kom.get());
         komentar.setTeme(tem.get());
         komentar.setUsers(us.get());
         komentari.save(komentar);
         return ResponseEntity.ok("Success!");
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping("/getusers")
+    public ResponseEntity<?> getUser(@RequestBody String naziv) throws Exception {
+        Users us=user.findByUsername(naziv);
+        return ResponseEntity.ok(us.getId());
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/getkoments")
+    public ResponseEntity<?> getKoment() throws Exception {
+        Iterable<Komentari> ko=this.komentari.findAll();
+        return ResponseEntity.ok(ko);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/getroom")
+    public ResponseEntity<?> getRoom() throws Exception {
+        Iterable<Komentari> ko=this.komentari.findAll();
+        return ResponseEntity.ok(ko);
     }
 
 

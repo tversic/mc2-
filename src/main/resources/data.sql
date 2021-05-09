@@ -150,7 +150,6 @@ insert into authorities(username,authority)values('bokyfloky','ROLE_ADMIN');
 insert into authorities(username,authority)values('bbilandzi','ROLE_ADMIN');
 insert into kolegiji(naziv, id) values('ASP', 1);
 insert into teme(id_teme, datum_kreiranja,naslov,kolegij_id) values(1,'12-12-12','Pomoc asp',1);
-INSERT into komentari(id_teme,id_user,id_parent,content,datum_kreiranja) values(1,1, null,'Komentar','12-12-12');
 
 
 
