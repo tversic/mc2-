@@ -1,7 +1,4 @@
 var roomID = window.location.href.split("/video/")[1];
-if(window.history.replaceState) {
-    window.history.replaceState("", "test change", "join");
-}
 var conn = new WebSocket('wss://localhost:8443/socket/'+roomID);
 //ovaj connection koristiti kada se koristi u LAN-u
 //var conn = new WebSocket('wss://localhost:8443/socket'+roomID);
