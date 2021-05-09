@@ -22,8 +22,8 @@ public class Tema {
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Kolegij.class, cascade=CascadeType.ALL)
     @JoinColumn(name="kolegij_id", nullable = false)
-    private Integer kolegij;
- //
+    private Kolegij kolegij;
+
     @OneToMany(mappedBy = "teme")
     private List<Komentari> comments;
 
@@ -36,7 +36,6 @@ public class Tema {
         this.id = id;
         this.naslov = naslov;
         this.datumKreiranja = datumKreiranja;
-        this.setKolegij(1);
     }
 
     public Integer getId() {
@@ -63,11 +62,11 @@ public class Tema {
         this.datumKreiranja = datumKreiranja;
     }
 
-    public Integer getKolegij() {
+    public Kolegij getKolegij() {
         return kolegij;
     }
 
-    public void setKolegij(Integer kolegij) {
+    public void setKolegij(Kolegij kolegij) {
         this.kolegij = kolegij;
     }
 }

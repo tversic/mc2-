@@ -147,6 +147,7 @@ insert into users(username, password, enabled, id_fakulteta, email)
 values('bbilandzi', '$2a$10$OginvID0.PRHdGr9AM75G.8wf.PQLShaOIg6ESiMV4GsA8Dt1ZsDy',true, 1,'nekimail2@gmail.com');
 insert into authorities(username,authority)values('bokyfloky','ROLE_ADMIN');
 insert into authorities(username,authority)values('bbilandzi','ROLE_ADMIN');
+insert into kolegiji(naziv, id) values('ASP', 1);
 
 
 

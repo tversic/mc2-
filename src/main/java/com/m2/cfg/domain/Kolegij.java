@@ -1,6 +1,7 @@
 package com.m2.cfg.domain;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -21,9 +22,8 @@ public class Kolegij {
             inverseJoinColumns = @JoinColumn(name = "Tag_idTag"))
     Set<Tag> tags;
 
-    @ManyToOne
-    @JoinColumn(name=" kolegij_id", nullable=false)
-    private Tema teme;
+    @OneToMany(mappedBy = "kolegij")
+    private List<Tema> teme;
 
     public Kolegij() {};
 
