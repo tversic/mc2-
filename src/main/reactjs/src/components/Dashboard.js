@@ -1,12 +1,17 @@
-import React, {Component} from 'react'
+import React, {Component, useEffect} from 'react'
 import {Link, useParams} from "react-router-dom";
 import '../style/dash.css'
 import {faAngleDoubleRight, faAngleRight} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import axios from "axios";
 
 const Dashboard=()=>{
     let { id } = useParams();
-        let postsa= [ {id:1,
+    let polje=[];
+    useEffect(() => {
+        getTeme();
+    });
+        /*let postsa= [ {id:1,
                 title:'post 1',
                 body: 'this is the first post',
                 catId:1
@@ -25,24 +30,45 @@ const Dashboard=()=>{
                     title:'post 4',
                     body: 'this is the first post',
                     catId:2
-                }];
+                }];*/
+
+
+    const getTeme=()=>{
+        axios.post('/temaid', id, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => {
+                console.log(response.data)
+                polje.push(response.data)
+                console.log(polje);
+                return polje;
+            })
+            .catch(error => {
+                console.log(error.response)
+            });
+    };
 
 
 
-        const posts =  Array.from(postsa);
+        /*const posts =  Array.from(postsa);
         let posts1=[];
         for(let i=0;i<posts.length;i++){
             if(posts[i].catId==id){
                 posts1[i]=posts[i];
             }
-        }
+        }*/
+
+    let post1=Array.from(polje);
+    console.log(post1);
         return (
             <div>
                 <div className="container px-4 py-5" id="featured-3">
                     <h2 className="pb-2 border-bottom">Posts</h2>
                     <button id={'dashb'}><Link className='dashbl' to={{ pathname: '/createpost', state: { id: id} }}>Create Post</Link></button>
                     <div className="row g-4 py-5 row-cols-1 row-cols-lg-1">
-                        {posts1.map((post) =>
+                        {post1.map((post) =>
                             <div className="feature col" key={post.id} id={'dashcol'}>
                                 <h2>{post.title}</h2>
                                 <p>{post.body}</p>

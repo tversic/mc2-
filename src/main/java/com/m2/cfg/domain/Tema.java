@@ -9,6 +9,7 @@ import java.util.Set;
 @Table(name = "teme")
 public class Tema {
 
+    public Integer idKolegij;
     @Id
     @Column(name = "id_teme")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,6 +38,7 @@ public class Tema {
         this.id = id;
         this.naslov = naslov;
         this.datumKreiranja = datumKreiranja;
+        this.idKolegij=idKolegij;
     }
 
     public Integer getId() {
@@ -69,5 +71,13 @@ public class Tema {
 
     public void setKolegij(Kolegij kolegij) {
         this.kolegij = kolegij;
+    }
+
+    public Integer getIdKolegij() {
+        return idKolegij;
+    }
+
+    public void setIdKolegij(Integer idKolegij) {
+        this.idKolegij = idKolegij;
     }
 }

@@ -11,23 +11,25 @@ class CreatePost extends Component{
                 id:'',
                 naslov:'',
                 datumKreiranja:Date().toLocaleString(),
-                /*kol:{
-                    id:0,
-                    naziv:''
-                }*/},
-        kolegij_id: this.props.location.state.id,
+               },
+            kol:{
+                id:0,
+                naziv:''
+            },
+        //kolegij_id: this.props.location.state.id,
             errors:{}
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    /*componentDidMount() {
+    componentDidMount() {
         this.getKolegij();
     }
 
 
     async getKolegij() {
+        let id=this.props.location.state.id;
         const {errors} = this.state;
         axios.post('/kolegijid', id, {
             headers: {
@@ -36,7 +38,7 @@ class CreatePost extends Component{
         })
             .then(response => {
                 console.log(response.data)
-                this.setState(prevState => ({
+                /*this.setState(prevState => ({
                     tema: {
                         ...prevState.tema,
                         kol: {
@@ -45,7 +47,15 @@ class CreatePost extends Component{
                             naziv:response.data.naziv
                         }
                     }
-                }))
+                }))*/
+                this.setState(prevState => ({
+                  kol: {
+                       ...prevState.kol,
+                           id: response.data.id,
+                           naziv:response.data.naziv
+
+                   }
+               }))
             })
             .catch(error => {
                 console.log(error.response)
@@ -62,7 +72,7 @@ class CreatePost extends Component{
                     }
                 })
             });
-    };*/
+    };
 
 
     handleChange(event) {
@@ -79,7 +89,12 @@ class CreatePost extends Component{
         const {tema} = this.state;
         const { errors } = this.state;
         console.log(tema);
-        axios.post('https://localhost:8443/createtema', tema.tema,tema.kolegij_id,
+        axios.post('https://localhost:8443/createtema', {
+            id: this.state.tema.id,
+            naslov: this.state.tema.naslov,
+            datumKreiranja:this.state.tema.datumKreiranja,
+            idKolegij:this.state.kol.id
+        },
             {
             headers: {
                 'Content-Type': 'application/json'
