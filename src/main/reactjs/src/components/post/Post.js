@@ -40,9 +40,10 @@ const Post = () => {
                         <div className="feature col" id={'postcol'}>
                             <h2>{id}</h2>
                             <p>FJWIFJFIFIERJFIERJFIERJFIERF</p>
-                            <Comments/>
                             <br/>
                         </div>
+                    <textarea placeholder={'Comment'} name={'comment'} cols={50}></textarea>
+                    <Comments/>
                 </div>
             </div>
         </div>

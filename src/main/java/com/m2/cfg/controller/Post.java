@@ -27,7 +27,7 @@ public class Post {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/createtema")
-    public ResponseEntity<?> createPosts(@RequestBody Tema tema) throws Exception {
+    public ResponseEntity<?> createPosts(@RequestBody Tema tema,Integer id) throws Exception {
         System.out.println(tema.getNaslov()+tema.getDatumKreiranja());
         if(tema.getNaslov()!=null)
         {

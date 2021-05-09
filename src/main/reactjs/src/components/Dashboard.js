@@ -28,48 +28,6 @@ const Dashboard=()=>{
                 }];
 
 
-    /*async getPost() {
-        const { errors } = this.state;
-        axios.get('/')
-        .then(response => {
-            console.log(response.data)
-            this.setState({
-                errors:{
-                    ...errors,
-                    succ: "Success!",
-                    style:{
-                        fontSize: 13,
-                        marginLeft: 14,
-                        color: 'black'
-
-                    }
-                },
-                posts:response.data
-            })
-        })
-        .catch(error => {
-            console.log(error.response)
-            this.setState({
-                errors:{
-                    ...errors,
-                    succ: "Username or password wrong!",
-                    style:{
-                        fontSize: 13,
-                        marginLeft: 14,
-                        color: 'red'
-
-                    }
-                }
-            })
-        });
-
-    this.setState({errors: {}}) ;
-};
-
-    componentDidMount() {
-        this.getPost();
-    }*/
-
 
         const posts =  Array.from(postsa);
         let posts1=[];

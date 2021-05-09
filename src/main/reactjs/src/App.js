@@ -38,13 +38,15 @@ class App extends Component {
       let video;
       let myposts;
       let dash;
+      let id='123';
+      let linkid="https://localhost:8443/video/";
 
       if (!loggedIn) {
           reg =  <NavLink className="nav-link" to="/register"><span className=''></span><FontAwesomeIcon icon={faUser} /> Sign Up</NavLink>;
           log=<NavLink className="nav-link" to="/login"><span className="fas fa-sign-in-alt"></span><FontAwesomeIcon icon={faSignInAlt} /> Login</NavLink>
       } else {
           log = <NavLink className="nav-link" to="/" onClick={this.logout}><span className="fas fa-sign-in-alt"></span><FontAwesomeIcon icon={faSignInAlt} /> Logout</NavLink>;
-          video=<a href={"https://localhost:8443/video"} className={'link'}><FontAwesomeIcon icon={faPhoneVolume} /> Video Call</a>
+          video=<NavLink className="nav-link" to={"/video"}><FontAwesomeIcon icon={faPhoneVolume} /> Video Rooms</NavLink>
           reg= <NavLink className="nav-link" to="/account"><span className="fas fa-sign-in-alt"></span><FontAwesomeIcon icon={faUser} /> Account</NavLink>
           myposts=<NavLink className="nav-link" to="/account"><span className="fas fa-sign-in-alt"></span><FontAwesomeIcon icon={faAddressCard} /> My posts</NavLink>
           dash=<NavLink className="nav-link" to="/categories"><span className="fas fa-sign-in-alt"></span><FontAwesomeIcon icon={faBookReader} /> Dashboard</NavLink>
@@ -52,8 +54,8 @@ class App extends Component {
     return (
         <Router>
 
-            <nav className="navbar navbar-expand-md  sticky-top" id={'na'}>
-                <NavLink className="navbar-brand" to="/">Study Room</NavLink>
+            <nav className="navbar navbar-expand-md  " id={'na'}>
+                <NavLink className="navbar-brand" to="/" disable>Study Room</NavLink>
                 <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                         data-target="#navb" aria-expanded="true">
                     <span className="navbar-toggler-icon"></span>
@@ -65,7 +67,6 @@ class App extends Component {
                         </li>
                        <li> {video}</li>
                         <li> {dash}</li>
-                        <li> {myposts}</li>
                     </ul>
 
                     <ul className="nav navbar-nav ml-auto">
