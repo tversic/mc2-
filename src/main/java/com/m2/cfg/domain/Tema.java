@@ -31,6 +31,7 @@ public class Tema {
     Set<Room> rooms;
 
     public Tema() {};
+    //
 
     public Tema(Integer id, String naslov, String datumKreiranja, Integer idKolegij) {
         this.id = id;
