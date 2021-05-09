@@ -32,10 +32,10 @@ create table IF NOT EXISTS authorities (
 CREATE TABLE IF NOT EXISTS kolegiji(
                                        id INT NOT NULL AUTO_INCREMENT,
                                        naziv VARCHAR(255) NOT NULL,
-                                       idFakulteta INT NOT NULL,
+                                       id_fakulteta INT NOT NULL,
                                        PRIMARY KEY (id),
                                        CONSTRAINT idFaksa
-                                           FOREIGN KEY (idFakulteta)
+                                           FOREIGN KEY (id_fakulteta)
                                                REFERENCES fakulteti (id)
                                                ON DELETE NO ACTION
                                                ON UPDATE NO ACTION

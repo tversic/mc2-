@@ -10,6 +10,7 @@ public class Kolegij {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column(name = "naziv")
     private String naziv;
 
@@ -19,6 +20,10 @@ public class Kolegij {
             joinColumns = @JoinColumn(name = "kolegij_id"),
             inverseJoinColumns = @JoinColumn(name = "Tag_idTag"))
     Set<Tag> tags;
+
+    @ManyToOne
+    @JoinColumn(name=" kolegij_id", nullable=false)
+    private Tema teme;
 
     public Kolegij() {};
 
