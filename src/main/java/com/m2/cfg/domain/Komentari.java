@@ -22,7 +22,7 @@ public class Komentari {
     @JoinColumn(name = "id_teme", nullable = false)
     private Tema teme;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_user", referencedColumnName = "id")
     private Users users;
 
