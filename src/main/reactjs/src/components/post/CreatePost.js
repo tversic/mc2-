@@ -11,12 +11,12 @@ class CreatePost extends Component{
                 id:'',
                 naslov:'',
                 datumKreiranja:Date().toLocaleString(),
+                content:''
                },
             kol:{
                 id:0,
                 naziv:''
             },
-        //kolegij_id: this.props.location.state.id,
             errors:{}
         };
         this.handleChange = this.handleChange.bind(this);
@@ -86,6 +86,8 @@ class CreatePost extends Component{
 
     async handleSubmit(event) {
         event.preventDefault();
+        console.log(this.state.tema.id);
+        let id=this.state.tema.id;
         const {tema} = this.state;
         const { errors } = this.state;
         console.log(tema);
@@ -93,7 +95,8 @@ class CreatePost extends Component{
             id: this.state.tema.id,
             naslov: this.state.tema.naslov,
             datumKreiranja:this.state.tema.datumKreiranja,
-            idKolegij:this.state.kol.id
+            idKolegij:this.state.kol.id,
+            content:this.state.tema.content
         },
             {
             headers: {
@@ -114,6 +117,9 @@ class CreatePost extends Component{
                         }
                     }
                 })
+                setTimeout(function() {
+                    window.location.href = "/categories";
+                }, 2000);
             })
             .catch(error => {
                 console.log(error.response)
@@ -147,8 +153,9 @@ class CreatePost extends Component{
                     <form onSubmit={this.handleSubmit}>
                         <h1>Create Post</h1>
                         <div className={'inp1'}>
-                            <textarea name="naslov" value={tema.naslov} placeholder={"Text"} onChange={this.handleChange}  rows="4" cols="50"/>
+                            <input type={"text"} name="naslov" value={tema.naslov} placeholder={"Header"} onChange={this.handleChange} />
                         </div >
+                        <textarea name="content" value={tema.content} placeholder={"Content"} onChange={this.handleChange}  rows="4" cols="50"/>
                         {this.state.errors.succ &&
                         <p style={this.state.errors.style}>{this.state.errors.succ}</p>}
                         <button type={'submit'} className={'btn1'}>Create Post</button>

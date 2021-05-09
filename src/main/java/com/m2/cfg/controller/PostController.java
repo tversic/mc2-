@@ -2,7 +2,9 @@ package com.m2.cfg.controller;
 
 import com.m2.cfg.domain.*;
 import com.m2.cfg.repository.KolegijRepository;
+import com.m2.cfg.repository.KomentariRepository;
 import com.m2.cfg.repository.TemaRepository;
+import com.m2.cfg.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,12 +25,17 @@ public class PostController {
     TemaRepository temarep;
     @Autowired
     KolegijRepository kol;
+    @Autowired
+    KomentariRepository komentari;
+    @Autowired
+    UserRepository user;
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/tema")
-    public ResponseEntity<?> findPosts(@RequestBody Integer id) throws Exception {
-        Optional<Tema> teme = this.temarep.findById(id);
-        return ResponseEntity.ok(teme);
+    public ResponseEntity<?> findPosts(@RequestBody Integer id) {
+        Optional<Tema> teme=this.temarep.findById(id);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(teme);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
@@ -39,7 +46,6 @@ public class PostController {
         if(kolo.isPresent()){
             kol1=kolo.get();
         }
-        System.out.println(tema.getNaslov()+tema.getDatumKreiranja()+kol1.getId());
         tema.setKolegij(kol1);
         if(tema.getNaslov()!=null)
         {
@@ -67,5 +73,26 @@ public class PostController {
         }
         return ResponseEntity.ok(teme);
     }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping("/komentari")
+    public ResponseEntity<?> getKomentar(@RequestBody Integer id) throws Exception {
+
+        return ResponseEntity.ok("lol");
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping("/dodajKoment")
+    public ResponseEntity<?> makeKom(@RequestBody Komentari komentar) throws Exception {
+        Optional<Users> us=user.findById(komentar.getUser_id());
+        Optional<Tema> tem=this.temarep.findById(komentar.getTema_id());
+        Optional<Komentari> kom=this.komentari.findById(komentar.getKomentar_id());
+        komentar.setKomentari(kom.get());
+        komentar.setTeme(tem.get());
+        komentar.setUsers(us.get());
+        komentari.save(komentar);
+        return ResponseEntity.ok("Success!");
+    }
+
 
 }

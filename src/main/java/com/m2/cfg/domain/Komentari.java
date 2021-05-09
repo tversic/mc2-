@@ -14,7 +14,7 @@ public class Komentari {
     private String Content;
 
     @Column(name = "datum_kreiranja")
-    private Date creation_date;
+    private String creation_date;
 
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Kolegij.class, cascade = CascadeType.ALL)
@@ -29,7 +29,23 @@ public class Komentari {
     @JoinColumn(name = "id_parent", referencedColumnName = "id")
     private Komentari komentari;
 
+    private Integer user_id;
+    private Integer tema_id;
+    private Integer komentar_id;
+
     public Komentari() {
+    }
+
+    public Komentari(Integer id, String content, String creation_date, Tema teme, Users users, Komentari komentari, Integer user_id, Integer tema_id, Integer komentar_id) {
+        this.id = id;
+        Content = content;
+        this.creation_date = creation_date;
+        this.teme = teme;
+        this.users = users;
+        this.komentari = komentari;
+        this.user_id = user_id;
+        this.tema_id = tema_id;
+        this.komentar_id = komentar_id;
     }
 
     public Integer getId() {
@@ -48,11 +64,11 @@ public class Komentari {
         Content = content;
     }
 
-    public Date getCreation_date() {
+    public String getCreation_date() {
         return creation_date;
     }
 
-    public void setCreation_date(Date creation_date) {
+    public void setCreation_date(String creation_date) {
         this.creation_date = creation_date;
     }
 
@@ -72,11 +88,35 @@ public class Komentari {
         this.users = users;
     }
 
-    public Komentari(Integer id, String content, Date creation_date, Tema teme, Users users) {
-        this.id = id;
-        Content = content;
-        this.creation_date = creation_date;
-        this.teme = teme;
-        this.users = users;
+    public Komentari getKomentari() {
+        return komentari;
+    }
+
+    public void setKomentari(Komentari komentari) {
+        this.komentari = komentari;
+    }
+
+    public Integer getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
+    }
+
+    public Integer getTema_id() {
+        return tema_id;
+    }
+
+    public void setTema_id(Integer tema_id) {
+        this.tema_id = tema_id;
+    }
+
+    public Integer getKomentar_id() {
+        return komentar_id;
+    }
+
+    public void setKomentar_id(Integer komentar_id) {
+        this.komentar_id = komentar_id;
     }
 }

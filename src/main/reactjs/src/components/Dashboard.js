@@ -1,4 +1,4 @@
-import React, {Component, useEffect} from 'react'
+import React, {Component, useEffect, useState} from 'react'
 import {Link, useParams} from "react-router-dom";
 import '../style/dash.css'
 import {faAngleDoubleRight, faAngleRight} from '@fortawesome/free-solid-svg-icons'
@@ -8,9 +8,27 @@ import axios from "axios";
 const Dashboard=()=>{
     let { id } = useParams();
     let polje=[];
+    const [state, setState] = useState([])
     useEffect(() => {
-        getTeme();
-    });
+        axios.post('/temaid', id, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => {
+                polje=response.data;
+                setState(response.data);
+                provjera();
+                return polje;
+            })
+            .catch(error => {
+                console.log(error.response)
+            });
+    },[]);
+
+    const provjera=()=>{
+        console.log(state[0].content);
+    }
         /*let postsa= [ {id:1,
                 title:'post 1',
                 body: 'this is the first post',
@@ -33,23 +51,6 @@ const Dashboard=()=>{
                 }];*/
 
 
-    const getTeme=()=>{
-        axios.post('/temaid', id, {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(response => {
-                console.log(response.data)
-                polje.push(response.data)
-                console.log(polje);
-                return polje;
-            })
-            .catch(error => {
-                console.log(error.response)
-            });
-    };
-
 
 
         /*const posts =  Array.from(postsa);
@@ -60,22 +61,21 @@ const Dashboard=()=>{
             }
         }*/
 
-    let post1=Array.from(polje);
-    console.log(post1);
         return (
             <div>
                 <div className="container px-4 py-5" id="featured-3">
                     <h2 className="pb-2 border-bottom">Posts</h2>
                     <button id={'dashb'}><Link className='dashbl' to={{ pathname: '/createpost', state: { id: id} }}>Create Post</Link></button>
                     <div className="row g-4 py-5 row-cols-1 row-cols-lg-1">
-                        {post1.map((post) =>
+                        {state.map(post => (
                             <div className="feature col" key={post.id} id={'dashcol'}>
-                                <h2>{post.title}</h2>
-                                <p>{post.body}</p>
+                                <h2>{post.naslov}</h2>
+                                <p>{post.content}</p>
                                 <h2 className="pb-2 border-bottom"></h2>
                                 <Link to={'/posts/' + post.id} key={post.id} className={'dashl'}><FontAwesomeIcon icon={faAngleDoubleRight} /> See more</Link>
                                 <br/>
-                            </div>)}
+                            </div>))}
+
                     </div>
                 </div>
             </div>)

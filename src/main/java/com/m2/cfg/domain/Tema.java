@@ -1,14 +1,18 @@
 package com.m2.cfg.domain;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
 @Entity
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Table(name = "teme")
 public class Tema {
 
-    public Integer idKolegij;
+
     @Id
     @Column(name = "id_teme")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,12 +24,15 @@ public class Tema {
     @Column(name = "datumKreiranja")
     private String datumKreiranja;
 
+    @Column(name="id_kolegij")
+    private Integer idKolegij;
+
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Kolegij.class, cascade=CascadeType.ALL)
     @JoinColumn(name="kolegij_id", nullable = false)
     private Kolegij kolegij;
 
-    @OneToMany(mappedBy = "teme")
-    private List<Komentari> comments;
+    /*@OneToMany(mappedBy = "teme")
+    private List<Komentari> comments;*/
 
     @Column(name = "content")
     private String content;
@@ -38,14 +45,12 @@ public class Tema {
 
 
     public Tema(Integer idKolegij, Integer id, String naslov,
-                String datumKreiranja, Kolegij kolegij,
-                List<Komentari> comments, String content, Set<Room> rooms) {
+                String datumKreiranja, Kolegij kolegij, String content, Set<Room> rooms) {
         this.idKolegij = idKolegij;
         this.id = id;
         this.naslov = naslov;
         this.datumKreiranja = datumKreiranja;
         this.kolegij = kolegij;
-        this.comments = comments;
         this.content = content;
         this.rooms = rooms;
     }
@@ -88,5 +93,15 @@ public class Tema {
 
     public void setIdKolegij(Integer idKolegij) {
         this.idKolegij = idKolegij;
+    }
+
+
+
+    public Set<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(Set<Room> rooms) {
+        this.rooms = rooms;
     }
 }
