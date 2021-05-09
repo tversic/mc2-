@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import '../style/categories.css'
 import {faAngleRight, faBookReader} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import axios from "axios";
 
 class Categories extends Component {
 
@@ -11,7 +12,7 @@ class Categories extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            categories: [ {id:1,
+            /*categories: [ {id:1,
                 name:'matematika'
             },
                 {id:2,
@@ -26,14 +27,16 @@ class Categories extends Component {
                     title:'post 4',
                     name:'prog'
                 }],
-            errors: {}
+            errors: {}*/
+            kolegij: []
         };
+
     }
 
 
-    /*async getPost() {
+    async getKolegij() {
         const { errors } = this.state;
-        axios.get('/')
+        axios.get('/kolegij')
         .then(response => {
             console.log(response.data)
             this.setState({
@@ -47,7 +50,7 @@ class Categories extends Component {
 
                     }
                 },
-                posts:response.data
+                kolegij:response.data
             })
         })
         .catch(error => {
@@ -55,7 +58,7 @@ class Categories extends Component {
             this.setState({
                 errors:{
                     ...errors,
-                    succ: "Username or password wrong!",
+                    succ: "Couldn't load categories",
                     style:{
                         fontSize: 13,
                         marginLeft: 14,
@@ -70,12 +73,12 @@ class Categories extends Component {
 };
 
     componentDidMount() {
-        this.getPost();
-    }*/
+        this.getKolegij();
+    }
 
 
     render() {
-        const cat =  Array.from(this.state.categories);
+        const cat =  Array.from(this.state.kolegij);
         return (
             <div>
                 <div className="container px-4 py-5" id="featured-3">
@@ -83,7 +86,7 @@ class Categories extends Component {
                     <div className="row justify-content-md-center g-4 py-5 row-cols-1 row-cols-lg-3">
                         {cat.map((categ) =>
                             <div className="feature col" key={categ.id} id={'catcon'}>
-                                <h2>{categ.name}</h2>
+                                <h2>{categ.naziv}</h2>
                                 <button id={'catb'}><Link className={'catlink'} to={'/dashboard/' + categ.id} key={categ.id}><FontAwesomeIcon icon={faAngleRight} /> See more</Link></button>
                                 <br/>
                             </div>)}

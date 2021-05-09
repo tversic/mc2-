@@ -51,7 +51,7 @@
   float: left;
 }
 
-a.nav-link {
+.nav-link {
   display: block;
   color: white;
   text-align: center;
@@ -76,7 +76,7 @@ a.nav-link {
   font-weight: bold;
 }
 
-a.nav-link:hover{
+.nav-link:hover{
   color:#488775;
   font-style: italic;
   font-weight: bold;
@@ -86,7 +86,7 @@ a.nav-link:hover{
   background-color: #91dbc6;
 }
 
-a.nav-link{
+.nav-link{
   color:white;
 }
 
@@ -96,11 +96,16 @@ a.nav-link{
 
 #foot{
   background-color: #91dbc6;
+  margin-top:10%;
 }
 
 #txt{
   color:white;
   font-size:15px;
+}
+
+.navbar-brand:hover{
+  color:white;
 }
 
 

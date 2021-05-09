@@ -9,6 +9,7 @@ import java.util.Set;
 @Table(name = "teme")
 public class Tema {
 
+    public Integer idKolegij;
     @Id
     @Column(name = "id_teme")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +23,7 @@ public class Tema {
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Kolegij.class, cascade=CascadeType.ALL)
     @JoinColumn(name="kolegij_id", nullable = false)
-    private Integer kolegij;
+    private Kolegij kolegij;
 
     @OneToMany(mappedBy = "teme")
     private List<Komentari> comments;
@@ -31,12 +32,13 @@ public class Tema {
     Set<Room> rooms;
 
     public Tema() {};
+    //
 
     public Tema(Integer id, String naslov, String datumKreiranja, Integer idKolegij) {
         this.id = id;
         this.naslov = naslov;
         this.datumKreiranja = datumKreiranja;
-        this.setKolegij(1);
+        this.idKolegij=idKolegij;
     }
 
     public Integer getId() {
@@ -63,11 +65,19 @@ public class Tema {
         this.datumKreiranja = datumKreiranja;
     }
 
-    public Integer getKolegij() {
+    public Kolegij getKolegij() {
         return kolegij;
     }
 
-    public void setKolegij(Integer kolegij) {
+    public void setKolegij(Kolegij kolegij) {
         this.kolegij = kolegij;
+    }
+
+    public Integer getIdKolegij() {
+        return idKolegij;
+    }
+
+    public void setIdKolegij(Integer idKolegij) {
+        this.idKolegij = idKolegij;
     }
 }

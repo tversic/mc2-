@@ -11,12 +11,68 @@ class CreatePost extends Component{
                 id:'',
                 naslov:'',
                 datumKreiranja:Date().toLocaleString(),
-                kolegij:this.props.location.state.id},
+               },
+            kol:{
+                id:0,
+                naziv:''
+            },
+        //kolegij_id: this.props.location.state.id,
             errors:{}
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    componentDidMount() {
+        this.getKolegij();
+    }
+
+
+    async getKolegij() {
+        let id=this.props.location.state.id;
+        const {errors} = this.state;
+        axios.post('/kolegijid', id, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => {
+                console.log(response.data)
+                /*this.setState(prevState => ({
+                    tema: {
+                        ...prevState.tema,
+                        kol: {
+                            ...prevState.tema.kol,
+                            id: response.data.id,
+                            naziv:response.data.naziv
+                        }
+                    }
+                }))*/
+                this.setState(prevState => ({
+                  kol: {
+                       ...prevState.kol,
+                           id: response.data.id,
+                           naziv:response.data.naziv
+
+                   }
+               }))
+            })
+            .catch(error => {
+                console.log(error.response)
+                this.setState({
+                    errors:{
+                        ...errors,
+                        succ: "Couldn't load categories",
+                        style:{
+                            fontSize: 13,
+                            marginLeft: 14,
+                            color: 'red'
+
+                        }
+                    }
+                })
+            });
+    };
 
 
     handleChange(event) {
@@ -34,9 +90,10 @@ class CreatePost extends Component{
         const { errors } = this.state;
         console.log(tema);
         axios.post('https://localhost:8443/createtema', {
-            id:'',
-            naslov:this.state.tema.naslov.toString(),
-            datumKreiranja:this.state.tema.datumKreiranja
+            id: this.state.tema.id,
+            naslov: this.state.tema.naslov,
+            datumKreiranja:this.state.tema.datumKreiranja,
+            idKolegij:this.state.kol.id
         },
             {
             headers: {

@@ -1,13 +1,13 @@
 #com{
     margin-top:50px;
-    margin-left: 20px;
     text-align: center;
-    border-left: 1px solid lightgrey;
+    border: 1px solid grey;
+    padding:10px;
 }
 
 #subcom p{
     margin-top:50px;
     margin-left: 20px;
     text-align: center;
-    border-left: 1px solid lightgrey;
+    border: 1px solid grey;
 }

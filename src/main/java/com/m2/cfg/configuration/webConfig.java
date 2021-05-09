@@ -1,4 +1,4 @@
-/*package com.m2.cfg.configuration;
+package com.m2.cfg.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,4 +19,4 @@ public class webConfig
             }
         };
     }
-}*/
+}

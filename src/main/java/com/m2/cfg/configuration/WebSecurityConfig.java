@@ -1,7 +1,5 @@
 package com.m2.cfg.configuration;
 
-import com.m2.cfg.domain.Users;
-import com.m2.cfg.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,19 +8,10 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 
 import javax.sql.DataSource;
-
-import java.util.Arrays;
-
-import static java.util.Base64.getEncoder;
 
 @Configuration
 @EnableWebSecurity
@@ -40,7 +29,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .cors().and()
                 .authorizeRequests()
-                .antMatchers("/", "/home", "/h2-console/**", "/register", "/users", "/socket/*", "/video/**","/authenticate","/js/*","/createtema","/tema")
+                .antMatchers("/", "/home", "/h2-console/**", "/register", "/users", "/socket/*", "/video/**","/authenticate","/js/*","/createtema","/tema","/kolegij","/kolegijid",
+                        "/temaid")
                 .permitAll()
                 .anyRequest().authenticated()
                 ;
