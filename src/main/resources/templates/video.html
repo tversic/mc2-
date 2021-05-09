@@ -37,6 +37,8 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, 300px);
       grid-auto-rows: 300px;
+      justify-content: space-around;
+      background: #0c5460;
     }
 
     video {
@@ -46,11 +48,20 @@
     }
 
     #room{
-      display: none;
+     display: none;
     }
 
     #messageArea{
-      height:300px;
+    }
+
+    ul{
+      list-style-type: none;
+      background-color: #FFF;
+      margin: 0;
+      overflow: auto;
+      overflow-y: scroll;
+      padding: 0 20px 0px 20px;
+      height: calc(100% - 150px);
     }
   </style>
   <body>

@@ -239,6 +239,6 @@ function joinRoom(){
     for (const [key, value] of Object.entries(connections)) {
         createOffer(value,key);
     }
-    document.getElementById("room").style.display="block";
+    document.getElementById("room").style.display="flex";
     document.getElementById("joinbutton").style.display="none";
 }
