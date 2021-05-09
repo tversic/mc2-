@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
 import {Link, useParams} from "react-router-dom";
+import '../style/dash.css'
+import {faAngleDoubleRight, faAngleRight} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const Dashboard=()=>{
     let { id } = useParams();
@@ -79,13 +82,14 @@ const Dashboard=()=>{
             <div>
                 <div className="container px-4 py-5" id="featured-3">
                     <h2 className="pb-2 border-bottom">Posts</h2>
-                    <div className="row g-4 py-5 row-cols-1 row-cols-lg-3">
+                    <button id={'dashb'}><Link className='dashbl' to={{ pathname: '/createpost', state: { id: id} }}>Create Post</Link></button>
+                    <div className="row g-4 py-5 row-cols-1 row-cols-lg-1">
                         {posts1.map((post) =>
-                            <div className="feature col" key={post.id}>
+                            <div className="feature col" key={post.id} id={'dashcol'}>
                                 <h2>{post.title}</h2>
                                 <p>{post.body}</p>
-                                <Link to={'/posts/' + post.id} key={post.id}>See more</Link>
                                 <h2 className="pb-2 border-bottom"></h2>
+                                <Link to={'/posts/' + post.id} key={post.id} className={'dashl'}><FontAwesomeIcon icon={faAngleDoubleRight} /> See more</Link>
                                 <br/>
                             </div>)}
                     </div>

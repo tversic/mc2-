@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 
 import Comment from './Comment'
 import {Link, useParams} from "react-router-dom";
+import '../../style/comment.css'
 
 
 
@@ -62,24 +63,26 @@ const Comments = ({ postID }) => {
 
     return (
         <div>
-            <div className="container px-4 py-5" id="featured-3">
-
-                <h2 className="pb-2 border-bottom">Comments</h2>
-                <div className="row g-4 py-5 row-cols-1 row-cols-lg-3">
+            <div className="row ">
+                <div className="col-sm-8">
                     {comments1.map((comment) =>
-                        <div className="feature col" key={comment.id}>
+                        <div className="feature col" key={comment.id} id={'com'}>
+                            <h2>Comments</h2>
                             <p>{comment.body}</p>
-                            <h2 className="pb-2 border-bottom"></h2>
-                            <p>Sub Comments</p>
-                            {comment.comments.map((comm) =>
-                                <p>{comm.body}</p>)}
-                            <h2 className="pb-2 border-bottom"></h2>
-                            <br/>
-                        </div>)}
+                            <div className="row">
+                                <div className="row justify-content-md-center">
+                                <div className="col col-lg-2" id={'subcom'}>
+                                    <p>Sub Comments</p>
+                                    {comment.comments.map((comm) =>
+                                        <p>{comm.body}</p>)}
+                                </div>
+                                </div></div>
+                                <div className="col-sm-4"></div>
 
-                </div>
+                </div>)}
+                <div className="col-sm-4"></div>
             </div>
-        </div>
+            </div></div>
     )
 }
 

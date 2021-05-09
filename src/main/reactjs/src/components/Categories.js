@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
 import {Link} from "react-router-dom";
+import '../style/categories.css'
+import {faAngleRight, faBookReader} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 class Categories extends Component {
 
@@ -77,12 +80,11 @@ class Categories extends Component {
             <div>
                 <div className="container px-4 py-5" id="featured-3">
                     <h2 className="pb-2 border-bottom">Categories</h2>
-                    <div className="row g-4 py-5 row-cols-1 row-cols-lg-3">
+                    <div className="row justify-content-md-center g-4 py-5 row-cols-1 row-cols-lg-3">
                         {cat.map((categ) =>
-                            <div className="feature col" key={categ.id}>
+                            <div className="feature col" key={categ.id} id={'catcon'}>
                                 <h2>{categ.name}</h2>
-                                <Link to={'/dashboard/' + categ.id} key={categ.id}>See more</Link>
-                                <h2 className="pb-2 border-bottom"></h2>
+                                <button id={'catb'}><Link className={'catlink'} to={'/dashboard/' + categ.id} key={categ.id}><FontAwesomeIcon icon={faAngleRight} /> See more</Link></button>
                                 <br/>
                             </div>)}
                     </div>

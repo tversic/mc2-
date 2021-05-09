@@ -29,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .cors().and()
                 .authorizeRequests()
-                .antMatchers("/", "/home", "/h2-console/**", "/register", "/users", "/socket/*", "/video/**","/authenticate","/js/*")
+                .antMatchers("/", "/home", "/h2-console/**", "/register", "/users", "/socket/*", "/video/**","/authenticate","/js/*","/createtema","/tema")
                 .permitAll()
                 .anyRequest().authenticated()
                 ;

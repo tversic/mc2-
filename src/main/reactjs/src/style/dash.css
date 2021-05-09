@@ -1,0 +1,39 @@
+#dashcol{
+    border:1px solid grey;
+    box-shadow: 0px 5px 5px grey;
+    margin-top: 25px;
+    padding:20px;
+}
+#dashb{
+    float:right;
+    border:1px solid #a0decc;
+    border-radius: 10px;
+    padding:5px;
+    background-color: #a0decc;
+    margin-top:20px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 10px;
+}
+
+.dashbl{
+    color:white;
+    text-decoration: none;
+}
+
+.dashbl:hover{
+    color:#488775;
+    font-style: italic;
+    text-decoration: none;
+}
+
+.dashl{
+    color: #3caa8b;
+    text-decoration: none;
+}
+
+.dashl:hover{
+    color:#215e4d;
+    text-decoration: none;
+    font-style: italic;
+}
+

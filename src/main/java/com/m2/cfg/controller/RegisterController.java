@@ -92,12 +92,6 @@ public class RegisterController {
                     .status(HttpStatus.BAD_REQUEST)
                     .body("All fields must be filled out");
         }
-        /*else if(matchFound)
-        {
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
-                    .body("Invalid E-mail");
-        }*/
 
         if(user.getUsername() != null && user.getEmail() != null && user.getPass() != null)
         {
@@ -111,5 +105,4 @@ public class RegisterController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body("Success!");
-}
-}
+}}

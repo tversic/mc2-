@@ -8,6 +8,7 @@ import Home from "./components/Home";
 import Account from "./components/Account";
 import Dash from "./components/Dash";
 import Posts from "./components/post/Posts";
+import CreatePost from "./components/post/CreatePost";
 import Categories from './components/Categories'
 import Navbar from 'react-bootstrap/Navbar'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -25,7 +26,7 @@ class App extends Component {
 
     logout() {
      localStorage.clear();
-        window.location.reload();
+        window.location.href = "/";
     }
 
 
@@ -95,6 +96,7 @@ class App extends Component {
             <Route path={"/account"} component={Account}></Route>
             <Route path={"/categories"} component={Categories}></Route>
             <Route path={"/dashboard/:id"} component={Dash}></Route>
+            <Route path={"/createpost"} component={CreatePost}></Route>
             <Route path='/posts/:id' component={Posts} />
         </Router>
 
