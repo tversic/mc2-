@@ -1,10 +1,33 @@
 #postcol{
     border:1px solid grey;
     padding:15px;
-    box-shadow:0px 5px 5px grey ;
+    box-shadow:0px 5px 5px #cfcfcf;
 }
 
 textarea{
     margin-top:3%;
     padding:4px;
 }
+
+#txta{
+    margin-top: 1.5%;
+    border:1px solid grey;
+    border-radius: 10px;
+}
+
+#btntxt{
+    width:20%;
+    border:1px solid #a0decc;
+    border-radius: 10px;
+    padding:5px;
+    background-color: #a0decc;
+    margin-top:20px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top:-2.5%;
+}
+
+#btntxt:hover{
+    color:#488775;
+    font-style: italic;
+}
+

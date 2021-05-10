@@ -84,18 +84,22 @@ const Post = () => {
         <div>
             <div className="container px-4 py-5" id="featured-3">
                 <div className="row row-justify-content g-4 py-5 row-cols-1 row-cols-lg-1">
-                    <div className="feature col" id={'postcol'}>
-                        <h2>{state.naslov}</h2>
-                        <p>{state.content}</p>
-                        <br/>
-                    </div>
-                    <textarea placeholder={'Comment'} name={'comment'} value={comment.content} onChange={change} cols={50}></textarea>
-                    <button type={"submit"} onClick={handleChange}>Post</button>
-                    <Comments/>
+                        <div className="feature col" id={'postcol'}>
+                            <h2>{state.naslov}</h2>
+                            <p>{state.content}</p>
+                            <br/>
+                        </div>
+                    <textarea id={'txta'} placeholder={'Comment'} name={'comment'} value={comment.content} onChange={change} cols={50}></textarea>
                 </div>
+                <div className={'row row-cols-lg-6 '}>
+                    <button className={'btn btn-primary float-right'} id='btntxt' type={"submit"} onClick={handleChange}>Post</button>
             </div>
-        </div>
+                <hr></hr>
+                    <Comments/></div>
+            </div>
     )
 }
 
 export default Post;
+
+/*<Comments postID={post.id} />*/
