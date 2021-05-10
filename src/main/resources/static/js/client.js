@@ -1,5 +1,5 @@
 var roomID = window.location.href.split("/video/")[1];
-var conn = new WebSocket('wss://141.136.195.94:8443/socket/'+roomID);
+var conn = new WebSocket('wss://bbtstudyroom.ddns.net:8443/socket/'+roomID);
 //ovaj connection koristiti kada se koristi u LAN-u
 //var conn = new WebSocket('wss://localhost:8443/socket'+roomID);
 
@@ -150,10 +150,23 @@ function peerConnecting(ID){
     }, Math.floor((Math.random() * 5000) + 1))
     videoGrid.append(remoteVideo[ID])
 
+    //Double click for enlarging video - WIP
+    /*
+    remoteVideo[ID].addEventListener('dblclick', function(e){
+        console.log("clicked");
+        for (const [key, value] of Object.entries(remoteVideo)) {
+            if(key != ID){
+                value.setAttribute("style","width:100px;height: 100px;");
+            }
+        }
+        remoteVideo[ID].setAttribute("style","width:600px;height: 600px;")
+    })*/
 
     connections[ID].addEventListener('track', async (event) => {
         remoteStream[ID].addTrack(event.track)
     });
+
+
 
 
 }
@@ -209,7 +222,8 @@ function handleAnswer(answer, peerConnection) {
 
 function sendMessage() {
     for (const [key, value] of Object.entries(dataChannels)) {
-        value.send(input.value)
+        if(value.connectionState=="connected")
+            value.send(input.value);
     }
     appendMessage(input.value,"Me");
     input.value = "";
