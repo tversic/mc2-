@@ -221,12 +221,14 @@ function handleAnswer(answer, peerConnection) {
 };
 
 function sendMessage() {
-    for (const [key, value] of Object.entries(dataChannels)) {
-        if(value.connectionState=="connected")
-            value.send(input.value);
+    if(input.value!="") {
+        for (const [key, value] of Object.entries(dataChannels)) {
+            if (value.connectionState == "connected")
+                value.send(input.value);
+        }
+        appendMessage(input.value, "Me");
+        input.value = "";
     }
-    appendMessage(input.value,"Me");
-    input.value = "";
 }
 
 
