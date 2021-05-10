@@ -102,11 +102,28 @@
 #txt{
   color:white;
   font-size:15px;
+  font-size:15px;
 }
 
 .navbar-brand:hover{
   color:white;
 }
+
+.colbut{
+  background-color:#91dbc6 ;
+  border:none;
+}
+
+@media(min-width: 961px){
+  .colbut{
+    display: none;
+  }
+}
+
+
+
+
+
 
 
 

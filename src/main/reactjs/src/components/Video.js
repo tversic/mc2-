@@ -22,7 +22,7 @@ class Video extends Component {
 
     render(){
         let rooms=Array.from(this.state.room)
-        let linkid="https://bbtstudyroom.ddns.net:8443/video/";
+        let linkid="https://localhost:8443/video/";
         return (
             <div className="container">
                 <div className={'container'} id={'vid'}>

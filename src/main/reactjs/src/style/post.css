@@ -31,3 +31,20 @@ textarea{
     font-style: italic;
 }
 
+#featured-3{
+    margin-bottom: 7%;
+}
+
+#postcol h4{
+    text-align: right;
+    color:#bababa;
+    font-size: 0.6em;
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+}
+
+#postcol p{
+    padding:20px;
+    margin-top:20px;
+}
+
