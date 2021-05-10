@@ -1,16 +1,16 @@
-# Big Brain Time - Study Room
-# Tvz MC^2 2021
+# [Big Brain Time - Study Room](bbtstudyroom.ddns.net:3000)
+## Tvz MC^2 2021
 
-# link: bbtstudyroom.ddns.net:3000
-
+Our goal is to make online studying experience easier. With video calls and threads we want to encourage students to study and solve their problems together!
+ 
 Requirement:
--Apache Maven
--JDK
+* Apache Maven
+* JDK
 
 Install instructions:
-On whole project: mvn clean install
-src/main/reactjs: npm install
+* On whole project: mvn clean install
+* In folder src/main/reactjs: npm install
 
 Starting:
-Backend: src/main/java/TestApplication.java (Spring-boot)
-Frontend: src/main/reactjs (npm start)
+* Backend: src/main/java/TestApplication.java (Spring-boot)
+* Frontend: src/main/reactjs (npm start)
