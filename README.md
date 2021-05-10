@@ -1,4 +1,4 @@
-# [Big Brain Time - Study Room](bbtstudyroom.ddns.net:3000)
+# [Big Brain Time - Study Room](http://bbtstudyroom.ddns.net:3000)
 ## Tvz MC^2 2021
 
 Our goal is to make online studying experience easier. With video calls and threads we want to encourage students to study and solve their problems together!
