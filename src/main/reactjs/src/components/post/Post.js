@@ -79,7 +79,7 @@ const Post = () => {
             content:event.target.value,
             creation_date:'',
             tema_id:id1,
-            user_id:parseInt(localStorage.getItem('userid'))
+            user_id:localStorage.getItem('userid')
         })
     }
 
