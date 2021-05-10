@@ -89,12 +89,14 @@ const Post = () => {
                             <p>{state.content}</p>
                             <br/>
                         </div>
-                    <textarea placeholder={'Comment'} name={'comment'} value={comment.content} onChange={change} cols={50}></textarea>
-                    <button type={"submit"} onClick={handleChange}>Post</button>
-                    <Comments/>
+                    <textarea id={'txta'} placeholder={'Comment'} name={'comment'} value={comment.content} onChange={change} cols={50}></textarea>
                 </div>
+                <div className={'row row-cols-lg-6 '}>
+                    <button className={'btn btn-primary float-right'} id='btntxt' type={"submit"} onClick={handleChange}>Post</button>
             </div>
-        </div>
+                <hr></hr>
+                    <Comments/></div>
+            </div>
     )
 }
 

@@ -85,9 +85,9 @@ class CreatePost extends Component{
     }
 
     async handleSubmit(event) {
+        let id=this.props.location.state.id;
         event.preventDefault();
         console.log(this.state.tema.id);
-        let id=this.state.tema.id;
         const {tema} = this.state;
         const { errors } = this.state;
         console.log(tema);
@@ -118,7 +118,9 @@ class CreatePost extends Component{
                     }
                 })
                 setTimeout(function() {
-                    window.location.href = "/categories";
+                    let link="/dashboard/";
+                    console.log(id);
+                    window.location.href = link.concat(id);
                 }, 2000);
             })
             .catch(error => {
