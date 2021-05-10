@@ -85,6 +85,12 @@ class CreatePost extends Component{
     }
 
     async handleSubmit(event) {
+        let today=Date().toLocaleString();
+        let polj=today.split(" ");
+        let day=polj[1];
+        let m=polj[2];
+        let y=polj[3];
+        let date=day+'-'+m+'-'+y;
         let id=this.props.location.state.id;
         event.preventDefault();
         console.log(this.state.tema.id);
@@ -94,7 +100,7 @@ class CreatePost extends Component{
         axios.post('https://localhost:8443/createtema', {
             id: this.state.tema.id,
             naslov: this.state.tema.naslov,
-            datumKreiranja:this.state.tema.datumKreiranja,
+            datumKreiranja:date,
             idKolegij:this.state.kol.id,
             content:this.state.tema.content
         },
@@ -155,9 +161,9 @@ class CreatePost extends Component{
                     <form onSubmit={this.handleSubmit}>
                         <h1>Create Post</h1>
                         <div className={'inp1'}>
-                            <input type={"text"} name="naslov" value={tema.naslov} placeholder={"Header"} onChange={this.handleChange} />
+                            <input id={'naslov'} type={"text"} name="naslov" value={tema.naslov} placeholder={"Header"} onChange={this.handleChange} />
                         </div >
-                        <textarea name="content" value={tema.content} placeholder={"Content"} onChange={this.handleChange}  rows="4" cols="50"/>
+                        <textarea id={'textc'} name="content" value={tema.content} placeholder={"Content"} onChange={this.handleChange}  rows="4" cols="50"/>
                         {this.state.errors.succ &&
                         <p style={this.state.errors.style}>{this.state.errors.succ}</p>}
                         <button type={'submit'} className={'btn1'}>Create Post</button>

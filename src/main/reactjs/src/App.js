@@ -13,7 +13,7 @@ import Categories from './components/Categories'
 import Navbar from 'react-bootstrap/Navbar'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faUser,faSignInAlt, faBookReader, faPhoneVolume, faLaptopHouse, faAddressCard } from '@fortawesome/free-solid-svg-icons'
+import { faUser,faSignInAlt, faBookReader, faPhoneVolume, faLaptopHouse, faAddressCard,faBars } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -24,14 +24,27 @@ class App extends Component {
     color2:'lightgray'
   }
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            menu: false
+        };
+        this.toggleMenu = this.toggleMenu.bind(this);
+    }
+
     logout() {
      localStorage.clear();
         window.location.href = "/";
     }
 
+    toggleMenu(){
+        this.setState({ menu: !this.state.menu })
+    }
+
 
 
   render(){
+      const show = (this.state.menu) ? "show" : "" ;
       const loggedIn = localStorage.getItem('isLoggedIn')
       let reg;
       let log;
@@ -52,20 +65,22 @@ class App extends Component {
           dash=<NavLink className="nav-link" to="/categories"><span className="fas fa-sign-in-alt"></span><FontAwesomeIcon icon={faBookReader} /> Dashboard</NavLink>
       }
     return (
+
+
         <Router>
 
-            <nav className="navbar navbar-expand-md  " id={'na'}>
-                <NavLink className="navbar-brand" to="/" disable>Study Room</NavLink>
-                <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                        data-target="#navb" aria-expanded="true">
-                    <span className="navbar-toggler-icon"></span>
+
+            <nav className="navbar navbar-expand-md " id={'na'}>
+                <a className="navbar-brand" href="/">Study Room</a>
+                <button className="colbut" type="button" onClick={this.toggleMenu}>
+                    <FontAwesomeIcon icon={faBars}  color={'white'}/>
                 </button>
-                <div id="navb" className="navbar-collapse collapse hide">
+                <div className={"collapse navbar-collapse " + show}>
                     <ul className="navbar-nav">
                         <li className="nav-item active">
                             <NavLink className="nav-link" to="/"><FontAwesomeIcon icon={faLaptopHouse} /> Home</NavLink>
                         </li>
-                       <li> {video}</li>
+                        <li> {video}</li>
                         <li> {dash}</li>
                     </ul>
 
@@ -73,6 +88,7 @@ class App extends Component {
                         <li className="nav-item">
                             {reg}
                         </li>
+
                         <li className="nav-item">
                             {log}
                         </li>
@@ -82,7 +98,8 @@ class App extends Component {
 
 
 
-            <Navbar expand="lg"  fixed="bottom" id={'foot'}>
+
+            <Navbar fixed="bottom" id={'foot'}>
                 <Navbar.Collapse className="justify-content-center">
                     <Navbar.Text id={'txt'}>
                         Study Room

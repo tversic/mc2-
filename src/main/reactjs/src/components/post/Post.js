@@ -25,7 +25,8 @@ const Post = () => {
                         ...state,
                         id: response.data.id,
                         naslov: response.data.naslov,
-                        content: response.data.content
+                        content: response.data.content,
+                        datumKreiranja:response.data.datumKreiranja
                     }
                 )
                 return state;
@@ -40,10 +41,15 @@ const Post = () => {
     }
 
     let handleChange=()=>{
-
+        let today=Date().toLocaleString();
+        let polj=today.split(" ");
+        let day=polj[1];
+        let m=polj[2];
+        let y=polj[3];
+        let date=day+'-'+m+'-'+y;
         axios.post('https://localhost:8443/dodajKoment',{
                 content:comment.content,
-                creation_dat:comment.creation_dat,
+                creation_date:date,
                 tema_id:comment.tema_id,
                 komentar_id:0,
                 user_id:comment.user_id
@@ -69,10 +75,9 @@ const Post = () => {
             });}
 
     const change=(event)=> {
-
         setComment({...comment,
             content:event.target.value,
-            creation_dat:Date().toString(),
+            creation_date:'',
             tema_id:id1,
             user_id:parseInt(localStorage.getItem('userid'))
         })
@@ -85,6 +90,7 @@ const Post = () => {
             <div className="container px-4 py-5" id="featured-3">
                 <div className="row row-justify-content g-4 py-5 row-cols-1 row-cols-lg-1">
                         <div className="feature col" id={'postcol'}>
+                            <h4>{state.datumKreiranja}</h4>
                             <h2>{state.naslov}</h2>
                             <p>{state.content}</p>
                             <br/>

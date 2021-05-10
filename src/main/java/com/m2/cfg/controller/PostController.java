@@ -102,13 +102,6 @@ public class PostController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping("/getusersbyid")
-    public ResponseEntity<?> getUserByID(@RequestParam Integer id) throws Exception {
-        Optional<Users> us=use.findById(id);
-        return ResponseEntity.ok(us.get().getUsername());
-    }
-
-    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/getkoments")
     public ResponseEntity<?> getKoment() throws Exception {
         Iterable<Komentari> ko=this.komentari.findAll();

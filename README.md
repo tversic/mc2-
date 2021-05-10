@@ -13,5 +13,5 @@ Install instructions:
 * In folder src/main/reactjs: npm install
 
 Starting:
-* Backend: src/main/java/TestApplication.java (Spring-boot)
+* Backend: src/main/java/BackendRun.java (Spring-boot)
 * Frontend: src/main/reactjs (npm start)
