@@ -31,37 +31,7 @@ const Dashboard=()=>{
     const provjera=()=>{
         console.log(state[0].content);
     }
-        /*let postsa= [ {id:1,
-                title:'post 1',
-                body: 'this is the first post',
-                catId:1
-            },
-                {id:2,
-                    title:'post 2',
-                    body: 'this is the second post',
-                    catId:1
-                },
-                {id:3,
-                    title:'post 3',
-                    body: 'this is the first post',
-                    catId:1
-                },
-                {id:4,
-                    title:'post 4',
-                    body: 'this is the first post',
-                    catId:2
-                }];*/
 
-
-
-
-        /*const posts =  Array.from(postsa);
-        let posts1=[];
-        for(let i=0;i<posts.length;i++){
-            if(posts[i].catId==id){
-                posts1[i]=posts[i];
-            }
-        }*/
 
         return (
             <div>

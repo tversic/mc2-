@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 
 import Comment from './Comment'
-import {Link, useParams} from "react-router-dom";
+import { useParams} from "react-router-dom";
 import '../../style/comment.css'
 import axios from "axios";
 
@@ -10,10 +10,10 @@ import axios from "axios";
 
 
 const Comments = ({ postID }) => {
-    let { id } = useParams();
-
-   const [com,setCom]=useState([])
+    let {id}=useParams();
     let comments=[];
+    const [com,setCom]=useState([]);
+
     useEffect(() => {
         axios.get('https://localhost:8443/getkoments')
             .then(response => {
@@ -33,6 +33,12 @@ const Comments = ({ postID }) => {
 
 
 
+
+
+
+
+
+
     return (
         <div>
             <div className="row ">
@@ -40,7 +46,6 @@ const Comments = ({ postID }) => {
                     {comments.map((comment) =>
                         <div className="feature col" key={comment.id} id={'com'}>
                             <h4><h2>{comment.creation_date}</h2>@{comment.users.username} said:</h4>
-
                             <p>{comment.content}</p>
                                 <div className="col-sm-4"></div>
                             </div>)}

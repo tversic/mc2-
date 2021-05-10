@@ -149,7 +149,13 @@ values('bbilandzi', '$2a$10$OginvID0.PRHdGr9AM75G.8wf.PQLShaOIg6ESiMV4GsA8Dt1ZsD
 insert into authorities(username,authority)values('bokyfloky','ROLE_ADMIN');
 insert into authorities(username,authority)values('bbilandzi','ROLE_ADMIN');
 insert into kolegiji(naziv, id) values('ASP', 1);
-insert into teme(id_teme, datum_kreiranja,naslov,kolegij_id) values(1,'12-12-12','Pomoc asp',1);
+insert into kolegiji(naziv, id) values('Java', 2);
+insert into kolegiji(naziv, id) values('Baze Podataka', 3);
+insert into teme(datum_kreiranja,naslov,content,kolegij_id) values('May-9-2021','Left i right join','Može netko objasnit kada točno koristiti left i right join?',3);
+insert into teme(datum_kreiranja,naslov,content,kolegij_id) values('Nov-10-2021','Java klase','Kako napisati konstruktor u javi?',2);
+
+
+
 
 
 

@@ -38,16 +38,6 @@ class CreatePost extends Component{
         })
             .then(response => {
                 console.log(response.data)
-                /*this.setState(prevState => ({
-                    tema: {
-                        ...prevState.tema,
-                        kol: {
-                            ...prevState.tema.kol,
-                            id: response.data.id,
-                            naziv:response.data.naziv
-                        }
-                    }
-                }))*/
                 this.setState(prevState => ({
                   kol: {
                        ...prevState.kol,

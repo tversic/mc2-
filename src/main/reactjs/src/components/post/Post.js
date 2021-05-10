@@ -1,5 +1,4 @@
-import React, {Component, useEffect, useState} from 'react'
-import {Link} from "react-router-dom";
+import React, {useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom';
 import Comments from './Comments'
 import '../../style/post.css'
@@ -10,7 +9,7 @@ import axios from "axios";
 const Post = () => {
     let { id } = useParams();
     let id1=parseInt(id);
-    const [state,setState]=useState({id:'',naslov:''});
+    const [state,setState]=useState({id:'',naslov:null});
     const [comment,setComment]=useState({content:'',creation_dat:'',user_id:'',tema_id:'',komentar_id:''})
     useEffect(() => {
         axios.post('https://localhost:8443/tema', id1, {
@@ -83,7 +82,10 @@ const Post = () => {
         })
     }
 
-
+    let no='';
+    if(state.naslov==null){
+        no=<p>No posts yet.</p>;
+    }
 
     return (
         <div>
@@ -93,6 +95,7 @@ const Post = () => {
                             <h4>{state.datumKreiranja}</h4>
                             <h2>{state.naslov}</h2>
                             <p>{state.content}</p>
+                            {no}
                             <br/>
                         </div>
                     <textarea id={'txta'} placeholder={'Comment'} name={'comment'} value={comment.content} onChange={change} cols={50}></textarea>
@@ -101,11 +104,9 @@ const Post = () => {
                     <button className={'btn btn-primary float-right'} id='btntxt' type={"submit"} onClick={handleChange}>Post</button>
             </div>
                 <hr></hr>
-                    <Comments/></div>
+                    <Comments postID={id1}/></div>
             </div>
     )
 }
 
 export default Post;
-
-/*<Comments postID={post.id} />*/

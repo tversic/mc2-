@@ -123,8 +123,8 @@ class Login extends Component{
                             <button className="ghost" id="signIn">Sign In</button>
                         </div>
                         <div className="overlay-panel overlay-right">
-                            <h1>Hello, Friend!</h1>
-                            <p>Join </p>
+                            <h1>Welcome back!</h1>
+                            <p>Sign In to see all the features.</p>
                         </div>
                     </div>
                 </div>
@@ -134,10 +134,5 @@ class Login extends Component{
         );
     }}
 
-const mapStateToProps = state => {
-    return {
-        auth:state.auth
-    }
-};
 
 export default Login;

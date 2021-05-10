@@ -1,5 +1,6 @@
 
-import React from 'react'
+import React, {useState} from 'react'
+import axios from "axios";
 
 
 
@@ -8,9 +9,9 @@ import React from 'react'
 const Comment = ({ comment }) => {
 
 
+
     return (
-        <div className="mt-3">
-        </div>
+        <div></div>
     )
 }
 

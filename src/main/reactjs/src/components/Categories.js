@@ -12,22 +12,6 @@ class Categories extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            /*categories: [ {id:1,
-                name:'matematika'
-            },
-                {id:2,
-                    title:'post 2',
-                    name:'fizika'
-                },
-                {id:3,
-                    title:'post 3',
-                    name:'java'
-                },
-                {id:4,
-                    title:'post 4',
-                    name:'prog'
-                }],
-            errors: {}*/
             kolegij: []
         };
 
