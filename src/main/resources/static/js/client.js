@@ -1,5 +1,5 @@
 var roomID = window.location.href.split("/video/")[1];
-var conn = new WebSocket('wss://localhost:8443/socket/'+roomID);
+var conn = new WebSocket('wss://141.136.195.94:8443/socket/'+roomID);
 //ovaj connection koristiti kada se koristi u LAN-u
 //var conn = new WebSocket('wss://localhost:8443/socket'+roomID);
 
@@ -10,6 +10,10 @@ const input = document.getElementById("messageInput");
 myVideo.muted = true
 
 let myID;
+
+document.querySelector('#messageInput').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') sendMessage()
+});
 
 
 const configuration = {
@@ -123,7 +127,7 @@ function peerConnecting(ID){
     // when we receive a message from the other peer, printing it on the console
     dataChannels[ID].onmessage = function(event) {
         console.log("message:", event.data);
-        appendMessage(event.data)
+        appendMessage(event.data,"Testni Testic") // tu treba proslijediti username
     };
 
     dataChannels[ID].onclose = function() {
@@ -141,7 +145,9 @@ function peerConnecting(ID){
     remoteVideo[ID].srcObject = remoteStream[ID];
     remoteVideo[ID].setAttribute("playsinline",1);
     remoteVideo[ID].setAttribute("id",ID);
-    remoteVideo[ID].play();
+    setTimeout(function () {
+        remoteVideo[ID].play();
+    }, Math.floor((Math.random() * 5000) + 1))
     videoGrid.append(remoteVideo[ID])
 
 
@@ -205,7 +211,7 @@ function sendMessage() {
     for (const [key, value] of Object.entries(dataChannels)) {
         value.send(input.value)
     }
-    appendMessage(input.value);
+    appendMessage(input.value,"Me");
     input.value = "";
 }
 
@@ -218,13 +224,27 @@ function addVideoStream(video, stream) {
     videoGrid.append(video)
 }
 
-function appendMessage(value){
+function appendMessage(value, from){
     var messageElement = document.createElement('li');
+    messageElement.setAttribute("style","text-align:left")
     var textElement = document.createElement('p');
+    textElement.setAttribute("style","border:2px #98B0A9 solid; border-radius:15px; " +
+        "padding: 5px 10px; word-break: break-word");
+    if(from==="Me"){
+        textElement.setAttribute("style","border-radius:15px; " +
+            "padding: 5px 10px;background-color:#6894C1; color:white; word-break: break-word");
+    }
     var messageText = document.createTextNode(value);
+    var usernameElement = document.createElement('span');
+    usernameElement.setAttribute("style", "padding: 10px")
+    var usernameText = document.createTextNode(from);
+    usernameElement.appendChild(usernameText);
+    messageElement.appendChild(usernameElement);
     textElement.appendChild(messageText);
     messageElement.appendChild(textElement);
+
     messageBox.appendChild(messageElement);
+    messageBox.scrollTop = messageBox.scrollHeight;
 }
 
 function closeConnection(ID){
@@ -240,5 +260,5 @@ function joinRoom(){
         createOffer(value,key);
     }
     document.getElementById("room").style.display="flex";
-    document.getElementById("joinbutton").style.display="none";
+    document.getElementById("joinButton").style.display="none";
 }
