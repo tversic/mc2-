@@ -23,7 +23,9 @@ public class SocketHandler extends TextWebSocketHandler {
 
         for (WebSocketSession webSocketSession : rooms.get(roomID)) {
             if (webSocketSession.isOpen() && !session.getId().equals(webSocketSession.getId())) {
-                webSocketSession.sendMessage(message);
+                synchronized(webSocketSession){
+                    webSocketSession.sendMessage(message);
+                }
             }
         }
     }
