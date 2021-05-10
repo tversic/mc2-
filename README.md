@@ -6,6 +6,7 @@ Our goal is to make online studying experience easier. With video calls and thre
 Requirement:
 * Apache Maven
 * JDK
+* Node.js & npm
 
 Install instructions:
 * On whole project: mvn clean install
