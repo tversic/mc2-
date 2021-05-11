@@ -1,51 +1,31 @@
-import React, {useEffect, useState} from 'react'
-
-import Comment from './Comment'
+import React, {useEffect} from 'react'
 import { useParams} from "react-router-dom";
 import '../../style/comment.css'
-import axios from "axios";
-import CreateReply from "./CreateReply";
 
 
 
 
 
-const Reply = ({ commentID }) => {
-    let {id}=useParams();
-    let comments=[];
-    const [com,setCom]=useState([]);
+
+const Reply = ({ commentID, comments }) => {
+    let { id } = useParams();
+    let polje=[];
 
     useEffect(() => {
-        axios.get('https://localhost:8443/getkoments')
-            .then(response => {
-                setCom(response.data);
-                return com;
-            })
-            .catch(error => {
-                console.log(error.response)
-            });
-    },[]);
+    });
 
-    for(let i=0;i<com.length;i++){
-        if(com[i].tema_id==id && com[i].komentar_id==commentID){
-            comments.push(com[i]);
+    for(let i=0;i<comments.length;i++){
+        if(comments[i].tema_id==id && comments[i].komentar_id==commentID){
+            polje.push(comments[i]);
         }
     }
-
-
-
-
-
-
-
-
 
     return (
         <div>
             <div className="row ">
                 <div className="col-sm-8 col-lg-8 col-xs-8">
-                    {comments.map((comment) =>
-                        <div className="feature col" key={comment.id} id={'com'}>
+                    {polje.map((comment) =>
+                        <div className="feature col" key={comment.id} id={'rep'}>
                             <h4><h2>{comment.creation_date}</h2>@{comment.users.username} said:</h4>
                             <p>{comment.content}</p>
                         </div>)}

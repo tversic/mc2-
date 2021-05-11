@@ -27,11 +27,11 @@ const Comments = ({ postID }) => {
             });
     },[]);
 
-   for(let i=0;i<com.length;i++){
-       if(com[i].tema_id==postID && com[i].komentar_id==0){
-           comments.push(com[i]);
-       }
-   }
+    for(let i=0;i<com.length;i++){
+        if(com[i].tema_id==postID && com[i].komentar_id==0){
+            comments.push(com[i]);
+        }
+    }
 
 
 
@@ -49,15 +49,15 @@ const Comments = ({ postID }) => {
                         <div className="feature col" key={comment.id} id={'com'}>
                             <h4><h2>{comment.creation_date}</h2>@{comment.users.username} said:</h4>
                             <p>{comment.content}</p>
+                            <hr></hr>
                             <CreateReply komentID={comment.id}/>
-                            <Reply commentID={comment.id}/>
-                            </div>)}
-                <div className="col-sm-4"></div>
-            </div>
+                            <Reply commentID={comment.id} comments={com}/>
+                        </div>)}
+                    <div className="col-sm-4"></div>
+                </div>
             </div></div>
     )
 }
 
 export default Comments
-
 /*<CreateReply komentID={comment.id}/>*/
