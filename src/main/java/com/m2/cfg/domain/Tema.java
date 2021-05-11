@@ -31,8 +31,10 @@ public class Tema {
     @JoinColumn(name="kolegij_id", nullable = false)
     private Kolegij kolegij;
 
-    /*@OneToMany(mappedBy = "teme")
-    private List<Komentari> comments;*/
+    @OneToMany(mappedBy = "teme")
+    private List<Komentari> comments;
+
+
 
     @Column(name = "content")
     private String content;
@@ -41,15 +43,12 @@ public class Tema {
     Set<Room> rooms;
 
     public Tema() {};
-    //
 
-
-    public Tema(Integer idKolegij, Integer id, String naslov,
-                String datumKreiranja, Kolegij kolegij, String content, Set<Room> rooms) {
-        this.idKolegij = idKolegij;
+    public Tema(Integer id, String naslov, String datumKreiranja, Integer idKolegij, Kolegij kolegij, String content, Set<Room> rooms) {
         this.id = id;
         this.naslov = naslov;
         this.datumKreiranja = datumKreiranja;
+        this.idKolegij = idKolegij;
         this.kolegij = kolegij;
         this.content = content;
         this.rooms = rooms;

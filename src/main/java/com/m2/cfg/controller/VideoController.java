@@ -1,4 +1,4 @@
-package com.m2.cfg.controller;
+/*package com.m2.cfg.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,3 +12,5 @@ public class VideoController {
     }
 
 }
+
+ */

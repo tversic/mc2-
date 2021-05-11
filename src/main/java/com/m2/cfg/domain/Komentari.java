@@ -7,8 +7,8 @@ import java.util.List;
 @Entity
 public class Komentari {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
     @Column(name = "Content")
@@ -26,24 +26,28 @@ public class Komentari {
     @JoinColumn(name = "id_user", referencedColumnName = "id")
     private Users users;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_parent", referencedColumnName = "id")
-    private List<Komentari> komentari;
+    private Komentari komentari;
 
+
+    @Column(name = "user_id")
     private Integer user_id;
+    @Column(name = "tema_id")
     private Integer tema_id;
+    @Column(name = "komentar_id")
     private Integer komentar_id;
 
     public Komentari() {
     }
 
-    public Komentari(Integer id, String content, String creation_date, Tema teme, Users users, List<Komentari> komentari, Integer user_id, Integer tema_id, Integer komentar_id) {
+    public Komentari(Integer id, String content, String creation_date, Tema teme, Users users, Komentari komentari, Integer user_id, Integer tema_id, Integer komentar_id) {
         this.id = id;
         Content = content;
         this.creation_date = creation_date;
         this.teme = teme;
         this.users = users;
-        this.komentari = komentari;
+        //this.komentari = komentari;
         this.user_id = user_id;
         this.tema_id = tema_id;
         this.komentar_id = komentar_id;
@@ -89,13 +93,15 @@ public class Komentari {
         this.users = users;
     }
 
-    public List<Komentari> getKomentari() {
+   /* public Komentari getKomentari() {
         return komentari;
     }
 
-    public void setKomentari(List<Komentari> komentari) {
+    public void setKomentari(Komentari komentari) {
         this.komentari = komentari;
     }
+
+    */
 
     public Integer getUser_id() {
         return user_id;

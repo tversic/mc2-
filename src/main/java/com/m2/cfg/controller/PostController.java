@@ -49,16 +49,16 @@ public class PostController {
         tema.setKolegij(kol1);
         if(tema.getNaslov()!=null)
         {
-        temarep.save(tema);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body("Post created");
-    }
+            temarep.save(tema);
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body("Post created");
+        }
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body("Failed to create post");
 
-}
+    }
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/temaid")
