@@ -44,7 +44,7 @@ const Comments = ({ postID }) => {
     return (
         <div>
             <div className="row ">
-                <div className="col-sm-8 col-lg-8 col-xs-8">
+                <div className="col-sm-12 col-lg-12 col-xs-12">
                     {comments.map((comment) =>
                         <div className="feature col" key={comment.id} id={'com'}>
                             <h4><h2>{comment.creation_date}</h2>@{comment.users.username} said:</h4>
