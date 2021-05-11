@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import '../style/home.css';
+import '../style/App.css';
 import {Container,CardDeck,Card,Carousel} from 'react-bootstrap/'
+import Navbar from "react-bootstrap/Navbar";
 
 
 
@@ -9,6 +11,7 @@ class Home extends Component {
     render(){
         return(
             <div id={'bod'}>
+                <div id={'#page-container'}>
                 <div className={'container'}>
                         <h1>Welcome to Study Room</h1>
                         <div className={'row gx-5 gy-4 row-cols-3 row-cols-lg-3 row-cols-md-1 row-cols-sm-1 row-cols-xs-1'} id={'row1'}>
@@ -118,6 +121,8 @@ class Home extends Component {
                     <p>React is an open-source, front end, JavaScript library for building user interfaces or UI components.</p></div>
                 <div className={'col '}>
                     <img  src={'https://cdn.dribbble.com/users/333243/screenshots/5343222/hiring-manager-for-codility_4x.png?compress=1&resize=400x300'}/>
+                </div>
+
                 </div>
             </div></div></div>
 

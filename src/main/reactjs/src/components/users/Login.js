@@ -100,7 +100,7 @@ class Login extends Component{
     render() {
         const {item} = this.state;
         return (
-
+<div>
             <div className="container" id="cont">
 
                 <div className="form-container sign-in-container">
@@ -127,8 +127,20 @@ class Login extends Component{
                             <p>Sign In to see all the features.</p>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div></div>
+                <div id={'mob'}>
+                    <form onSubmit={this.handleSubmit}>
+                        <h1>Sign Up</h1>
+                        <div className={'inp1'}>
+                            <input type="text" name='username' value={item.username} placeholder={"Username"} onChange={this.handleChange}  />
+                        </div >
+                        <div className={'inp1'}><input type="password" name='password' value={item.password} placeholder={"Password"} onChange={this.handleChange} /></div>
+                        {this.state.errors.succ &&
+                        <p style={this.state.errors.style}>{this.state.errors.succ}</p>}
+                        <button type={'submit'} className={'btn1'}>Sign In</button>
+                    </form>
+                </div></div>
+
 
 
         );

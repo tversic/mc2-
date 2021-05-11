@@ -99,13 +99,7 @@ class App extends Component {
 
 
 
-            <Navbar fixed="bottom" id={'foot'}>
-                <Navbar.Collapse className="justify-content-center">
-                    <Navbar.Text id={'txt'}>
-                        Study Room
-                    </Navbar.Text>
-                </Navbar.Collapse>
-            </Navbar>
+
 
           <Route exact path={"/"} component={Home}></Route>
           <Route path={"/login"} component={Login}></Route>

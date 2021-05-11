@@ -144,6 +144,7 @@ class Register extends Component {
         let faksevi=Array.from(this.state.fakulteti)
 
         return (
+            <div>
             <div className="container" id="cont">
 
                 <div className="form-container sign-in-container">
@@ -182,6 +183,30 @@ class Register extends Component {
                     </div>
                 </div>
             </div>
+<div id={'mob'}>
+    <form onSubmit={this.handleSubmit}>
+        <h1>Sign Up</h1>
+        <div className={'inp1'}>
+            <input type="text" name='username' value={item.username} placeholder={"Username"} onChange={this.handleChange}  />
+        </div >
+        <div className={'inp1'}> <input type="email" name='email' value={item.email} placeholder={"E-mail"} onChange={this.handleChange} /></div>
+        <div className={'inp1'}>
+            <select id='dropdwn' name={'id_faks'} value={item.id_faks}
+                    onChange={this.handleChange} >
+                <option value={0} >Choose University</option>
+                {faksevi.map((faks)=>
+                    <option value={faks.id}>{faks.naziv}</option>
+                )}
+            </select>
+        </div>
+        <div className={'inp1'}><input type="password" name='pass' value={item.pass} placeholder={"Password"} onChange={this.handleChange} /></div>
+        {this.state.errors.succ &&
+        <p style={this.state.errors.style}>{this.state.errors.succ}</p>}
+        <button type={'submit'} className={'btn1'}>Sign Up</button>
+    </form>
+</div></div>
+
+
         );
     }
 }

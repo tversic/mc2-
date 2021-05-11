@@ -97,12 +97,19 @@
 #foot{
   background-color: #91dbc6;
   margin-top:20%;
+  position:absolute;
+  bottom:0;
 }
 
 #txt{
   color:white;
   font-size:15px;
   font-size:15px;
+}
+
+#page-container {
+  position: relative;
+  min-height: 100vh;
 }
 
 .navbar-brand:hover{
