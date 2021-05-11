@@ -25,6 +25,7 @@ connections = {}
 dataChannels = {}
 remoteStream = {}
 remoteVideo = {}
+iceCandidates = {}
 
 conn.onopen = function() {
     console.log("Connected to the signaling server");
@@ -90,8 +91,8 @@ function send(message) {
 //creating new RTCPeerConnection for user with the ID
 function peerConnecting(ID){
     connections[ID]= new RTCPeerConnection(configuration);
-
     connections[ID].onicecandidate = function(event) {
+        iceCandidates[ID] = event.candidate;
         if (event.candidate) {
             send({
                 event : "candidate",
@@ -145,9 +146,10 @@ function peerConnecting(ID){
     remoteVideo[ID].srcObject = remoteStream[ID];
     remoteVideo[ID].setAttribute("playsinline",1);
     remoteVideo[ID].setAttribute("id",ID);
-    setTimeout(function () {
+    remoteVideo[ID].addEventListener('loadedmetadata', () => {
         remoteVideo[ID].play();
-    }, Math.floor((Math.random() * 5000) + 1))
+    })
+
     videoGrid.append(remoteVideo[ID])
 
     //Double click for enlarging video - WIP
@@ -165,10 +167,6 @@ function peerConnecting(ID){
     connections[ID].addEventListener('track', async (event) => {
         remoteStream[ID].addTrack(event.track)
     });
-
-
-
-
 }
 
 

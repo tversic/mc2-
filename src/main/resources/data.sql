@@ -109,11 +109,11 @@ CREATE TABLE IF NOT EXISTS kolegiji_has_Tag
 create INDEX fk_kolegiji_has_Tag_Tag1_idx on kolegiji_has_Tag(Tag_idTag ASC);
 create INDEX fk_kolegiji_has_Tag_kolegiji1_idx on kolegiji_has_Tag(kolegiji_id ASC);
 
-CREATE TABLE IF NOT EXISTS Room (
+CREATE TABLE IF NOT EXISTS room (
                                     id_room VARCHAR(30) NOT NULL,
                                     id_kolegij INT NOT NULL,
-                                    StartTime DATETIME NOT NULL,
-                                    EndTime DATETIME NOT NULL,
+                                    start_time DATETIME NOT NULL,
+                                    end_time DATETIME NOT NULL,
                                     PRIMARY KEY (id_room),
                                     CONSTRAINT kolegiji_id
                                         FOREIGN KEY (id_kolegij)
@@ -150,6 +150,4 @@ insert into authorities(username,authority)values('bokyfloky','ROLE_ADMIN');
 insert into authorities(username,authority)values('bbilandzi','ROLE_ADMIN');
 insert into kolegiji(naziv, id) values('ASP', 1);
 insert into teme(id_teme, datum_kreiranja,naslov,kolegij_id) values(1,'12-12-12','Pomoc asp',1);
-
-
-
+INSERT INTO room (ID_ROOM,start_time,end_time,ID_KOLEGIJ) VALUES (1,'12-12-12','13-12-12',1)
