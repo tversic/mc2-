@@ -10,8 +10,7 @@ import { faReply } from '@fortawesome/free-solid-svg-icons'
 const CreateReply = ({komentID}) => {
     let { id } = useParams();
     const [comment,setComment]=useState({content:'',creation_date:'',user_id:'',tema_id:'',komentar_id:''})
-
-
+    const [state, setState] = useState('hidden')
 
 
 let handleChange=()=>{
@@ -58,17 +57,34 @@ const change=(event)=> {
     })
 }
 
+const hide=()=>{
+    if(state=='hidden'){
+        setState('start');
+    }
+    else{
+        setState('hidden');
+    }
+
+}
+
+
+
 
 
 return (
     <div>
         <div className={'container'} id={'replycont'}>
 <div className={'row'}>
-        <textarea id={'txta'} placeholder={'Comment'} name={'comment'} value={comment.content} onChange={change.bind(change)} cols={30}></textarea></div>
+    <button id='btnreply' onClick={hide.bind(hide)}><FontAwesomeIcon icon={faReply} color={'white'} flip="both"/> Reply</button></div>
+    <div className={'row'}>
+        {state === 'start' && (<textarea id={'txta'} placeholder={'Comment'} name={'comment'} value={comment.content} onChange={change.bind(change)} cols={30}></textarea>)}
+        {state=='hidden'}
+    </div>
         <div className={'row'}>
-                <button id='btnreply' type={"submit"} onClick={handleChange.bind(handleChange)}><FontAwesomeIcon icon={faReply} color={'white'} flip="both"/> Reply</button>
-
-            </div></div></div>
+            {state === 'start' && (<button id='btnreply' type={"submit"} onClick={handleChange.bind(handleChange)}><FontAwesomeIcon icon={faReply} color={'white'} flip="both"/> Send</button>)}
+            {state=='hidden'}
+        </div>
+            </div></div>
 )
 }
 
