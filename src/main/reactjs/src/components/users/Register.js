@@ -5,108 +5,6 @@ import SimpleReactValidator from 'simple-react-validator';
 
 
 class Register extends Component {
-    /*constructor(){
-        super();
-        this.state = {
-            user:
-                {
-                    username: null,
-                    email: null,
-                    pass: null
-                }
-        };
-    };
-
-    componentDidMount() {
-        axios.get("https://localhost:8443/register")
-            .then((res) => {
-                this.setState({
-                    user: {
-                        username: '',
-                        email: '',
-                        pass: ''
-                    }
-                })
-            })
-    }
-
-    handleUserChanged(event) {
-        var user = this.state.user;
-
-        var modifiedValue = event.target.value;
-
-        user.username = modifiedValue;
-
-        this.setState({
-            user: user
-        });
-    }
-
-    handleMailChanged(event) {
-        var user = this.state.user;
-
-        var modifiedValue = event.target.value;
-
-        user.email = modifiedValue;
-
-        this.setState({
-            user: user
-        });
-    }
-
-    handlePassChanged(event) {
-        var user = this.state.user;
-
-        var modifiedValue = event.target.value;
-
-        user.pass = modifiedValue;
-
-        this.setState({
-            user: user
-        });
-    }
-
-    register(event) {
-        event.preventDefault();
-        /*const users=this.state.user;
-        axios.post("http://localhost:8080/register", users)
-            .then((response) => {
-                console.log(response);
-            })*/
-
-    /*alert('A form was submitted: ' + this.state.user);
-
-     fetch('https://localhost:8443/register', {
-         method: 'POST',
-         body: JSON.stringify(this.state.user)
-     }).then(function(response) {
-         console.log(response)
-         return response.json();
-     });
-
-     event.preventDefault();
-
- }
-
- handleButtonClicked() {
-     console.log(this.state.user);
- }
-
- render() {
-     return (
-         <div className={"wrapper"}>
-             <div className={"frm"}>
-
-             <form onSubmit={(e) => this.register(e)} method="post" action={"#"}>
-                 <div><input type="text" name={this.state.user.username} placeholder={"Username"} onChange={this.handleUserChanged.bind(this)}/></div>
-                 <div> <input type="email" name={this.state.email} placeholder={"E-mail"} onChange={this.handleMailChanged.bind(this)}/> </div>
-                 <div> <input type="password" name={this.state.pass} placeholder={"Password"} onChange={this.handlePassChanged.bind(this)}/> </div>
-                 <button type="submit" onClick={this.handleButtonClicked.bind(this)}>Sign Up</button>
-             </form>
-             </div>
-         </div>
-     );
- }*/
     userEmpty = {
         username: '',
         email: '',
@@ -117,7 +15,8 @@ class Register extends Component {
         super(props);
         this.state = {
             item: this.userEmpty,
-            errors: {}
+            errors: {},
+            fakulteti: []
         };
 
 
@@ -183,43 +82,68 @@ class Register extends Component {
                         }
                     })
                 });
+
             this.setState({errors: {}}) ;
 
         }
 
 
+    componentDidMount(){
+        const { errors } = this.state;
 
+        axios.get('/register')
+            .then(response => {
+                console.log(response.data)
+                this.setState({
+                    errors:{
+                        ...errors,
+                        succ: "Success!",
+                        style:{
+                            fontSize: 13,
+                            marginLeft: 14,
+                            color: 'black'
+
+                        }
+                    },
+                    fakulteti:response.data
+                })
+            })
+            .catch(error => {
+                console.log(error.response)
+                this.setState({
+                    errors:{
+                        ...errors,
+                        succ: "Couldn't load categories",
+                        style:{
+                            fontSize: 13,
+                            marginLeft: 14,
+                            color: 'red'
+
+                        }
+                    }
+                })
+            });
+
+        this.setState({errors: {}}) ;
+    }
 
 
     render() {
         const {item} = this.state;
         const {errors} = this.state;
+        let faksevi=Array.from(this.state.fakulteti)
         /*const style = {
             fontSize: 13,
             marginLeft: 14,
             color: 'red'
 
         }*/
+        faksevi.map(faks=>{
+            console.log(faks.naziv);
+            console.log(faks.id)
+        })
+
         return (
-           /* <div className={"wrapper"}>
-                <div className={"frm"}>
-
-                    <form onSubmit={this.handleSubmit}>
-                        <div>
-                            <input type="text" name='username' value={item.username} placeholder={"Username"} onChange={this.handleChange}  />
-                        </div>
-                        <div><input type="email" name='email' value={item.email} placeholder={"E-mail"} onChange={this.handleChange} />
-                        </div>
-                        <div>
-                            <input type="password" name='pass' value={item.pass} placeholder={"Password"} onChange={this.handleChange} />
-                        </div>
-                        {this.state.errors.succ &&
-                        <p style={this.state.errors.style}>{this.state.errors.succ}</p>}
-                        <input type="submit" value="Sign Up" />
-                    </form>
-                </div>
-            </div>*/
-
             <div className="container" id="cont">
 
                 <div className="form-container sign-in-container">
@@ -229,6 +153,13 @@ class Register extends Component {
                             <input type="text" name='username' value={item.username} placeholder={"Username"} onChange={this.handleChange}  />
                         </div >
                            <div className={'inp1'}> <input type="email" name='email' value={item.email} placeholder={"E-mail"} onChange={this.handleChange} /></div>
+                        <div className={'inp1'}>
+                            <select name="fakultet" id="fakultet">
+                                {faksevi.map((faks)=>
+                                    <option value={faks.id}>{faks.naziv}</option>
+                                )}
+                            </select>
+                        </div>
                         <div className={'inp1'}><input type="password" name='pass' value={item.pass} placeholder={"Password"} onChange={this.handleChange} /></div>
                         {this.state.errors.succ &&
                         <p style={this.state.errors.style}>{this.state.errors.succ}</p>}

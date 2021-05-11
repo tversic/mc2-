@@ -141,7 +141,11 @@ create INDEX fk_Room_has_users_users1_idx on Room_has_users(users_id ASC);
 create INDEX fk_Room_has_users_Room1_idx on Room_has_users(Room_idRoom ASC);
 create INDEX kolegiji_id_idx on Room(id_kolegij ASC);
 
-insert into fakulteti(naziv, id) values('TVZ', 1);
+insert into fakulteti(naziv) values('TVZ');
+insert into fakulteti(naziv) values('FER');
+insert into fakulteti(naziv) values('FOI');
+insert into fakulteti(naziv) values('FESB');
+insert into fakulteti(naziv) values('FFZG');
 insert into users(username, password, enabled, id_fakulteta, email)
 values('bokyfloky', '$2a$10$eY8X2tTV/ysV3KDkT/96SuBU7x.Vnc2lUyT.j1uFCo4i2QTr7yxNy',true, 1,'nekimail@gmail.com');
 insert into users(username, password, enabled, id_fakulteta, email)

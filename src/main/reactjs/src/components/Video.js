@@ -70,7 +70,10 @@ class Video extends Component {
                     <div className="row justify-content-md-center">
                         <div className={'col col-12'}>
                             <button id={'vidb'}><a href={linkid.concat(room.id)}  id={'vida'}><FontAwesomeIcon icon={faPhoneVolume} /> Video Call</a></button>
-                        </div></div></div></div>)}</div></div></div>
+                        </div></div></div></div>)}
+                    </div>
+                </div>
+            </div>
         )
     }
 }

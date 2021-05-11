@@ -15,11 +15,10 @@ public class Fakultet {
 
     public Fakultet(){};
 
-    public Fakultet(Integer id)
-    {
+    public Fakultet(Integer id, String naziv) {
         this.id = id;
-        this.naziv = "TVZ";
-    };
+        this.naziv = naziv;
+    }
 
     public Integer getId() {
         return id;
