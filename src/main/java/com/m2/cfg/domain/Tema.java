@@ -2,6 +2,7 @@ package com.m2.cfg.domain;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.apache.catalina.User;
 
 import javax.persistence.*;
 import java.util.List;
@@ -31,9 +32,9 @@ public class Tema {
     @JoinColumn(name="kolegij_id", nullable = false)
     private Kolegij kolegij;
 
-   
-
-
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Users.class, cascade=CascadeType.ALL)
+    @JoinColumn(name="id_user", nullable = false)
+    private Users user;
 
     @Column(name = "content")
     private String content;
