@@ -83,6 +83,7 @@ CREATE TABLE IF NOT EXISTS komentari (
 );
 //create INDEX fk_komentari_teme_idx on komentari(id_teme ASC);
 
+
 CREATE TABLE IF NOT EXISTS tag
 (
     id_tag INT NOT NULL,

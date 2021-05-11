@@ -5,13 +5,12 @@ import { useParams} from "react-router-dom";
 import '../../style/comment.css'
 import axios from "axios";
 import CreateReply from "./CreateReply";
-import Reply from "./Reply";
 
 
 
 
 
-const Comments = ({ postID }) => {
+const Reply = ({ commentID }) => {
     let {id}=useParams();
     let comments=[];
     const [com,setCom]=useState([]);
@@ -27,11 +26,11 @@ const Comments = ({ postID }) => {
             });
     },[]);
 
-   for(let i=0;i<com.length;i++){
-       if(com[i].tema_id==postID && com[i].komentar_id==0){
-           comments.push(com[i]);
-       }
-   }
+    for(let i=0;i<com.length;i++){
+        if(com[i].tema_id==id && com[i].komentar_id==commentID){
+            comments.push(com[i]);
+        }
+    }
 
 
 
@@ -49,15 +48,11 @@ const Comments = ({ postID }) => {
                         <div className="feature col" key={comment.id} id={'com'}>
                             <h4><h2>{comment.creation_date}</h2>@{comment.users.username} said:</h4>
                             <p>{comment.content}</p>
-                            <CreateReply komentID={comment.id}/>
-                            <Reply commentID={comment.id}/>
-                            </div>)}
-                <div className="col-sm-4"></div>
-            </div>
+                        </div>)}
+                    <div className="col-sm-4"></div>
+                </div>
             </div></div>
     )
 }
 
-export default Comments
-
-/*<CreateReply komentID={comment.id}/>*/
+export default Reply

@@ -51,6 +51,7 @@ public class RegisterController {
                 Optional.ofNullable(this.userRepository.findByUsername(user.getUsername()));
         Optional<Users> usersOptional1 =
                 Optional.ofNullable(this.userRepository.findByEmail(user.getEmail()));
+        Optional<Fakultet> faks=fakultetRepostiroy.findById(user.getId_faks());
 
         String regex = "^(.+)@(.+)$";
         Pattern pattern = Pattern.compile(regex);
@@ -94,12 +95,17 @@ public class RegisterController {
                     .body("All fields must be filled out");
         }
 
+        else if(user.getId_faks()==null){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Choose a university!");
+        }
+
         if(user.getUsername() != null && user.getEmail() != null && user.getPass() != null)
         {
-            Fakultet fax = fakultetRepostiroy.findByNaziv("TVZ");
             var r1 = new Authorities(user.getUsername(), "User");
-            var u1 = new Users(user.getUsername(), user.getEmail(), passwordEncoder.encode(user.getPass()), fax);
+            var u1 = new Users(user.getUsername(), user.getEmail(), passwordEncoder.encode(user.getPass()), user.getId_faks());
             System.out.println("username " +user.getUsername());
+            u1.setFaks(faks.get());
             userRepository.save(u1);
             roleRepository.save(r1);
         }

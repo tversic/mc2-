@@ -32,18 +32,19 @@ public class Users {
             joinColumns = @JoinColumn(name = "Room_idRoom"),
             inverseJoinColumns = @JoinColumn(name = "users_id"))
     Set<Room> rooms;
+    private Integer id_faks;
 
-    @OneToMany(mappedBy = "users")
-    private List<Komentari> komentari;
+    /*@OneToMany(mappedBy = "users")
+    private List<Komentari> komentari;*/
 
 
     public Users(){};
 
-    public Users(String username, String email, String password, Fakultet fax) {
+    public Users(String username, String email, String password, Integer id_faks) {
         this.username = username;
         this.email = email;
         this.password = password;
-        faks = fax;
+        this.id_faks=id_faks;
 
     }
 
@@ -85,6 +86,14 @@ public class Users {
 
     public void setPass(String pass) {
         this.password = pass;
+    }
+
+    public Integer getId_faks() {
+        return id_faks;
+    }
+
+    public void setId_faks(Integer id_faks) {
+        this.id_faks = id_faks;
     }
 
     @Override

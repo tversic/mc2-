@@ -93,13 +93,15 @@ public class Komentari {
         this.users = users;
     }
 
-    public Komentari getKomentari() {
+   /* public Komentari getKomentari() {
         return komentari;
     }
 
     public void setKomentari(Komentari komentari) {
         this.komentari = komentari;
     }
+
+    */
 
     public Integer getUser_id() {
         return user_id;
