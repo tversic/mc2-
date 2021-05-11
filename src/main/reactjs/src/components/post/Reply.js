@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import { useParams} from "react-router-dom";
 import '../../style/reply.css'
+import CreateReply from "./CreateReply";
 
 
 
@@ -28,6 +29,9 @@ const Reply = ({ commentID, comments }) => {
                         <div className="feature col" key={comment.id} id={'rep'}>
                             <h4><h2>{comment.creation_date}</h2>@{comment.users.username} replied:</h4>
                             <p>{comment.content}</p>
+                            <hr></hr>
+                            <CreateReply komentID={comment.id}/>
+                            <Reply commentID={comment.id} comments={comments}/>
                         </div>)}
                     <div className="col-sm-4"></div>
                 </div>
