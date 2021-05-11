@@ -2,6 +2,7 @@ package com.m2.cfg.controller;
 
 import com.m2.cfg.domain.Authorities;
 import com.m2.cfg.domain.Fakultet;
+import com.m2.cfg.domain.Room;
 import com.m2.cfg.domain.Users;
 import com.m2.cfg.repository.FakultetRepostiroy;
 import com.m2.cfg.repository.RoleRepository;
@@ -105,4 +106,12 @@ public class RegisterController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body("Success!");
-}}
+
+        }
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/register")
+    public ResponseEntity<?> getFakulteti(){
+        Iterable<Fakultet> Fakulteti = this.fakultetRepostiroy.findAll();
+        return ResponseEntity.ok(Fakulteti);
+    }
+}

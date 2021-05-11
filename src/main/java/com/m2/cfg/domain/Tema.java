@@ -31,8 +31,7 @@ public class Tema {
     @JoinColumn(name="kolegij_id", nullable = false)
     private Kolegij kolegij;
 
-    @OneToMany(mappedBy = "teme")
-    private List<Komentari> comments;
+   
 
 
 

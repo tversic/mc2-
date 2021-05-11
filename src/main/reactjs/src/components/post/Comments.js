@@ -15,7 +15,7 @@ const Comments = ({ postID }) => {
     const [com,setCom]=useState([]);
 
     useEffect(() => {
-        axios.get('https://localhost:8443/getkoments')
+        axios.get('https://bbtstudyroom.ddns.net:8443/getkoments')
             .then(response => {
                 setCom(response.data);
                 return com;

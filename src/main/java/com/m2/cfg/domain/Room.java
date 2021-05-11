@@ -50,4 +50,12 @@ public class Room {
     public void setEndTime(Date endTime) {
         EndTime = endTime;
     }
+
+    public Kolegij getKolegij() {
+        return kolegij;
+    }
+
+    public void setKolegij(Kolegij kolegij) {
+        this.kolegij = kolegij;
+    }
 }
