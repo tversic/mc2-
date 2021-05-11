@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import { useParams} from "react-router-dom";
-import '../../style/comment.css'
+import '../../style/reply.css'
 
 
 
@@ -26,7 +26,7 @@ const Reply = ({ commentID, comments }) => {
                 <div className="col-sm-8 col-lg-8 col-xs-8">
                     {polje.map((comment) =>
                         <div className="feature col" key={comment.id} id={'rep'}>
-                            <h4><h2>{comment.creation_date}</h2>@{comment.users.username} said:</h4>
+                            <h4><h2>{comment.creation_date}</h2>@{comment.users.username} replied:</h4>
                             <p>{comment.content}</p>
                         </div>)}
                     <div className="col-sm-4"></div>

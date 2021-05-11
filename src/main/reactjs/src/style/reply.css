@@ -1,3 +1,12 @@
-.txtr{
+#btnreply{
+    border:1px solid #a0decc;
+    background-color: #a0decc;
+    margin-top:10px;
+    padding:5px;
+    border-radius: 10px;
+    color:white;
+}
 
+#replycont{
+    margin-left:4%;
 }
