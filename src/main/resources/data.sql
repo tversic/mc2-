@@ -53,7 +53,6 @@ CREATE TABLE IF NOT EXISTS teme (
                                     CONSTRAINT fk_teme_kolegiji1
                                         FOREIGN KEY (kolegij_id)
                                             REFERENCES kolegiji (id),
-
                                     FOREIGN KEY (id_user)
                                         references users(id)
                                         ON DELETE NO ACTION

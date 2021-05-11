@@ -17,7 +17,6 @@ public class Komentari {
     @Column(name = "datum_kreiranja")
     private String creation_date;
 
-
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Tema.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_teme", nullable = false)
     private Tema teme;
