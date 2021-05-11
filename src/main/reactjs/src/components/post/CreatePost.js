@@ -87,7 +87,7 @@ class CreatePost extends Component{
         const {tema} = this.state;
         const { errors } = this.state;
         console.log(tema);
-        axios.post('https://bbtstudyroom.ddns.net:8443/createtema', {
+        axios.post('https://localhost:8443/createtema', {
             id: this.state.tema.id,
             naslov: this.state.tema.naslov,
             datumKreiranja:date,
@@ -147,11 +147,11 @@ class CreatePost extends Component{
     render() {
         let {tema} = this.state;
         return (
-            <div className="container" id="cont">
+            <div className="container" id="conts">
                     <form onSubmit={this.handleSubmit}>
                         <h1>Create Post</h1>
                         <div className={'inp1'}>
-                            <input id={'naslov'} type={"text"} name="naslov" value={tema.naslov} placeholder={"Header"} onChange={this.handleChange} />
+                            <input id={'naslov'} type={"text"} name="naslov" value={tema.naslov} placeholder={"Header"} onChange={this.handleChange} cols={'50'}/>
                         </div >
                         <textarea id={'textc'} name="content" value={tema.content} placeholder={"Content"} onChange={this.handleChange}  rows="4" cols="50"/>
                         {this.state.errors.succ &&

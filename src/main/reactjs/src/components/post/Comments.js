@@ -47,10 +47,11 @@ const Comments = ({ postID }) => {
                 <div className="col-sm-12 col-lg-12 col-xs-12">
                     {comments.map((comment) =>
                         <div className="feature col" key={comment.id} id={'com'}>
-                            <h4><h2>{comment.creation_date}</h2>@{comment.users.username} said:</h4>
+                            <h4>@{comment.users.username} said:</h4>
                             <p>{comment.content}</p>
-                            <hr></hr>
+                            <h2>{comment.creation_date}</h2>
                             <CreateReply komentID={comment.id}/>
+                            <hr></hr>
                             <Reply commentID={comment.id} comments={com}/>
                         </div>)}
                     <div className="col-sm-4"></div>

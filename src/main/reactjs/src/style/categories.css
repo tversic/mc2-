@@ -27,3 +27,8 @@
    text-decoration: none;
     font-style: italic;
 }
+
+#featured-3 p{
+    font-size: 18px;
+    word-break: break-all;
+}

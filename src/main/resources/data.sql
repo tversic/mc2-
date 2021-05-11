@@ -159,3 +159,4 @@ insert into teme(id_teme, datum_kreiranja,naslov,kolegij_id) values(1,'12-12-12'
 insert into teme(id_teme, datum_kreiranja,naslov,kolegij_id) values(2,'12-12-12','Pomoc java',2);
 insert into teme(id_teme, datum_kreiranja,naslov,kolegij_id) values(3,'12-12-12','Pomoc asp2',3);
 INSERT INTO room (ID_ROOM,start_time,end_time,ID_KOLEGIJ) VALUES (1,'12-12-12','13-12-12',1)
+INSERT INTO room (ID_ROOM,start_time,end_time,ID_KOLEGIJ) VALUES (1,'12-12-12','13-12-12',1)
