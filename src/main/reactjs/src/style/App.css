@@ -114,7 +114,7 @@
   border:none;
 }
 
-@media(min-width: 961px){
+@media(min-width: 767px){
   .colbut{
     display: none;
   }

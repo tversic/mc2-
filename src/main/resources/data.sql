@@ -83,7 +83,6 @@ CREATE TABLE IF NOT EXISTS komentari (
 );
 //create INDEX fk_komentari_teme_idx on komentari(id_teme ASC);
 
-
 CREATE TABLE IF NOT EXISTS tag
 (
     id_tag INT NOT NULL,
@@ -110,11 +109,11 @@ CREATE TABLE IF NOT EXISTS kolegiji_has_Tag
 create INDEX fk_kolegiji_has_Tag_Tag1_idx on kolegiji_has_Tag(Tag_idTag ASC);
 create INDEX fk_kolegiji_has_Tag_kolegiji1_idx on kolegiji_has_Tag(kolegiji_id ASC);
 
-CREATE TABLE IF NOT EXISTS Room (
+CREATE TABLE IF NOT EXISTS room (
                                     id_room VARCHAR(30) NOT NULL,
                                     id_kolegij INT NOT NULL,
-                                    StartTime DATETIME NOT NULL,
-                                    EndTime DATETIME NOT NULL,
+                                    start_time DATETIME NOT NULL,
+                                    end_time DATETIME NOT NULL,
                                     PRIMARY KEY (id_room),
                                     CONSTRAINT kolegiji_id
                                         FOREIGN KEY (id_kolegij)
@@ -142,15 +141,21 @@ create INDEX fk_Room_has_users_users1_idx on Room_has_users(users_id ASC);
 create INDEX fk_Room_has_users_Room1_idx on Room_has_users(Room_idRoom ASC);
 create INDEX kolegiji_id_idx on Room(id_kolegij ASC);
 
-insert into fakulteti(naziv, id) values('TVZ', 1);
+insert into fakulteti(naziv) values('TVZ');
+insert into fakulteti(naziv) values('FER');
+insert into fakulteti(naziv) values('FOI');
+insert into fakulteti(naziv) values('FESB');
+insert into fakulteti(naziv) values('FFZG');
 insert into users(username, password, enabled, id_fakulteta, email)
 values('bokyfloky', '$2a$10$eY8X2tTV/ysV3KDkT/96SuBU7x.Vnc2lUyT.j1uFCo4i2QTr7yxNy',true, 1,'nekimail@gmail.com');
 insert into users(username, password, enabled, id_fakulteta, email)
 values('bbilandzi', '$2a$10$OginvID0.PRHdGr9AM75G.8wf.PQLShaOIg6ESiMV4GsA8Dt1ZsDy',true, 1,'nekimail2@gmail.com');
 insert into authorities(username,authority)values('bokyfloky','ROLE_ADMIN');
 insert into authorities(username,authority)values('bbilandzi','ROLE_ADMIN');
-insert into kolegiji(naziv, id) values('ASP', 1);
+insert into kolegiji(naziv) values('ASP');
+insert into kolegiji(naziv) values('JAVA');
+insert into kolegiji(naziv) values('ASP 2');
 insert into teme(id_teme, datum_kreiranja,naslov,kolegij_id) values(1,'12-12-12','Pomoc asp',1);
-
-
-
+insert into teme(id_teme, datum_kreiranja,naslov,kolegij_id) values(2,'12-12-12','Pomoc java',2);
+insert into teme(id_teme, datum_kreiranja,naslov,kolegij_id) values(3,'12-12-12','Pomoc asp2',3);
+INSERT INTO room (ID_ROOM,start_time,end_time,ID_KOLEGIJ) VALUES (1,'12-12-12','13-12-12',1)

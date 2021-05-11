@@ -87,7 +87,7 @@ class CreatePost extends Component{
         const {tema} = this.state;
         const { errors } = this.state;
         console.log(tema);
-        axios.post('https://localhost:8443/createtema', {
+        axios.post('https://bbtstudyroom.ddns.net:8443/createtema', {
             id: this.state.tema.id,
             naslov: this.state.tema.naslov,
             datumKreiranja:date,
