@@ -32,9 +32,9 @@ public class Tema {
     @JoinColumn(name="kolegij_id", nullable = false)
     private Kolegij kolegij;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Users.class, cascade=CascadeType.ALL)
+   /* @ManyToOne(fetch = FetchType.LAZY, targetEntity = Users.class, cascade=CascadeType.ALL)
     @JoinColumn(name="id_user", nullable = false)
-    private Users user;
+    private Users user;*/
 
     @Column(name = "content")
     private String content;
