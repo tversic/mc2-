@@ -2,10 +2,31 @@
     border:1px solid #a0decc;
     background-color: #a0decc;
     margin-top:10px;
+    margin-bottom:10px;
     padding:5px;
     border-radius: 10px;
     width:80px;
     color:white;
+}
+
+#btnrep{
+    padding:5px;
+    background-color: white;
+    border: none;
+    margin-left: -30px;
+    background-color: #f2f2f2;
+    margin-top:-10px;
+}
+
+#replycont{
+    margin-left:4%;
+}
+
+#rep{
+    margin-left:15px;
+    border-left: 1px solid black;
+    padding:10px;
+    margin-bottom:10px;
 }
 
 #replycont #txta #txtb{
