@@ -26,3 +26,15 @@
     text-decoration: none;
     color:#488775;
 }
+.naziv{
+    color: #364b45;
+    text-decoration: none;
+}
+.naziv:hover{
+     color:white;
+     text-decoration: none;
+ }
+#vidcont:hover
+{
+    background-color: #9FCAF9;
+}

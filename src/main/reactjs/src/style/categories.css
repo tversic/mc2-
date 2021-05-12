@@ -7,6 +7,10 @@
     padding:25px;
     text-align: center;
 }
+#catcon:hover
+{
+    background-color: #9FCAF9;
+}
 
 #catb{
     border:1px solid #a0decc;
@@ -21,17 +25,15 @@
     color: #364b45;
     text-decoration: none;
 }
-
-.catlink:hover{
+.naziv{
+    color: #364b45;
+    text-decoration: none;
+}
+.naziv:hover{
     color:white;
     text-decoration: none;
 }
-
 #featured-3 p{
     font-size: 18px;
     word-break: break-all;
-}
-.feature:hover
-{
-    background-color: #9FCAF9;
 }

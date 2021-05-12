@@ -69,7 +69,6 @@ class App extends Component {
 
         <Router>
 
-
             <nav className="navbar navbar-expand-md " id={'na'}>
                 <a className="navbar-brand" href="/">Study Room</a>
                 <button className="colbut" type="button" onClick={this.toggleMenu}>
@@ -85,6 +84,7 @@ class App extends Component {
                     </ul>
 
                     <ul className="nav navbar-nav ml-auto">
+
                         <li className="nav-item">
                             {reg}
                         </li>

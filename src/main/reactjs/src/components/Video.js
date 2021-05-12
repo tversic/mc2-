@@ -64,13 +64,13 @@ class Video extends Component {
                     <h1>Rooms</h1>
                     <div className="row justify-content-md-center g-4 py-5 row-cols-1 row-cols-lg-1">
                     {rooms.map((room) =>
-                    <div className="col" key={room.startTime} id={'vidcont'}>
-                        <div className={'col col-12'}>
-                           <h2>{room.kolegij.naziv}</h2>
-                    <div className="row justify-content-md-center">
-                        <div className={'col col-12'}>
-                            <button id={'vidb'}><a href={linkid.concat(room.id)}  id={'vida'}><FontAwesomeIcon icon={faPhoneVolume} /> Video Call</a></button>
-                        </div></div></div></div>)}
+                        <a href={linkid.concat(room.id)}  className={'naziv'}>
+                            <div className="col" key={room.startTime} id={'vidcont'}>
+                                <div className={'col col-12'}>
+                                   <h2>{room.kolegij.naziv}</h2>
+                            <div className="row justify-content-md-center">
+                                <div className={'col col-12'}>
+                        </div></div></div></div></a>)}
                     </div>
                 </div>
             </div>
