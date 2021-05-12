@@ -55,14 +55,14 @@ class App extends Component {
       let linkid="https://localhost:8443/video/";
 
       if (!loggedIn) {
-          reg =  <NavLink className="nav-link" to="/register"><span className=''></span><FontAwesomeIcon icon={faUser} /> Sign Up</NavLink>;
-          log=<NavLink className="nav-link" to="/login"><span className="fas fa-sign-in-alt"></span><FontAwesomeIcon icon={faSignInAlt} /> Login</NavLink>
+          reg =  <NavLink className="nav-link btn btn-outline-primary" to="/register"><span className=''></span><FontAwesomeIcon icon={faUser} /> Sign Up</NavLink>;
+          log=<NavLink className="nav-link btn btn-primary" to="/login"><span className="fas fa-sign-in-alt"></span><FontAwesomeIcon icon={faSignInAlt} /> Login</NavLink>
       } else {
-          log = <NavLink className="nav-link" to="/" onClick={this.logout}><span className="fas fa-sign-in-alt"></span><FontAwesomeIcon icon={faSignInAlt} /> Logout</NavLink>;
-          video=<NavLink className="nav-link" to={"/video"}><FontAwesomeIcon icon={faPhoneVolume} /> Video Rooms</NavLink>
+          log = <NavLink className="nav-link btn btn-primary" to="/" onClick={this.logout}><span className="fas fa-sign-in-alt"></span><FontAwesomeIcon icon={faSignInAlt} /> Logout</NavLink>;
+          video=<NavLink className="nav-link" to={"/video"}><FontAwesomeIcon icon={faPhoneVolume} /> The Library</NavLink>
           reg= <NavLink className="nav-link" to="/account"><span className="fas fa-sign-in-alt"></span><FontAwesomeIcon icon={faUser} /> Account</NavLink>
           myposts=<NavLink className="nav-link" to="/account"><span className="fas fa-sign-in-alt"></span><FontAwesomeIcon icon={faAddressCard} /> My posts</NavLink>
-          dash=<NavLink className="nav-link" to="/categories"><span className="fas fa-sign-in-alt"></span><FontAwesomeIcon icon={faBookReader} /> Dashboard</NavLink>
+          dash=<NavLink className="nav-link" to="/categories"><span className="fas fa-sign-in-alt"></span><FontAwesomeIcon icon={faBookReader} /> Forum</NavLink>
       }
     return (
 
@@ -79,7 +79,7 @@ class App extends Component {
                         <li className="nav-item active">
                             <NavLink className="nav-link" to="/"><FontAwesomeIcon icon={faLaptopHouse} /> Home</NavLink>
                         </li>
-                        <li> {video}</li>
+                        <li id={'THElibrary'}> {video}</li>
                         <li> {dash}</li>
                     </ul>
 
@@ -117,58 +117,5 @@ class App extends Component {
   }
 }
 
-
-/*<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-             <Navbar.Brand href="/">Study Room</Navbar.Brand>
-             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-             <Navbar.Collapse id="responsive-navbar-nav">
-                 <Nav className="mr-auto">
-                     <Nav.Link href="/">Home</Nav.Link>
-                 </Nav>
-                 <Nav>
-                     <Nav.Link href="/login">Sign-In</Nav.Link>
-                     <Nav.Link href="/register">Sign-Up</Nav.Link>
-                 </Nav>
-             </Navbar.Collapse>
-         </Navbar>
-
-         <Navbar expand="lg" variant="dark" bg="dark" fixed="bottom" >
-                    <Navbar.Collapse className="justify-content-center">
-                        <Navbar.Text>
-                           Study Room
-                        </Navbar.Text>
-                    </Navbar.Collapse>
-                </Navbar>*/
-
-/*export default function App() {
-
-
-    return (
-        <Router>
-            <NavigationBar/>
-
-                        <Switch>
-                            <Route path="/" exact component={Home}/>
-                            <Route path={"/login"} component={Login}></Route>
-                            <Route path={"/register"} component={Register}></Route>
-                        </Switch>
-
-        </Router>
-    );
-}*/
-
-/*
-     <nav className="navb">
-            <div className="container-fluid">
-              <ul className="nav navbar-nav">
-                <li><h3>Study Room</h3></li>
-                <li><NavLink to="/">Home</NavLink></li>
-                <li><NavLink to="/login">Login</NavLink></li>
-                <li><NavLink to="/register">Register</NavLink></li>
-
-              </ul>
-            </div>
-          </nav>
- */
 
 export default App;

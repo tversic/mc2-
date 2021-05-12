@@ -70,10 +70,9 @@ class Categories extends Component {
                     <div className="row justify-content-md-center g-4 py-5 row-cols-1 row-cols-lg-1">
                         {cat.map((categ) =>
                             <Link className={'naziv'} to={'/dashboard/' + categ.id} key={categ.id}>
-                            <div className="feature col" key={categ.id} id={'catcon'}>
-                                <h2>{categ.naziv}</h2>
-                                <br/>
-                            </div>
+                                <div className="feature col catcon" key={categ.id}>
+                                    <h2>{categ.naziv}</h2>
+                                </div>
                             </Link>)}
                     </div>
                 </div>

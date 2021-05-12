@@ -77,9 +77,9 @@
 }
 
 .nav-link:hover{
-  color:#488775;
-  font-style: italic;
+  color:white;
   font-weight: bold;
+  /*border-bottom: 1px solid white;*/
 }
 
 #na{
@@ -136,15 +136,10 @@
   font-size: 1.75rem;
 }
 
+.navbar-nav li{
+  width:90px;
+}
 
-
-
-
-
-
-
-
-
-
-
-
+#THElibrary{
+  width:120px;
+}

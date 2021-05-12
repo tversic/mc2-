@@ -122,14 +122,14 @@
     }
 
     .nav-link:hover{
-      color:#488775;
-      font-style: italic;
+      color:white;
       font-weight: bold;
     }
 
     #na{
       background-color: #91dbc6;
-      height:86px;
+      height:100px;
+      padding:18px;
     }
 
     .nav-link{
@@ -168,12 +168,27 @@
       border-radius: 20px;
     }
 
+    #THElibrary{
+      width:120px;
+    }
+
+    .navbar-nav li{
+      width:90px;
+    }
+    #logo{
+      font-size: 1.75rem;
+      margin:15px 15px 15px 0px;
+    }
+    .navbar-brand{
+      padding-left: 15px;
+      padding-right: 15px;
+    }
 
 
   </style>
   <body>
     <nav class="navbar navbar-expand-md  " id="na">
-      <a class="navbar-brand" href="#" disable>Study Room</a>
+      <a id="logo" class="navbar-brand" href="#" disable>Study Room</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
               data-target="#navb" aria-expanded="true">
         <span class="navbar-toggler-icon"></span>
@@ -183,11 +198,11 @@
           <li class="nav-item active">
             <a class="nav-link" href="http://bbtstudyroom.ddns.net:3000"><i class="fas fa-laptop-house"></i> Home</a>
           </li>
-          <li>
-            <a class="nav-link" href="http://bbtstudyroom.ddns.net:3000/video"><i class="fas fa-phone-volume"></i> Video Rooms</a>
+          <li id="THElibrary">
+            <a  class="nav-link" href="http://bbtstudyroom.ddns.net:3000/video"><i class="fas fa-phone-volume"></i> The Library</a>
           </li>
           <li>
-            <a class="nav-link" href="http://bbtstudyroom.ddns.net:3000/categories"><i class="fas fa-address-card"></i> Dashboard</a>
+            <a class="nav-link" href="http://bbtstudyroom.ddns.net:3000/categories"><i class="fas fa-book-reader"></i> Forum</a>
           </li>
         </ul>
       </div>

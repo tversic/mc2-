@@ -1,4 +1,4 @@
-#catcon{
+.catcon{
     box-shadow: 0px 5px 5px grey;
     border:1px solid grey;
     border-radius: 20px;
@@ -7,9 +7,11 @@
     padding:25px;
     text-align: center;
 }
-#catcon:hover
+.catcon:hover
 {
-    background-color: #9FCAF9;
+    background-color: #6894C1;
+    color:white;
+    text-decoration: none;
 }
 
 #catb{
@@ -29,10 +31,7 @@
     color: #364b45;
     text-decoration: none;
 }
-.naziv:hover{
-    color:white;
-    text-decoration: none;
-}
+
 #featured-3 p{
     font-size: 18px;
     word-break: break-all;

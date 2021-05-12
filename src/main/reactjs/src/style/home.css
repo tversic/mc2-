@@ -1,35 +1,30 @@
-.card-wrapper {
-
-    width: 1000px;
-
-    margin: auto;
-
-}
-
-.crd{
-    margin-top:6%;
-}
-
-.card{
-    box-shadow: 0px 10px 10px lightgrey;
-}
-
+/*naslov text*/
 h1{
     text-align: center;
     padding: 30px;
 }
-.col-lg-4:hover{
-    transform: scale(1.05);
-    /* box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06); */
-
+/*naslov block*/
+#W2SR
+{
+    display: block;
+    margin: 7%;
 }
 
+/*on hover povecava*/
+.col-lg-4:hover{
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+    z-index: 1;
+}
+
+/*img center na ona 3 elementa*/
 .col-lg-4 img{
     width:90%;
     margin: 0 auto;
     display: block;
 }
 
+/* 3 glavna elementa*/
 .col-lg-4{
     border-radius: 4px;
     background: #fff;
@@ -38,92 +33,32 @@ h1{
     cursor: pointer;
 }
 
-#row1{
-    margin-top:50px;
-}
 
+/* donji dio stranice*/
 #about{
-    margin-top:25%;
+    margin-top:500px;
     padding:20px;
-}
-#W2SR
-{
-    display: block;
-    margin: 7%;
-}
-#centar
-{
-    display: block;
-    margin-left: 300px;
-}
-#bod{
-    margin-bottom:7%;
+    margin-bottom: 300px;
+    width:80%;
 }
 
+/* link u 3 glavna*/
 .col-lg-4 a{
     color:black;
     text-decoration: none;
 }
 
+/* link u 3 glavna hover*/
 .col-lg-4 a:hover{
     color:black;
     text-decoration: none;
 }
 
-@media(min-width: 601px){
-    .responsive{
-        display:none;
-    }
-
-    .hide{
-        display: none;
-    }
-
-
+.cardBorder{
+    border-bottom: 1px solid #98B0A9;
 }
 
-@media(max-width: 800px){
-    .col img{
-        display:none;
-    }
-}
-
-@media (max-width: 600px) {
-
-    #about{
-        margin:0px auto;
-        width: 350px;
-    }
-
-    .r{
-        border-radius: 4px;
-        background: #fff;
-        box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
-        transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
-        cursor: pointer;
-        margin:20px;
-    }
-
-
-
-    .col-lg-4{
-        display: none;
-    }
-
-    .r a{
-        color:black;
-        text-decoration: none;
-    }
-
-    .r a:hover{
-        color:black;
-        text-decoration: none;
-    }
-
-    .hide{
-        justify-content: center;
-        text-align: center;
-        color:black;
-        padding:20px;
-    }
+#about h2{
+    margin-bottom: 30px;
+    text-align: left;
 }
