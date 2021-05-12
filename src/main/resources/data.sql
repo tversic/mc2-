@@ -155,4 +155,4 @@ insert into kolegiji(naziv) values('ASP');
 insert into kolegiji(naziv) values('JAVA');
 insert into kolegiji(naziv) values('ASP 2');
 INSERT INTO room (ID_ROOM,start_time,end_time,ID_KOLEGIJ) VALUES (1,'12-12-12','13-12-12',1);
-INSERT INTO room (ID_ROOM,start_time,end_time,ID_KOLEGIJ) VALUES (2,'12-12-12','13-12-12',1);
+INSERT INTO room (ID_ROOM,start_time,end_time,ID_KOLEGIJ) VALUES (2,'12-12-12','13-12-12',2);

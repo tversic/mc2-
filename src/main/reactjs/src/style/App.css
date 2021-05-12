@@ -130,9 +130,11 @@
 .navbar-brand{
   padding-left: 15px;
   padding-right: 15px;
-  font-size: 2rem;
 }
 
+#logo{
+  font-size: 1.75rem;
+}
 
 
 

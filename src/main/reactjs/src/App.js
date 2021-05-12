@@ -70,7 +70,7 @@ class App extends Component {
         <Router>
 
             <nav className="navbar navbar-expand-md " id={'na'}>
-                <a className="navbar-brand" href="/">Study Room</a>
+                <a id="logo" className="navbar-brand" href="/">Study Room</a>
                 <button className="colbut" type="button" onClick={this.toggleMenu}>
                     <FontAwesomeIcon icon={faBars}  color={'white'}/>
                 </button>
