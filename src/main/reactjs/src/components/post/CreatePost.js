@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import axios from "axios";
-import '../../style/login.css'
+import '../../style/createpost.css'
 
 
 class CreatePost extends Component{
@@ -151,12 +151,16 @@ class CreatePost extends Component{
                     <form onSubmit={this.handleSubmit}>
                         <h1>Create Post</h1>
                         <div className={'inp1'}>
-                            <input id={'naslov'} type={"text"} name="naslov" value={tema.naslov} placeholder={"Header"} onChange={this.handleChange} cols={'50'}/>
+                            <input id={'naslov'} type={"text"} name="naslov" value={tema.naslov} placeholder={"Header"} onChange={this.handleChange}/>
                         </div >
-                        <textarea id={'textc'} name="content" value={tema.content} placeholder={"Content"} onChange={this.handleChange}  rows="4" cols="50"/>
+                        <div className={'inp1'}>
+                            <textarea id={'textc'} name="content" value={tema.content} placeholder={"Content"} onChange={this.handleChange}/>
+                        </div>
                         {this.state.errors.succ &&
                         <p style={this.state.errors.style}>{this.state.errors.succ}</p>}
-                        <button type={'submit'} className={'btn1'}>Create Post</button>
+                        <div className={'inp1'}>
+                            <button type={'submit'} className={'btn1'}>Create Post</button>
+                        </div>
                     </form>
                 </div>
 

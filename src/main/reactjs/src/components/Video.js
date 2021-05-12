@@ -62,7 +62,7 @@ class Video extends Component {
             <div className="container">
                 <div className={'container'} id={'vid'}>
                     <h1>Rooms</h1>
-                    <div className="row justify-content-md-center g-4 py-5 row-cols-1 row-cols-lg-3">
+                    <div className="row justify-content-md-center g-4 py-5 row-cols-1 row-cols-lg-1">
                     {rooms.map((room) =>
                     <div className="col" key={room.startTime} id={'vidcont'}>
                         <div className={'col col-12'}>
