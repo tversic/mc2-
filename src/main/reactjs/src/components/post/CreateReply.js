@@ -74,10 +74,10 @@ const hide=()=>{
 return (
     <div>
         <div className={'container'} id={'replycont'}>
-<div className={'row col-lg txtb'}>
-    <button id='btnreply' onClick={hide.bind(hide)}><FontAwesomeIcon icon={faReply} color={'white'} flip="both"/></button></div>
+<div className={'row col-lg'}>
+    <button id='btnrep' onClick={hide.bind(hide)}><FontAwesomeIcon icon={faReply} color={'lightseagreen'} flip="both"/></button></div>
     <div className={'row'}>
-        {state === 'start' && (<textarea id={'txta'} placeholder={'Comment'} name={'comment'} value={comment.content} onChange={change.bind(change)} cols={30}></textarea>)}
+        {state === 'start' && (<textarea id={'txta'} placeholder={'Comment'} name={'comment'} value={comment.content} onChange={change.bind(change)} cols={40}></textarea>)}
         {state=='hidden'}
     </div>
 
