@@ -27,11 +27,10 @@ const Reply = ({ commentID, comments }) => {
                 <div className="col-sm-8 col-lg-8 col-xs-8">
                     {polje.map((comment) =>
                         <div className="feature col" key={comment.id} id={'rep'}>
+                            <h2>{comment.creation_date}</h2>
                             <h4>@{comment.users.username} said:</h4>
                             <p>{comment.content}</p>
-                            <h2>{comment.creation_date}</h2>
                             <CreateReply komentID={comment.id}/>
-                            <hr></hr>
                             <Reply commentID={comment.id} comments={comments}/>
                         </div>)}
                     <div className="col-sm-4"></div>
