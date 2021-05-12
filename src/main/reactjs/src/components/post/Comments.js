@@ -47,10 +47,15 @@ const Comments = ({ postID }) => {
                 <div className="col-sm-12 col-lg-12 col-xs-12">
                     {comments.map((comment) =>
                         <div className="feature col" key={comment.id} id={'com'}>
+                            <div className={'come'}>
+                                <div>
+                                <img src={'https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg'}/></div>
+                                <div>
+                                    <h2>{comment.creation_date}</h2>
                             <h4>@{comment.users.username} said:</h4>
                             <p>{comment.content}</p>
-                            <h2>{comment.creation_date}</h2>
                             <CreateReply komentID={comment.id}/>
+                            </div></div>
                             <hr></hr>
                             <Reply commentID={comment.id} comments={com}/>
                         </div>)}
@@ -61,4 +66,3 @@ const Comments = ({ postID }) => {
 }
 
 export default Comments
-/*<CreateReply komentID={comment.id}/>*/
