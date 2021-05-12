@@ -13,6 +13,16 @@
     font-family: Arial, Helvetica, sans-serif;
     margin-bottom: 10px;
 }
+#dashb:hover{
+    border:1px solid #a0decc;
+    border-radius: 10px;
+    padding:5px 10px;
+    background-color: #3caa8b;
+    color: white;
+    margin-top:20px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 10px;
+}
 
 .dashbl{
     color:white;

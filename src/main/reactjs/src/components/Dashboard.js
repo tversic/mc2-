@@ -38,7 +38,7 @@ const Dashboard=()=>{
             <div>
                 <div className="container px-4 py-5" id="featured-3">
                     <h2 className="pb-2 border-bottom">Posts</h2>
-                    <Button id={'dashb'}><Link className='dashbl' to={{ pathname: '/createpost', state: { id: id} }}><FontAwesomeIcon icon={faPlus} /> Create Post</Link></Button>
+                    <Link to={{ pathname: '/createpost', state: { id: id} }}><Button id={'dashb'} >Create post </Button></Link>
                     <div className="row g-4 py-5 row-cols-1 row-cols-lg-1">
                         {state.map(post => (
                             <div className="feature col" key={post.id} id={'dashcol'}>

@@ -23,7 +23,7 @@ const Reply = ({ commentID, comments }) => {
 
     return (
         <div>
-            <div className="row ">
+            <div className="row">
                 <div className="col-sm-8 col-lg-8 col-xs-8">
                     {polje.map((comment) =>
                         <div className="feature col" key={comment.id} id={'rep'}>

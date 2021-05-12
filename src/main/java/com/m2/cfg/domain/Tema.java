@@ -94,8 +94,6 @@ public class Tema {
         this.idKolegij = idKolegij;
     }
 
-
-
     public Set<Room> getRooms() {
         return rooms;
     }

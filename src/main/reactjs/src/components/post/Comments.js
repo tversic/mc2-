@@ -43,7 +43,7 @@ const Comments = ({ postID }) => {
 
     return (
         <div>
-            <div className="row ">
+            <div className="row">
                 <div className="col-sm-12 col-lg-12 col-xs-12">
                     {comments.map((comment) =>
                         <div className="feature col" key={comment.id} id={'com'}>

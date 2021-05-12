@@ -1,5 +1,8 @@
 package com.m2.cfg.domain;
 
+import com.m2.cfg.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
@@ -28,8 +31,6 @@ public class Komentari {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_parent", referencedColumnName = "id")
     private Komentari komentari;
-
-
 
     @Column(name = "user_id")
     private Integer user_id;
