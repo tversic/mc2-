@@ -105,7 +105,7 @@ class Login extends Component{
 
                 <div className="form-container sign-in-container">
                     <form onSubmit={this.handleSubmit}>
-                        <h1>Sign Up</h1>
+                        <h1>Sign In</h1>
                         <div className={'inp1'}>
                             <input type="text" name='username' value={item.username} placeholder={"Username"} onChange={this.handleChange}  />
                         </div >
@@ -130,7 +130,7 @@ class Login extends Component{
                 </div></div>
                 <div id={'mob'}>
                     <form onSubmit={this.handleSubmit}>
-                        <h1>Sign Up</h1>
+                        <h1>Sign In</h1>
                         <div className={'inp1'}>
                             <input type="text" name='username' value={item.username} placeholder={"Username"} onChange={this.handleChange}  />
                         </div >

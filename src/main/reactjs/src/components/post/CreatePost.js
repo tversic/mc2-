@@ -159,7 +159,7 @@ class CreatePost extends Component{
                         {this.state.errors.succ &&
                         <p style={this.state.errors.style}>{this.state.errors.succ}</p>}
                         <div className={'inp1'}>
-                            <button type={'submit'} className={'btn1'}>Create Post</button>
+                            <button type={'submit'} className={'btn1'} id={'createPostBtn'}>Create Post</button>
                         </div>
                     </form>
                 </div>

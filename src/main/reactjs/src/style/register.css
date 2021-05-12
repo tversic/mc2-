@@ -37,9 +37,9 @@ a {
 }
 
 .btn1 {
-    border-radius: 20px;
+    border-radius: 5px;
     border: 1px solid #8cd4d1;
-    background-color: #8cd4d1;
+    background-color: #6894C1;
     color: #FFFFFF;
     font-size: 12px;
     font-weight: bold;
@@ -48,6 +48,7 @@ a {
     text-transform: uppercase;
     transition: transform 80ms ease-in;
     margin-top: 10px;
+    width: 100%;
 }
 
 button:active {
@@ -83,7 +84,7 @@ input {
 }
 
 .inp1{
-    padding: 10px;
+    padding: 10px 0px;
     width: 100%;
 }
 
@@ -150,9 +151,7 @@ input {
 }
 
 .overlay {
-    background: #FF416C;
-    background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-    background: linear-gradient(to right, #8cd4d1, #5a9996);
+    background: linear-gradient(to right, #91dbc6, #7EBFAD);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 0 0;

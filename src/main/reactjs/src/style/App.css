@@ -76,7 +76,7 @@
   font-weight: bold;
 }
 
-.nav-link:hover{
+.lijevo:hover, #THElibrary:hover, .lijevo a:hover, #THElibrary a:hover{
   color:white;
   font-weight: bold;
   /*border-bottom: 1px solid white;*/
@@ -136,10 +136,19 @@
   font-size: 1.75rem;
 }
 
-.navbar-nav li{
-  width:90px;
+.navbar-nav .lijevo{
+  width:95px;
 }
 
 #THElibrary{
   width:120px;
+}
+
+.btn{
+  margin-left: 10px;
+
+}
+
+.btn-primary{
+  background-color: #6894C1;
 }

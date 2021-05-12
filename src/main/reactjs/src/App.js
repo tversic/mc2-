@@ -1,4 +1,4 @@
-import './style/App.css';
+
 import React, { Component } from 'react'
 import { Route,Switch,NavLink,Link,BrowserRouter as Router } from 'react-router-dom';
 import Register from "./components/users/Register";
@@ -14,6 +14,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faUser,faSignInAlt, faBookReader, faPhoneVolume, faLaptopHouse, faAddressCard,faBars } from '@fortawesome/free-solid-svg-icons'
+import './style/App.css';
 
 
 
@@ -56,13 +57,13 @@ class App extends Component {
 
       if (!loggedIn) {
           reg =  <NavLink className="nav-link btn btn-outline-primary" to="/register"><span className=''></span><FontAwesomeIcon icon={faUser} /> Sign Up</NavLink>;
-          log=<NavLink className="nav-link btn btn-primary" to="/login"><span className="fas fa-sign-in-alt"></span><FontAwesomeIcon icon={faSignInAlt} /> Login</NavLink>
+          log=<NavLink className="nav-link btn btn-primary test" to="/login"><span className="fas fa-sign-in-alt"></span><FontAwesomeIcon icon={faSignInAlt} /> Login</NavLink>
       } else {
           log = <NavLink className="nav-link btn btn-primary" to="/" onClick={this.logout}><span className="fas fa-sign-in-alt"></span><FontAwesomeIcon icon={faSignInAlt} /> Logout</NavLink>;
           video=<NavLink className="nav-link" to={"/video"}><FontAwesomeIcon icon={faPhoneVolume} /> The Library</NavLink>
           reg= <NavLink className="nav-link" to="/account"><span className="fas fa-sign-in-alt"></span><FontAwesomeIcon icon={faUser} /> Account</NavLink>
           myposts=<NavLink className="nav-link" to="/account"><span className="fas fa-sign-in-alt"></span><FontAwesomeIcon icon={faAddressCard} /> My posts</NavLink>
-          dash=<NavLink className="nav-link" to="/categories"><span className="fas fa-sign-in-alt"></span><FontAwesomeIcon icon={faBookReader} /> Forum</NavLink>
+          dash=<NavLink className="nav-link " to="/categories"><span className="fas fa-sign-in-alt"></span><FontAwesomeIcon icon={faBookReader} /> Forum</NavLink>
       }
     return (
 
@@ -76,11 +77,11 @@ class App extends Component {
                 </button>
                 <div className={"collapse navbar-collapse " + show}>
                     <ul className="navbar-nav">
-                        <li className="nav-item active">
+                        <li className="nav-item active lijevo">
                             <NavLink className="nav-link" to="/"><FontAwesomeIcon icon={faLaptopHouse} /> Home</NavLink>
                         </li>
                         <li id={'THElibrary'}> {video}</li>
-                        <li> {dash}</li>
+                        <li className={'lijevo'}> {dash}</li>
                     </ul>
 
                     <ul className="nav navbar-nav ml-auto">
