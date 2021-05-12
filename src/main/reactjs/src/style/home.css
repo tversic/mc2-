@@ -46,7 +46,16 @@ h1{
     margin-top:25%;
     padding:20px;
 }
-
+#W2SR
+{
+    display: block;
+    margin: 7%;
+}
+#centar
+{
+    display: block;
+    margin-left: 300px;
+}
 #bod{
     margin-bottom:7%;
 }

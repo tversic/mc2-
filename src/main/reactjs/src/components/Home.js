@@ -13,7 +13,9 @@ class Home extends Component {
             <div id={'bod'}>
                 <div id={'#page-container'}>
                 <div className={'container'}>
-                        <h1>Welcome to Study Room</h1>
+
+                        <h1 id={'W2SR'}>Welcome to Study Room</h1>
+
                         <div className={'row gx-5 gy-4 row-cols-3 row-cols-lg-3 row-cols-md-1 row-cols-sm-1 row-cols-xs-1'} id={'row1'}>
                             <div className={'col-lg-3'}>
                                 <img className="card-img-top" src="https://www.careeraddict.com/uploads/article/58655/illustration-men-desktop.jpg" alt="Card image cap"></img>

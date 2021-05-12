@@ -30,6 +30,7 @@ public class Komentari {
     private Komentari komentari;
 
 
+
     @Column(name = "user_id")
     private Integer user_id;
     @Column(name = "tema_id")

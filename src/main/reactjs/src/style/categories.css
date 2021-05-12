@@ -18,17 +18,20 @@
 }
 
 .catlink{
-    color:white;
+    color: #364b45;
     text-decoration: none;
 }
 
 .catlink:hover{
-    color:#488775;
-   text-decoration: none;
-    font-style: italic;
+    color:white;
+    text-decoration: none;
 }
 
 #featured-3 p{
     font-size: 18px;
     word-break: break-all;
+}
+.feature:hover
+{
+    background-color: #9FCAF9;
 }
